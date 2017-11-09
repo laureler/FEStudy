@@ -1,6 +1,6 @@
 项目结构
 ```text
-├─build                 //编译||混淆后的运行文件
+├─build                 //编译 所使用的配置文件 如打包并且热部署，打包压缩混淆等js配置
 ├─config                //一般为打包的配置文件
 ├─src                   //原始数据
 │  ├─assets             // 
@@ -11,3 +11,5 @@
     └─unit
         └─specs
 ```
+## template.md[./doc/template.md]
+##
