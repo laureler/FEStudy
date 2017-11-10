@@ -6,11 +6,11 @@
   </head>
   <body>
     <div id="app">
-      <div>
-        <input type="text" v-model="parentMessage">
+      <input v-model="parent-message"/>
         <br>
+        <child v-bind:parent-message="parentMessage">
 
-      </div>
+        </child>
     </div>
     <!-- built files will be auto injected -->
   </body>
