@@ -13,17 +13,20 @@ Vue.config.productionTip = false
   template: '<App/>',
   components: {App}
 }) */
-var data = {counter: 0}
+
 Vue.component('child', {
-  template: `<span></span>`,
-  props: ['parent-message'],
+  template: `<span>{{myMessage}}</span>`,
+  props: ['myMessage']
+  /* data: function () {
+    return null
+  } */
   // 从技术角度看 data确实是一个函数，所以不会报错，但是其实data只是一个返回全局共享的变量
-  data: function () {
-    return my - message
-  }
 })
 
 new Vue({
   el: '#app',
-  data: ['parent-message']
+  // parentMessage
+  data: function () {
+    return {'parentMessage': 'data'}
+  }
 })
