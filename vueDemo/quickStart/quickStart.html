@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 引用</title>
+</head>
+<body>
+<span id="app">{{message}}</span>
+<script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+<script>
+  var data = {
+    message: 'start',
+  }
+  //所有的vue都通过 new Vue来开始使用
+  var vm  = new Vue({
+    data:data,
+    el:"#app"
+  })
+</script>
+</body>
+</html>
