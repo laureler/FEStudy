@@ -57,7 +57,16 @@ vm.$watch('a', (newValue, oldValue) =>{
   // 这个回调将在 `vm.a` 改变后调用
 })
 ```
-
+--------------
+### 数据绑定
+vue已经和DOM数据绑定在了一起，所有的元素都是响应式的。当我们修改了vue实例中的一些属性的时候，就会自动的变化。
+```vue
+<div id="app">
+    <span v-bind:title="message">
+        vue绑定属性在 title对象上，即为(实例为错误语法，仅为了体验)：<span title="{{message}}"></span>
+    </span>
+</div>
+```
 
 
     
