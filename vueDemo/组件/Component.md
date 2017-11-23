@@ -1,5 +1,7 @@
 ## 组件
 ----------------
+### 组件
+    component portlet  
 ### 组件全局注册
 ```ecmascript 6
 Vue.component('my-component', {

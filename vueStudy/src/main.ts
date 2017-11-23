@@ -27,7 +27,7 @@ new Vue({
   el: '#app',
   // parentMessage
   data: function () {
-    var obj = {
+    var obj:object = {
       parentMessage: 'data',
       parentMessage1: 'data1',
       parentMessage2: 'data2'
