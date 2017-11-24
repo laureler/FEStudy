@@ -1,5 +1,8 @@
 // Array相关的js库
 /**
+ *  1. arrayEqual 判断两个数组是否相等
+ */
+/**
  *  判断两个数组是否相等
  * @param array1:Array
  * @param array2:Array
