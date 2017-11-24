@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <child v-bind:message='12'></child>
+    <child message='12'></child>
+</div>
+<script src="../../resource/vue.js"></script>
+<script>
+  let componentChild = {
+    props: ['message'],
+    template: `<span>{{data}}</span>`,
+    data: function () {
+      let data = '默认值'
+      data = typeof  this.message
+      return {data}
+    }
+  }
+  let vue = new Vue({
+    el: '#app',
+    components: {
+      'child': componentChild
+    },
+    data: {
+      message: 'msg'
+    }
+  })
+
+
+</script>
+</body>
+</html>

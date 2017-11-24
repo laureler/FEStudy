@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态绑定prop属性</title>
+</head>
+<body>
+<div id="app">
+    <label for="input1">我是父类模板的信息：</label>
+    <input id="input1" type="text" v-model='todo.parentMessage0'>
+    <br>
+    <child v-bind='todo'></child>
+    <br>
+</div>
+<script src="../../resource/vue.js"></script>
+<script>
+    // 动态绑定数据 外加 计算属性
+  let component1 = {
+    props: ['parentMessage0','parentMessage1','parentMessage2','todo.parentMessage0'],
+    template: `<input v-model="parentMessage0"></input>`,
+    data: function () {
+      let result = ''
+      if (this.parentMessage0 >= 0 && this.parentMessage0 < 60) {
+        result = '不及格'
+      }
+      else if (this.parentMessage0 > 60 && this.parentMessage0 < 80) {
+        result = '中等'
+      } else if (this.parentMessage0 < 100) {
+        result = '优秀'
+      }
+      return {
+        result
+      }
+    },
+    computed: {
+      testResult: function () {
+        let str = ''
+        if (this.parentMessage0 < 60) {
+          str = '不及格'
+        }
+        return str
+      }
+    }
+  }
+
+  var vm = new Vue({
+    el: '#app',
+    components: {
+      'child': component1
+    },
+    data: function () {
+      return {
+        todo: {
+          'parentMessage0': '0',
+          'parentMessage1': '1',
+          'parentMessage2': '测试2',
+        }
+      }
+    }
+  })
+
+</script>
+</body>
+</html>
