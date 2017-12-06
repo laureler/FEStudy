@@ -12,13 +12,10 @@
     <child v-on:test="caculateTotal"></child>
 </div>
 <script src="../../../resource/vue.js"></script>
-    <script src="babel">
-
-    </script>
-    <script type="babel">
-        es6
-    </script>
-
+<!--
+    引用组件的时候 显示的绑定了方法 v-on:test = 'caculateTotal'
+    组件模板中便可以使用
+-->
 <script>
     let component1 = {
       template :`<button v-on:click="caculateNumber">{{counter}}</button>`,

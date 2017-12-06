@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹窗分页</title>
+</head>
+<body>
+<div id="app">
+    <button onclick="open1()">弹出</button>
+    <button onclick="close1()">关闭</button>
+</div>
+<div>
+    <div>
+        <label class="layui-form-label">单选框</label>
+        <div class="layui-input-block" lay-filter = 'switchValue'>
+            <input type="radio" name="sex" value="0" title="男">
+            <input type="radio" name="sex" value="1" title="女" checked>
+        </div>
+
+        <div class="layui-input-block" lay-filter = 'switchValue2'>
+            <input type="radio" name="sex" value="0" title="男">
+            <input type="radio" name="sex" value="1" title="女" checked>
+        </div>
+    </div>
+    <table class="layui-hide" id="test1" lay-filter="filterData" style="width: 800px;"></table>
+</div>
+
+
+<script src="../jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="resource/layui-v2.2.3/layui/css/layui.css">
+<script src="resource/layui-v2.2.3/layui/layui.all.js"></script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script>
+  window.onload = function () {
+    var form = layui.form;
+    var table = layui.table;
+
+    form.on('radio(switchValue)', function(data){
+      debugger
+      console.log(data.elem); //得到radio原始DOM对象
+      console.log(data.value); //被点击的radio的value值
+    });
+
+
+
+    table.render({
+      elem: '#test1',
+      height: 315,
+      width: 800,
+      cols: [[
+        {field: 'name', title: 'ID', sort: true, width: 130},
+        {field: 'age', title: '用户名', width: 130},
+        {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo'}
+      ]],
+      data: [
+        {name: 'wuyunlong', age: '19'},
+        {'name': 'wuyunlong', age: '18'},
+        {'name': 'wuyunlong', age: '20'},
+      ]
+    })
+    //监听工具条
+    //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+    table.on('tool(filterData)', function (obj) {
+      var data = obj.data //获得当前行数据
+      layEvent = obj.event //获得 lay-event 对应的值
+      switch (layEvent) {
+        case 'detail':
+          console.log(data)
+          break
+        case 'del':
+          layer.confirm('真的删除行么', function (index) {
+            debugger
+            obj.del() //删除对应行（tr）的DOM结构
+            layer.close(index)
+            //向服务端发送删除指令
+          })
+          break
+        case 'edit':
+          // 更新最新的 表格信息
+          obj.update({
+            username: '123'
+            ,title: 'xxx'
+          });
+          break
+        default:
+          layer.msg('默认')
+          break;
+      }
+    })
+  }
+
+  function open1 () {
+    layer.open({
+      title: '在线调试',
+      content: '可以填写任意的layer代码',
+      success: function (layerDom, index) {
+
+      }
+    })
+  }
+
+  function close1 () {
+    alert('close')
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹窗</title>
+</head>
+<body>
+<div id="app">
+    <el-button @click="visible = true">按钮</el-button>
+    <el-dialog :visible.sync="visible" title="Hello world">
+        <p>欢迎使用 Element</p>
+    </el-dialog>
+
+</div>
+<script src="../resource/vue.js"></script>
+<script src="https://cdn.bootcss.com/element-ui/2.0.5/index.js"></script>
+<link href="https://cdn.bootcss.com/element-ui/2.0.5/theme-chalk/index.css" rel="stylesheet">
+<script >
+    let template = `<el-popover
+                      ref="popover1"
+                      placement="top-start"
+                      title="标题"
+                      width="200"
+                      trigger="hover"
+                      content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+                    </el-popover>
+                    <el-button v-popover:popover1>hover 激活</el-button>
+        `
+    new Vue({
+      el:"#app",
+      data:function () {
+        return {
+          visible:false
+        }
+      }
+    })
+</script>
+</body>
+</html>

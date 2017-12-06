@@ -13,6 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "dependencies": {
+    "element-ui": "^2.0.7",
     "vue": "^2.5.8",
     "vue-router": "^3.0.1"
   },
