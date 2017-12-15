@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网格布局</title>
+    <style>
+        /*网格布局 两者皆可*/
+        .grid{
+            display:grid;
+            display: inline-grid;
+        }
+        div{
+            border: 1px  black solid;
+        }
+    </style>
+</head>
+<body>
+<h4>使用最简单的grid来定义网格轨道</h4>
+<div class="grid">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+    <div>Four</div>
+    <div>Five</div>
+</div>
+<h4>要想扩展，就要扩展网格 <strong>列轨道</strong></h4>
+<h4>  <strong>grid-template-columns</strong> 和 <strong>grid-template-rows</strong> 属性来定义网格中的行和列。 </h4>
+<style>
+    #test2{
+        /*定义列 ：宽度*/
+        grid-template-columns: 300px;
+        /*定义行 ：高度*/
+        grid-template-rows: 50px 60px 60px 4px 4px;
+    }
+</style>
+<div class="grid" id="test2">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+    <div>Four</div>
+    <div>Five</div>
+</div>
+
+<span>轨道可以使用任何长度单位进行定义。
+    网格还引入了一个额外的长度单位来帮助我们创建灵活的网格轨道。
+    新的fr单位代表网格容器中可用空间的一等份。
+    下一个网格定义将创建三个相等宽度的轨道，这些轨道会随着可用空间增长和收缩。</span>
+<style>
+    #test3{
+        width: 600px;
+        height: 600px;
+        border: 0.5px springgreen solid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 2fr 2fr;
+        /*定义隐藏的 rows高度*/
+        grid-auto-rows: 400px;
+    }
+    #test3:hover{
+        width: 900px;
+        height: 900px;
+        border: 0.5px palevioletred solid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 2fr 2fr;
+    }
+</style>
+
+<div class="grid" id="test3">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+    <div>Four</div>
+    <div>Five</div>
+</div>
+
+<span>在设置一个显式的网格或者定义自动创建的行和列的大小的时候，我们也许想给网格一个最小的尺寸，
+    但要确保他们能扩大到容纳他里面添加的内容。
+    举个例子，我想让我的行的高度永远不会缩小到100像素以下，
+    但是如果我的内容延伸到300像素高了我想让我的行高也延伸到这个高度。</span>
+<br/>
+
+<style>
+    #test4{
+        /* 设置row的高度 最小值为100px 最大值为auto自动撑满*/
+        grid-auto-rows: minmax(300px,auto);
+        background-color: #01AAED;
+    }
+    #test4>div:nth-child(1){
+        border: 1px red solid ;
+        background-color: red ;
+        font-size: 14px;
+    }
+</style>
+
+<div id="test4" class="grid">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+    <div>Four</div>
+    <div>Five</div>
+</div>
+
+</body>
+</html>

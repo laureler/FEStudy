@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>嵌套网格</title>
+    <style>
+        .grid{
+            display: inline-grid;
+        }
+        div{
+            border: 0.5px #01AAED  solid;
+        }
+        #test1,#test2{
+            width: 300px;
+            height: 600px;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows:  repeat(4,1fr);
+        }
+        #test1 .box1{
+            display: grid;
+            grid-template-rows: repeat(3,1fr);
+        }
+        #test2 .box1{
+            display:subgrid;
+        }
+    </style>
+</head>
+<body>
+<span>网格也可以嵌套使用</span>
+<div id="test1" class="grid">
+    <div class="box box1">
+        <div class="nested">a</div>
+        <div class="nested">b</div>
+        <div class="nested">c</div>
+    </div>
+    <div class="box box2">Two</div>
+    <div class="box box3">Three</div>
+    <div class="box box4">Four</div>
+    <div class="box box5">Five</div>
+</div>
+
+
+
+<div id="test2" class="grid">
+    <div class="box box1">
+        <div class="nested">a</div>
+        <div class="nested">b</div>
+        <div class="nested">c</div>
+    </div>
+    <div class="box box2">Two</div>
+    <div class="box box3">Three</div>
+    <div class="box box4">Four</div>
+    <div class="box box5">Five</div>
+</div>
+
+</body>
+</html>
