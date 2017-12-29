@@ -1,0 +1,8 @@
+{
+  "name": "",
+  "version": "",
+  "description": "若本地 依赖lodash",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
