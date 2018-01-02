@@ -5,6 +5,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
+const uglifyjs = require('uglifyjs-webpack-plugin')
 //const webpack = require('webpack-hot')
 // node.js 导出文件 导出一个对象实例
 module.exports = {
@@ -23,7 +24,8 @@ module.exports = {
     }),
     new CleanWebpackPlugin(['dist']),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new uglifyjs()
   ],
   output: {
     filename: '[name].bundle.js',
