@@ -3,13 +3,20 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 // node.js 导出文件 导出一个对象实例
 module.exports = {
   entry: {
     app:'./src/index.js',
     print:'./src/print.js'
   },
-  plugins:[new HtmlWebpackPlugin()],
+  devtool: 'inline-source-map',
+  plugins:[
+    new HtmlWebpackPlugin({
+      title:'output Management'
+    }),
+    new CleanWebpackPlugin(['dist'])
+  ],
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
