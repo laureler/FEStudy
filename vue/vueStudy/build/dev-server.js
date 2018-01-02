@@ -48,12 +48,13 @@ const compiler = webpack(webpackConfig)
 // 开始webpack 热部署插件
 // webpack-dev-middleware   webpack-hot-middleware 黄金组合搭档
 // webpack-dev-middleware webpack 打包配置
+// 只能用于开发环境，简洁的webpack包装中间件，插件做这个主要为文件做一件事情，就是当文件修改后，提交到webpack服务器。然后处理这些修改后的文件。 总的来讲就是修改文件自动刷新
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true
 })
 
-// webpack-hot-middleware webpack 热部署配置
+// webpack-hot-middleware webpack 热部署配置 通知浏览器主动刷新页面
 const hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: false,
   heartbeat: 2000
