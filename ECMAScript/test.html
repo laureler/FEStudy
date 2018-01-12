@@ -13,8 +13,6 @@
 
   // 全部调用的引用都可以持有
   var TreeJS = {
-    countNumber: 0,
-    countArray: [],
 
     init: function (HTMLElement, config) {
       let treeInstance
@@ -67,6 +65,15 @@
     }
 
   }
+
+  (function treeJS (global) {
+        // 初始化树形结构
+        var Tree = function () {
+
+        }
+        global.tree = Tree;
+  })(window)
+
 </script>
 </body>
 </html>
