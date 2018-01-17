@@ -1,6 +1,6 @@
-
+// this 的引用不会被更改，而且this是在创建的this
 var testFun2 = ()=>{
-  console.log(this)
+  console.log(arguments)
   //console.log(rest)
   setTimeout(() => {
     console.log(this)
