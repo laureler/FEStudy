@@ -1,9 +1,21 @@
-# vueStudy
-study day by day
-# 2017年11月9日
-    1. 生成vue-cli 项目基本模板
-        1.1 npm install vue-cli -g
-        1.2 安装成功后，vue init webpack yourProjectName
-        1.3 安装项目需要的相关设置
- 
-    
+# vuestudy
+
+> study vue
+
+## Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+```
+
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
