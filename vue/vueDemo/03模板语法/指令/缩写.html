@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>指令的缩写</title>
+</head>
+<body>
+  <button v-bind:id="data">全写</button>
+
+  <button :id="data">缩写</button>
+
+  <button v-on:click="data">全写</button>
+  <button @click="data">全写</button>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>绑定class</title>
+</head>
+<body>
+<div id="app">
+  <!-- 表示 active这个class是否存在 取决于数据属性 isActive的truthiness -->
+  <!-- 若isActive 是true  则存在active, 若isError是false则存在isError -->
+  <p v-bind:class="{active:isActive,isError:isError,aways}" class="原生class">测试</p>
+
+  <p v-bind:class="[value1,value2]">数组语法</p>
+</div>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      isActive: true,
+      isError: false,
+      aways:'awaysValue',
+      value1:'thisvalue1',
+      value2:'this-value2',
+    }
+  })
+</script>
+</body>
+</html>

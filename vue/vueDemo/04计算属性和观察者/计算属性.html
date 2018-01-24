@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>计算属性</title>
+</head>
+<body>
+<div id="app">
+  <p>{{message}}</p>
+  <button @click="reverseMessage">点我翻转</button>
+  <p>{{reversedMsg}}</p>
+
+  <p>方法调用返回值：{{now()}}</p>
+  <p>计算书型返回值：{{now_computed}}</p>
+  <button v-on:click="changeTime">点我观察方法返回值</button>
+  <button v-on:click="changeTime2">点我观察计算结果返回值（被缓存）</button>
+  <button v-on:click="changeTime3">点击我重新计算计算属性</button>
+</div>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+
+  /*模板内的表达式非常便利，但是设计它们的初衷是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护。例如：*/
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'this is message'
+    },
+    methods: {
+      reverseMessage: function () {
+        this.message = this.message.split('').reverse().join('')
+      },
+      now: function () {
+        return Date.now()
+      },
+      changeTime: function () {
+        alert(this.now())
+      },
+      changeTime2: function () {
+        alert(this.now_computed)
+      },
+      changeTime3:function () {
+        this.now_computed = Date.now();
+      }
+    },
+    computed: {
+      // 定义reversedMsg 是 message的 反转数据
+      // 由于  reversedMsg 是依赖于message的 所以在更新了message的时候 reversedMsg一定会更新
+      // 而有意思的是，由于知道了这种依赖关系，在message没有更改的时候，无论如何刷新，访问，都会立即返回结果不再计算。
+      reversedMsg: function () {
+        return this.message.split('').reverse().join('')
+      },
+      now_computed: {
+        // get在now_computed 取值的时候被调用
+        get: function () {
+          return Date.now()
+        },
+        // set在now_computed 被重新修改的时候调用
+        set: function (date) {
+            // 被调用时候不仅仅可以修改自身 同时改变了其中相关的其他东西
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>

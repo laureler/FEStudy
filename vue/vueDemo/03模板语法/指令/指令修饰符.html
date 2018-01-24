@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>指令修饰符</title>
+</head>
+<body>
+<div id="app">
+  <!--取消 事件的默认动作 -->
+  <button v-on:click.prevent ="reverseSeen">点击我</button>
+</div>
+<!--
+  指令 directives 是带有v-前缀的特殊标识，预期值是单个JavaScript表达式。
+  职责（作用）是 当表达式的值改变的时候，把其产生的连带影响，响应式的作用在DOM中。
+-->
+<script src="../../../node_modules/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+    },
+    methods: {
+
+    }
+  })
+</script>
+
+</body>
+</html>

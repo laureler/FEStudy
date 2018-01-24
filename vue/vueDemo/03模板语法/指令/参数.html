@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>指令参数</title>
+</head>
+<body>
+<div id="app">
+  <button v-on:click="reverseSeen">点击切换</button>
+  <p v-if="seen">现在你可以看到我了</p>
+  <br>
+
+  <p v-bind:id="idValue" v-bind:href="hrefValue">绑定了id href</p>
+</div>
+<!--
+  指令 directives 是带有v-前缀的特殊标识，预期值是单个JavaScript表达式。
+  职责（作用）是 当表达式的值改变的时候，把其产生的连带影响，响应式的作用在DOM中。
+-->
+<script src="../../../node_modules/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      seen: false,
+      idValue:'id123',
+      hrefValue:'www.baidu.com',
+    },
+    methods: {
+      reverseSeen: function () {
+        if(this.seen)
+          this.seen = false
+        else this.seen = true
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

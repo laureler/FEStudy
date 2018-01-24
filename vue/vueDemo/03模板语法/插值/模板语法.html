@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>模板语法</title>
+</head>
+<body>
+<div id="app">
+  <span>{{message}}</span><br>
+  <span v-once>{{onceMessage}}</span><br>
+  <button v-on:click="changeMessage">点击我改变data内部数据</button>
+  <br>
+  <!-- 如果是插值语法，真的就插入了一个字符串（面向用户） -->
+  <span>{{rawHtml}}</span>
+  <!-- 类似于渲染函数 返回对应的html页面 （面向开发者）-->
+  <span v-html="rawHtml"></span>
+</div>
+<script src="../../../node_modules/vue/dist/vue.js"></script>
+<script>
+
+  new Vue({
+    el: '#app',
+    data: {
+      message: `文本插值语法: <span>{{message}}</span> `,
+      onceMessage: `若文本插值shiyongle v-once则只会一次性执行，在data改变的时候也不会变化。<span v-once>{{message}}</span>`,
+      rawHtml: `<p style="color: red">this should be red</p>`,
+    },
+    methods: {
+      changeMessage: function () {
+        this.message = '我被改变了'
+        this.onceMessage = 'onceMessage' //这里不会改变
+        debugger
+      }
+    }
+  })
+</script>
+</body>
+</html>

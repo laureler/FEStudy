@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>插值特性</title>
+</head>
+<body>
+<div id="app">
+  <span>{{message}}</span>
+  <!-- vue mustache语法 不可用在 HTML元素的特性上 下列元素会失效-->
+  <!--<span id="{{message}}"></span>-->
+  <span v-bind:id="message"></span>
+  <span v-bind:id="message"></span>
+  <!-- v-bind 对于Boolean的特性略有不同，在下列测试的时候都不会渲染 except disabled -->
+  <button v-bind:id="flag1">测试1</button>
+  <button v-bind:id="flag2">测试2</button>
+  <button v-bind:id="flag3">测试3</button>
+  <button v-bind:id="flag4">测试4</button>
+  <!--<button v-bind:id="flag5">测试5</button>-->  <!--flag5没有定义会报错处理-->
+</div>
+<script src="../../../node_modules/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'hello',
+      flag1: null,
+      flag2: false,
+      flag3: 'disabled',
+      flag4: undefined,
+    }
+  })
+</script>
+</body>
+</html>
