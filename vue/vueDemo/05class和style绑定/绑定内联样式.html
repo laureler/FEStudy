@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>内联样式绑定</title>
 </head>
 <body>
-
+<div id="app">
+  <span v-bind:style="{color:activeColor, fontSize:fontSize}">样式动态绑定</span>
+  <span v-bind:style="styleObj">直接绑定在对象内部</span>
+  <span :style="{display:['-webkit-box','-ms-flexbox','flex']}">多重值：如果绑定的属性提供了多个值得数组，通常提供前缀的多个属性值</span>
+</div>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      activeColor: 'red',
+      fontSize: '24px',
+      // 直接绑定在一个对象内部会更好
+      styleObj: {
+        color: 'red',
+        fontSize: '40px'
+      }
+    }
+  })
+</script>
 </body>
 </html>

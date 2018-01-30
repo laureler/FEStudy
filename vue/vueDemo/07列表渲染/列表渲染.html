@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-for="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>列表渲染</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="(item,index) in items">
+      <!-- 也可以通过 of代替in 来迭代 -->
+      <!--<li v-for="(item,index) of items">-->
+      <input type="text">
+    </li>
+  </ul>
+
+  <ul>
+    <span v-for="(value,key,index) in obj">
+      value:{{value}} &nbsp;
+      key: {{key}}    &nbsp;
+      index:{{index}} &nbsp;
+      <br>
+    </span>
+  </ul>
+  <div>
+    <span v-for="(value,key,index) in obj">
+      <!-- 默认来 懒加载 -->
+      <!--<input type="text" value="name">-->
+
+      <input type="text" key="index"><br>
+    </span>
+  </div>
+</div>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+  /*import  Vue from '../../node_modules/vue/dist/vue'*/
+  new Vue({
+    el: '#app',
+    data: {
+      parentMessage: 'parentmessage',
+      items: [
+        {message: 'name'},
+        {message: 'password'},
+        {message: 'address'}
+      ],
+      obj: {
+        name: 'object',
+        value: '13',
+        text: '拼写'
+      },
+    }
+  })
+</script>
+</body>
+</html>

@@ -3,8 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>侧边菜单</title>
+    <style>
+        .navigation {
+            position: absolute;
+            border: 1px solid #0C0C0C;
+            height: 800px;
+            width: 1400px;
+
+            display: -webkit-flex; /* Safari */
+            display: flex;
+            flex-direction:column;
+        }
+
+        .navigation > section{
+            float: right;
+            overflow: scroll auto;
+        }
+        .navigation > nav{
+            float: left;
+            display: block;
+        }
+        .page_content_temp{
+            width: 400px;
+            height: 400px;
+            background-color: #00F7DE;
+
+        }
+        .sidebar {
+            display: block;
+            float: left;
+        }
+        .sidebar_item_title{
+            font-size: 20px;
+        }
+        .page_content {
+
+        }
+    </style>
 </head>
 <body>
-    <div></div>
+<div class="navigation">
+
+    <nav>
+        <div class="sidebar">
+
+            <div class="sidebar_item">
+                <div class="sidebar_item_title">一级标题</div>
+                <ul>
+                    <li>测试1</li>
+                    <li>测试2</li>
+                    <li>测试3</li>
+                </ul>
+            </div>
+            <div class="sidebar_item">
+                <div>一级标题</div>
+                <ul>
+                    <li>2.测试1</li>
+                    <li>2.测试2</li>
+                    <li>2.测试3</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <div class="page_content page_content_temp">
+            <div class="content"></div>
+            <div class="content"></div>
+        </div>
+    </section>
+
+</div>
 </body>
 </html>

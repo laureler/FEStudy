@@ -4,17 +4,303 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        div{
-            width: 300px;
-            height: 300px;
+        h1, h2, h3, ul {
+            margin: 0;
+            padding: 0;
         }
-        #test:nth-child(1){
+
+        .index {
+            display: flex;
+            display: -webkit-flex;
+        }
+
+        .sidebar {
+            margin: 0 auto;
+            /* 左侧布局最大 16em */
+            width: 25em;
+            overflow: auto;
+            display: block;
+        }
+
+        .sidebar-item__anchors:before {
+            content: '';
+            position: absolute;
+            height: calc(100% - 0.6em);
+            top: 0;
+            left: 0;
+            border-left: 1px dashed #999999;
+        }
+
+        .sidebar-item__anchors {
+            position: relative;
+        }
+
+        .sidebar-item-anchor {
+            position: relative;
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            margin: 0.6em 0em;
+            padding-left: 1em;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        /*height不写 内部也无内容 高度为0px，所以top bottom无所谓*/
+        .sidebar-item-anchor:before {
+            content: ' ';
+            position: absolute;
+            width: 0.5em;
+            left: 0;
+            top: 60%;
+            border-bottom: 1px dashed #999999;
+        }
+
+        /* after似乎没啥用*/
+        /*.sidebar-item-anchor:after {
+            content: ' ';
+            position: absolute;
+            width: 1em;
+            height: 0.12em;
+            left: 100%;
+            top: 0%;
+            border: 2px dashed #999999;
+        }*/
+
+        .sidebar-item {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: block;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            font-size: 16px;
+            margin: 0.6em 0.6em;
+        }
+
+        .sidebar-item > span {
+            font-family: "Microsoft YaHei";
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        .page__content {
+            border: 1px solid silver;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+
+        /* 默认隐藏的 标记 */
+        .listyle {
+            height: 1em;
+            width: 1.3em;
+            display: none;
+        }
+
+        .listyle:hover {
             background-color: red;
         }
+
+        /* 悬停显示 */
+        .sidebar-item-anchor:hover > .listyle {
+            display: block;
+        }
+
+        .sidebar-item-anchor > a, i {
+            float: left;
+            overflow: hidden;
+            max-width: 80%;
+        }
+
+        .test {
+            width: 300px;
+            height: 230px;
+            background-color: #00F7DE;
+            border: 1px solid #0C0C0C;
+        }
     </style>
+    <link rel="stylesheet" href="../resources/themes/icon.css">
 </head>
 <body>
+<!-- 生成链接导航控件的 左侧压面-->
+<div style="height: 800px;width: 1400px;border: 1px solid #0C0C0C;" class="index">
 
+    <nav class="sidebar">
+        <div class="sidebar-item">
+            <span>
+                一级标题
+            </span>
+            <ul class="sidebar-item__anchors">
+                <li class="sidebar-item-anchor" title="基本安装">
+                    <a data-target="test1">基本安装</a>
+                    <i class="icon-edit listyle" title="编辑" data-target="edit"></i>
+                    <i class="icon-add listyle" title="添加" data-target="add"></i>
+                </li>
+                <li class="sidebar-item-anchor" title="创建一个 bundle 文件" data-target="test2">
+                    <a>创建一个 bundle 文件</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="模块" data-target="test3">
+                    <a>模块</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="使用一个配置文件" data-target="test4">
+                    <a>使用一个配置文件</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="NPM 脚本(NPM Scripts)">
+                    <a data-target="test5">NPM 脚本(NPM Scripts)</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="结论">
+                    <a data-target="test6">结论</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-item">
+            <span>起步</span>
+            <ul class="sidebar-item__anchors">
+                <li class="sidebar-item-anchor" title="基本安装" data-target="test1">
+                    <a>基本安装</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="创建一个 bundle 文件" data-target="test2">
+                    <a>创建一个 bundle 文件</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="模块" data-target="test3">
+                    <a>模块</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="使用一个配置文件" data-target="test4">
+                    <a>使用一个配置文件</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="NPM 脚本(NPM Scripts)">
+                    <a data-target="test5">NPMssssssssssssssssssssss 脚本(NPM Scripts)</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="结论">
+                    <a data-target="test6">结论</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-item">
+            <span>起步</span>
+            <ul class="sidebar-item__anchors">
+                <li class="sidebar-item-anchor" title="基本安装" data-target="test1">
+                    <a>基本安装</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="创建一个 bundle 文件" data-target="test2">
+                    <a>创建一个 bundle 文件</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="模块" data-target="test3">
+                    <a>模块</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="使用一个配置文件" data-target="test4">
+                    <a>使用一个配置文件</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="NPM 脚本(NPM Scripts)">
+                    <a data-target="test5">NPMssssssssssssssssssssss 脚本(NPM Scripts)</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="结论">
+                    <a data-target="test6">结论</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-item">
+            <span>起步</span>
+            <ul class="sidebar-item__anchors">
+                <li class="sidebar-item-anchor" title="基本安装" data-target="test1">
+                    <a>基本安装</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="创建一个 bundle 文件" data-target="test2">
+                    <a>创建一个 bundle 文件</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="模块" data-target="test3">
+                    <a>模块</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="使用一个配置文件" data-target="test4">
+                    <a>使用一个配置文件</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="NPM 脚本(NPM Scripts)">
+                    <a data-target="test5">NPMssssssssssssssssssssss 脚本(NPM Scripts)</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+                <li class="sidebar-item-anchor" title="结论">
+                    <a data-target="test6">结论</a>
+                    <a class="icon-edit listyle"></a>
+                    <a class="icon-add listyle"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
+    <section class="page__content">
+        <div id="test1" style="width: 4000px" class="test">1</div>
+        <div id="test2" class="test">2</div>
+        <div id="test3" class="test">3</div>
+        <div id="test4" class="test">4</div>
+        <div id="test5" class="test">5</div>
+        <div id="test6" class="test">6</div>
+    </section>
+</div>
+<script>
+  window.onload = function () {
+    var ul = document.getElementsByTagName('ul')[0]
+
+    ul.addEventListener('click', function () {
+      var target = event.target.dataset.target
+      console.log(target)
+      if (target != undefined) {
+        switch (target) {
+          case 'edit':
+
+            break
+          case 'add':
+
+            break
+        }
+        document.getElementById(target).scrollIntoView(true)
+      }
+
+    })
+  }
+</script>
 </body>
 </html>

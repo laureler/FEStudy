@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>变异方法</title>
+</head>
+<body>
+<div id="app">
+  <div v-for="item in testarr">
+    <!--<input type="text" v-bind:value="item.name">-->
+    <div>{{item.name}}</div>
+  </div>
+  <div>
+    <button>push</button><br>
+    <button>pop</button><br>
+    <button>shift</button><br>
+    <button>unshift</button><br>
+    <button>splice</button><br>
+    <button>sort</button><br>
+    <button>reverse</button><br>
+  </div>
+</div>
+<!--
+  变异方法 顾名思义 会导致数组变异（变为其他状态），同时会出发 数组的改变。
+-->
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      testarr: [
+        {name: 'li1'},
+        {name: 'li2'},
+        {name: 'li3'},
+        {name: 'li4'},
+      ],
+      obj: 'test'
+    },
+    methods: {
+      push: function () {
+        this.testarr.push({
+          name: 'test'
+        })
+      },
+      pop: function () {
+        this.testarr.pop()
+      },
+      shift: function () {
+        this.testarr.shift()
+      },
+      unshift: function () {
+        this.testarr.unshift()
+      },
+      splice: function () {
+        this.testarr.splice()
+      },
+      sort: function () {
+        this.testarr.sort()
+      },
+      reverse: function () {
+        this.testarr.reverse()
+      }
+    }
+  })
+</script>
+</body>
+</html>

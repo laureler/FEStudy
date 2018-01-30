@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS悬停显示</title>
+</head>
+<body>
+
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: arial;
+    }
+
+    .messdiv {
+        position: relative;
+        width: 150px;
+        height: auto;
+        font-size: 14px;
+        margin: 20px 0 0 20px;
+    }
+
+    .selecshow {
+        display: none;
+        position: absolute;
+        border: 1px solid #ccc;
+        box-shadow: 0px 8px 16px 0px #666;
+        padding: 10px;
+        min-width: 140px;
+        line-height: 30px;
+    }
+
+    .messdiv:hover .selecshow {
+        display: block;
+    }
+</style>
+<body>
+<div class="messdiv">
+    <span>鼠标划我显示下拉信息</span>
+    <div class="selecshow">
+        <p>下拉信息1</p>
+        <p>下拉信息2</p>
+    </div>
+</div>
+
+</body>
+</html>
