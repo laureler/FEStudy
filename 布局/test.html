@@ -78,7 +78,7 @@
             margin: 0.6em 0.6em;
         }
 
-        .sidebar-item > span {
+        .sidebar-item > a {
             font-family: "Microsoft YaHei";
             font-size: 20px;
             font-weight: bolder;
@@ -113,7 +113,7 @@
             max-width: 80%;
         }
 
-        .test {
+        .page_content_item {
             width: 300px;
             height: 230px;
             background-color: #00F7DE;
@@ -128,9 +128,9 @@
 
     <nav class="sidebar">
         <div class="sidebar-item">
-            <span>
+            <a title="">
                 一级标题
-            </span>
+            </a>
             <ul class="sidebar-item__anchors">
                 <li class="sidebar-item-anchor" title="基本安装">
                     <a data-target="test1">基本安装</a>
@@ -272,12 +272,12 @@
     </nav>
 
     <section class="page__content">
-        <div id="test1" style="width: 4000px" class="test">1</div>
-        <div id="test2" class="test">2</div>
-        <div id="test3" class="test">3</div>
-        <div id="test4" class="test">4</div>
-        <div id="test5" class="test">5</div>
-        <div id="test6" class="test">6</div>
+        <div id="test1" style="width: 4000px" class="page_content_item">1</div>
+        <div id="test2" class="page_content_item">2</div>
+        <div id="test3" class="page_content_item">3</div>
+        <div id="test4" class="page_content_item">4</div>
+        <div id="test5" class="page_content_item">5</div>
+        <div id="test6" class="page_content_item">6</div>
     </section>
 </div>
 <script>
@@ -290,7 +290,7 @@
       if (target != undefined) {
         switch (target) {
           case 'edit':
-
+            // todo 修改控件内部标题 同时刷新当前title
             break
           case 'add':
 
@@ -299,6 +299,11 @@
         document.getElementById(target).scrollIntoView(true)
       }
 
+    })
+    ul.addEventListener('keydown', function () {
+      if (event.keyCode == '13') {
+        alert(1111)
+      }
     })
   }
 </script>

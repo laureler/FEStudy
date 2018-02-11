@@ -1,7 +1,7 @@
 {
   "name": "test",
   "version": "1.0.0",
-  "description": "> 文件目录结构\r ├─dist                  //typescript 会生成 bundle.js 放在 /dist文件夹下面\r └─src\r     └─components        //自定义的组件将会放在 src/components文件夹下。",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
