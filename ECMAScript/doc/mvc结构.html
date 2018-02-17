@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mvc结构实例</title>
+    <style>
+        table tr > td {
+            width: 100px;
+            height: 30px;
+            margin: 5px;
+            background-color: #00F7DE;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <!-- jsp -->
+        <!--<c:for>
+            <td></td>
+        </c:for>-->
+    </tr>
+</table>
+
+<script>
+  // 窗体加载成功执行方法
+  window.onload = function () {
+
+    var tdArr = [1, 2, 3, 4, 5]   // model ajax
+    for (var i = 0; i < tdArr.length; i++) { //迭代器
+      var tdInstance = document.createElement('td')     //创建td元素
+      var elementByTagName = document.getElementsByTagName('tr')[0] //取元素
+      elementByTagName.appendChild(tdInstance)                      //为元素tr 添加子元素td
+    }
+  }
+</script>
+</body>
+</html>
