@@ -19,7 +19,7 @@
     1. 阮一峰 https://github.com/ruanyf/jstraining/blob/master/docs/history.md
     2. JavaScript 
     3. ECMAScript 3/5/6  es6
-### ECMAScript 6而是（ecma 205 标准）
+### ECMAScript 6而是（ecma 205 标准） es6
     简介：http://es6.ruanyifeng.com/
 
 
