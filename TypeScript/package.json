@@ -1,18 +1,31 @@
 {
-  "name": "typescript",
+  "name": "typescript-vue-starter",
   "version": "1.0.0",
-  "description": "-----------\r ## 基本数据类型\r ### 布尔值\r ----------\r ```typescript\r     let isDone:boolean = true;\r ```",
-  "main": "变量声明.js",
+  "private": true,
+  "description": "",
+  "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [],
+  "author": {
+    "name": "Daniel Rosenwasser",
+    "url": "https://github.com/DanielRosenwasser"
+  },
+  "license": "Apache-2.0",
   "dependencies": {
-    "typescript": "^2.7.2",
-    "webpack": "^4.1.1"
+    "vue": "^2.5.2",
+    "vue-class-component": "^6.0.0",
+    "vue-property-decorator": "^6.0.0",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "ts-loader": "^4.0.1"
+    "css-loader": "^0.28.1",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.3.2",
+    "vue-loader": "^12.0.3",
+    "vue-template-compiler": "^2.5.2",
+    "webpack": "^4.1.1"
   }
 }
