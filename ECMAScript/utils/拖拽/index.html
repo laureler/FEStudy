@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+</head>
+<body>
+<div id="test" draggable="true"> dragable div</div>
+<div id="target" draggable="true" style="width: 300px;height: 200px;background-color: #00F7DE"></div>
+<script>
+  window.onload = function () {
+    var idElement = document.getElementById('test')
+    var target = document.getElementById('target')
+    // 拖拽开始
+    idElement.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text', 'hello')
+      e.dataTransfer.dropEffect = 'copy'
+      console.log(e)
+    })
+    //拖拽过程中持续触发
+    idElement.addEventListener('drag', e => {
+      console.log(e)
+    })
+    //被拖动的元素 进入目标元素时触发，应当在目标元素监听事件
+    target.addEventListener('dragenter', e => {
+
+    })
+    //被拖动的元素在离开目标元素的时候触发，应当在目标元素监听事件
+    //dragover事件
+    target.addEventListener('dragover', e => {
+      e.preventDefault()
+      e.dataTransfer.dropEffect = 'copy'
+      console.log('悬停元素')
+      return false
+    })
+
+    target.addEventListener('drop', function (e) {
+      this.innerHTML = 'Drrop' + e.dataTransfer.getData('text')
+      console.log('松开鼠标')
+      return false;
+    })
+    /*idElement.addEventListener('dragend',e=>{
+      console.log('拖放结束')
+    })*/
+  }
+</script>
+</body>
+</html>

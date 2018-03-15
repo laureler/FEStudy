@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video step2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<style>
+    ul{
+        min-height:100px;
+        background-color:#EEE;
+        margin:20px;
+    }
+    ul li{
+        background-color:#CCC;
+        padding:10px;
+        margin-bottom:10px;
+    }
+</style>
+<body>
+<ul id="drag-elements">
+    <li draggable="true">A</li>
+    <li draggable="true">B</li>
+    <li draggable="true">C</li>
+</ul>
+<ul id="drop-target"></ul>
+<script>
+  //获取目标元素
+  var target = document.querySelector('#drop-target');
+  //获取需要拖放的元素
+  var dragElements = document.querySelectorAll('#drag-elements li');
+  //临时记录被拖放的元素
+  var elementDragged = null;
+  //循环监听被拖放元素的开始拖放和结束拖放事件
+  for (var i = 0; i < dragElements.length; i++) {
+    //开始拖放事件监听
+    dragElements[i].addEventListener('dragstart', function(e) {
+      //设置当前拖放元素的数据参数
+      e.dataTransfer.setData('text', this.innerHTML);
+      //保存当前拖放对象
+      elementDragged = this;
+    });
+    //结束拖放事件监听
+    dragElements[i].addEventListener('dragend', function(e) {
+      //注销当前拖放对象
+      elementDragged = null;
+    });
+  }
+  //目标元素监听被拖放元素进入事件
+  target.addEventListener('dragover', function(e) {
+    //阻止浏览器默认行为
+    e.preventDefault();
+    //设置鼠标样式
+    e.dataTransfer.dropEffect = 'move';
+    return false;
+  });
+  //目标元素监听当被拖放元素落下时刻事件
+  target.addEventListener('drop', function(e) {
+    //阻止默认行为
+    e.preventDefault();
+    //阻止默认行为
+    e.stopPropagation();
+    //获取当前被拖放元素的存放数据参数
+    this.innerHTML = 'Dropped ' + e.dataTransfer.getData('text');
+    //删除被拖放元素
+    document.querySelector('#dragelements').
+    removeChild(elementDragged);
+    return false;
+  });
+</script>
+</body>
+</html>

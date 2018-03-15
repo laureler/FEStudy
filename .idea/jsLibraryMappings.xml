@@ -3,7 +3,6 @@
   <component name="JavaScriptLibraryMappings">
     <file url="PROJECT" libraries="{JavaScriptStudy/vue/node_modules}" />
     <includedPredefinedLibrary name="Node.js Core" />
-    <excludedPredefinedLibrary name="JavaScriptStudy/TypeScript/webpack_typescript/node_modules" />
     <excludedPredefinedLibrary name="JavaScriptStudy/angularStudy/myproject/node_modules" />
     <excludedPredefinedLibrary name="JavaScriptStudy/webpack/02初步打包/node_modules" />
     <excludedPredefinedLibrary name="JavaScriptStudy/webpack/03使用配置文件/node_modules" />

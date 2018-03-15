@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <style>
+    html,body{
+      width: 100%;
+      height: 100%;
+    }
+    .header{
+      background-color: #00bbee;
+    }
+    .aside{
+      background-color: #3d3d3d;
+    }
+    .main{
+      background-color: #00F7DE;
+    }
+  </style>
+</head>
+<body>
+<div id="app" style="width: 100%;height: 100%">
+  <my-component></my-component>
+</div>
+</body>
+<!-- 先引入 Vue -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+  Vue.component('my-component', {
+    template: " <el-container direction=\"horizontal\">\n" +
+    "            <el-aside width=\"40px\"> tool bar</el-aside>\n" +
+    "            <el-container direction=\"vertical\">\n" +
+    "                <el-header>headerbar</el-header>\n" +
+    "                <el-container>\n" +
+    "                    <el-main> canvasBar </el-main>\n" +
+    "                    <el-footer height=\"100px\"> editbar  </el-footer>\n" +
+    "                    <el-asider> configbar </el-asider>\n" +
+    "                </el-container>\n" +
+    "            </el-container>\n" +
+    "        </el-container>"
+  })
+  new Vue({
+    el: '#app',
+    data: function() {
+      return {
+        activeName: 'second'
+      }
+    },
+    methods: {
+      handleClick(tab, event) {
+        console.log(tab, event);
+      }
+    }
+  })
+
+
+</script>
+</html>

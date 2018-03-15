@@ -1,28 +1,19 @@
 <template>
   <div id="app">
-    <el-row class="tac">
-      <el-col :span="12">
-        <h5>默认颜色</h5>
-        <el-menu
-          default-active="2"
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose">
-          <el-submenu index="1">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>导航一</span>
-            </template>
-          </el-submenu>
-        </el-menu>
-      </el-col>
-
-    </el-row>
+    <div style="height: 100px;background-color: salmon"></div>
+    <div style="background-color: #a7ff34; height: 100%" class="flexbox_row">
+      <div style="background-color: #6f7180;width: 100px;height: 100%"></div>
+      <div class="flexbox_reverserow" style="width: 100%;height:100%;border: #0C0C0C 1px solid">
+        <div style="background-color: #00F7DE;width:300px;height: 100%;"></div>
+        <div style="background-color: #d7dce2;height: 100%;width: 400px"></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   import HelloWorld from './components/HelloWorld'
+  import './assets/index.css'
 
   export default {
     name: 'App',
@@ -39,7 +30,6 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
   }
 
   .el-row {

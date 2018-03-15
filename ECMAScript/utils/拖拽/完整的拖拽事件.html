@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>完整的拖拽事件</title>
+</head>
+<body>
+<div draggable="true" id="demo">你好，拖拽我</div>
+<div class="droptarget" style="width: 300px;height: 400px;background-color: #00F7DE"></div>
+<script>
+  // 开始拖动元素,
+  document.addEventListener('dragstart', e => {
+    e.dataTransfer.setData('text', e.target)    //设置方法和属性
+    document.getElementById('demo').innerHTML = '开始拖动P元素'   //拖动元素的时候 输出文字
+    event.target.style.opacity = '0.4' //修改拖动元素的透明度
+  })
+  //拖动元素的过程中
+  document.addEventListener('drag', e => {
+    document.getElementById('demo').style.color = 'red'  // 改变元素的颜色
+  })
+  //拖动完毕P元素
+  document.addEventListener('dragend', e => {
+    document.getElementById('demo').innerHTML = '完成了P元素的拖动' //输出一些 log日志
+    e.target.style.opacity = '1'                    //重置透明度
+  })
+  //拖动完成后触发
+  document.addEventListener('dragenter', e => {
+    if (e.target.className == 'droptarget') {
+      e.target.style.border = '3px dotted red'  // 当P元素 完成拖动进入droptarget 改变div的边框样式
+    }
+  })
+  //注意 dragover 拥有默认的浏览器处理事件，会把 拖拽的对象给设置为none
+    document.addEventListener('dragover',e=>{
+      e.preventDefault()
+    })
+    //P元素离开
+    document.addEventListener('dragleave',e=>{
+      if(e.target.className =='droptarget')
+        e.target.style.border = '';
+    })
+    //对于drop事件 浏览器默认打开drop中的链接
+    document.addEventListener('drop',e=>{
+      e.preventDefault();
+      if(e.target.className =='droptarget'){
+        document.getElementById('demo').style.color = '';
+        e.target.style.border = '';
+        var data  =e.dataTransfer.getData('text');
+        e.target.appendChild(data)
+      }
+    })
+
+
+</script>
+</body>
+</html>

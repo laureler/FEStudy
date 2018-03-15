@@ -1,0 +1,18 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "-----------\r ## 基本数据类型\r ### 布尔值\r ----------\r ```typescript\r     let isDone:boolean = true;\r ```",
+  "main": "变量声明.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^2.7.2",
+    "webpack": "^4.1.1"
+  },
+  "devDependencies": {
+    "ts-loader": "^4.0.1"
+  }
+}
