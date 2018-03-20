@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>标签页</title>
+	<div id="app">
+		<button onclick="addTabs()">添加组件</button>
+		<el-button type="primary">主要按钮</el-button>
+
+		<component :is="data"></component>
+		<el-test></el-test>
+		<div id="test"></div>
+		<div id="app2"></div>
+
+	</div>
+</head>
+<body>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+
+	<script src="../node_modules/element-ui/lib/index.js"></script>
+	<link rel="stylesheet" href="../node_modules/element-ui/lib/theme-chalk/index.css">
+	<script>
+		window.addTabs = function () {
+			document.getElementById('test').innerHTML = `<el-test></el-test>`;
+			document.getElementById('app2').innerHTML = `<el-button type="primary">主要按钮</el-button>`;
+		}
+	</script>
+	<script>
+		Vue.component('el-test',{
+			template:`<span id="1">dsadsadsadsdsad</span>`
+		})
+		Vue.component('component',{
+			template:`<span id="1">dsadsadsadsdsad</span>`,
+			data:{
+
+			}
+		})
+		var _vue = new Vue({
+			el:"#app"
+		})
+	</script>
+</body>
+</html>

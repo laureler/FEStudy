@@ -7,8 +7,18 @@
 <body>
 <div id="app">
     <i-button @click="show">Click me!</i-button>
+    <i-button @click="add">add</i-button>
     <Modal v-model="visible" title="Welcome">Welcome to iView</Modal>
+    <div id="test"></div>
 </div>
+
+<!-- import Vue.js -->
+<script src="../node_modules/vue/dist/vue.js"></script>
+<!-- import stylesheet -->
+<link rel="stylesheet" href="../node_modules/iview/dist/styles/iview.css">
+<!-- import iView -->
+<script src="../node_modules/iview/dist/iview.js"></script>
+
 <script>
 	new Vue({
 		el: '#app',
@@ -18,16 +28,16 @@
 		methods: {
 			show: function () {
 				this.visible = true
+			},
+            add:function () {
+                var elementById = document.getElementById('test')
+                var vm = new Vue({
+                    el:"#test",
+                    template:`<i-button>new button</i-button>`
+                })
 			}
 		}
 	})
 </script>
-<!-- import Vue.js -->
-<script src="//vuejs.org/js/vue.min.js"></script>
-<!-- import stylesheet -->
-<link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
-<!-- import iView -->
-<script src="//unpkg.com/iview/dist/iview.min.js"></script>
-
 </body>
 </html>
