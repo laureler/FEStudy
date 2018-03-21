@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div id="test">
+	<div>
+		<div id="page">
+			<ul>
+				<li data-number="1">1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+			<div class="panelTabs">
+				<div id="panel1">
+					<el-button></el-button>
+				</div>
+				<div id="panel2"></div>
+				<div id="panel3"></div>
+				<div id="panel4"></div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script>
+	//
+	Page.start();
+</script>
+<script>
+
+	var Page = {
+		start :function () {
+			document.getElementById('page').children('ul').addEventListener('click',(e)=>{
+				var number   = e.target.getAttribute('data-number')
+				select(number)
+			})
+		}
+
+		/**
+		 *
+		 * @param tabNumber
+		 */
+		select: function (tabNumber) {
+			// 根据你当前的tab number属性选中某一个标签
+		}
+	}
+</script>
+</body>
+</html>
