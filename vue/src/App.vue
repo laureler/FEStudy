@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <div style="height: 100px;background-color: salmon"></div>
-    <div style="background-color: #a7ff34; height: 100%" class="flexbox_row">
-      <div style="background-color: #6f7180;width: 100px;height: 100%"></div>
-      <div class="flexbox_reverserow" style="width: 100%;height:100%;border: #0C0C0C 1px solid">
-        <div style="background-color: #00F7DE;width:300px;height: 100%;"></div>
-        <div style="background-color: #d7dce2;height: 100%;width: 400px"></div>
-      </div>
-    </div>
+    <el-tabs v-model="editableTabsValue2" type="tabCard" closable @tab-remove="removeTab">
+      <el-tab-pane
+        v-for="(item, index) in editableTabs2"
+        :key="item.name"
+        :label="item.title"
+        :name="item.name"
+      >
+        <div v-html="item.content"></div>
+      </el-tab-pane>
+
+    </el-tabs>
   </div>
 </template>
 
@@ -17,6 +20,90 @@
 
   export default {
     name: 'App',
+    data() {
+      return {
+        editableTabsValue2: '2',
+        editableTabs2: [{
+          title: 'Tab 1',
+          name: '1',
+          content: `<button>test</button>`
+        }, {
+          title: 'Tab 2',
+          name: '2',
+          content: 'Tab 2 content'
+        }],
+        tabIndex: 2
+      }
+    },
+    methods: {
+      handleTabsEdit(targetName, action) {
+
+        if (action === 'add') {
+          let newTabName = ++this.tabIndex + '';
+          this.editableTabs.push({
+            title: 'New Tab',
+            name: newTabName,
+            content: 'New Tab content'
+          });
+          this.editableTabsValue = newTabName;
+        }
+        if (action === 'remove') {
+          debugger
+          let tabs = this.editableTabs;
+          let activeName = this.editableTabsValue;
+          if (activeName === targetName) {
+            tabs.forEach((tab, index) => {
+              if (tab.name === targetName) {
+                let nextTab = tabs[index + 1] || tabs[index - 1];
+                if (nextTab) {
+                  activeName = nextTab.name;
+                }
+              }
+            });
+          }
+
+          this.editableTabsValue = activeName;
+          this.editableTabs = tabs.filter(tab =>
+            {
+              tab.name !== targetName
+            }
+          );
+        }
+      },
+      addTab(targetName) {
+        let newTabName = ++this.tabIndex + '';
+        this.editableTabs2.push({
+          title: 'New Tab',
+          name: newTabName,
+          content: 'New Tab content'
+        });
+        this.editableTabsValue2 = newTabName;
+      },
+      removeTab(targetName) {
+        //当前所有逇tabs选项数据
+        let tabs = this.editableTabs2;
+        //当前获得焦点的tab
+        let activeName = this.editableTabsValue2;
+        //若是当前焦点
+        if (activeName === targetName) {
+          tabs.forEach((tab, index) => {
+            if (tab.name === targetName) {
+              let nextTab = tabs[index + 1] || tabs[index - 1];
+              if (nextTab) {
+                activeName = nextTab.name;
+              }
+            }
+          });
+        }
+        //若不是当前脚垫 则设置为当前焦点
+        this.editableTabsValue2 = activeName;
+        //并且过滤 targetName与tab的name属性不一致
+        this.editableTabs2 = tabs.filter(tab => {
+            debugger
+            tab.name !== targetName
+        });
+      }
+    },
     components: {
       HelloWorld
     }
