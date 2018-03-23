@@ -21,9 +21,16 @@ function detectmob() {
 	var vueDrag = {}
 	vueDrag.install = function (Vue) {
 		Vue.directive("drag", {
-			bind: function (el, binding) {
+			bind: function (el, binding,vnode,lodVnode) {
+
 				// console.log(binding)
 				el.style.position = "absolute"
+				this.binding = binding
+				this.vnode = vnode
+				this.setStyles = function (top,left) {
+					vnode.data.style.top =top
+					vnode.data.style.left =left
+				}
 				var isChildDom
 				if (binding.value !== undefined) {
 					var elValue = binding.value
@@ -51,17 +58,18 @@ function detectmob() {
 						var right = left + Number(barStyle.getPropertyValue("width").replace("px", ""))
 						var top = Number(barStyle.getPropertyValue("top").replace("px", "")) + Number(boxStyle.getPropertyValue("top").replace("px", "")) + Number(boxStyle.getPropertyValue("border-top-width").replace("px", ""))
 						var bottom = top + Number(barStyle.getPropertyValue("height").replace("px", ""))
-						// console.log(`left:${left}`)
-						// console.log(`right:${right}`)
-						// console.log(`top:${top}`)
-						// console.log(`bottom:${bottom}`)
-						// console.log(`clientX: ${e.clientX}`)
-						// console.log(`clientY: ${e.clientY}`)
+						console.log(`left:${left}`)
+						console.log(`right:${right}`)
+						console.log(`top:${top}`)
+						console.log(`bottom:${bottom}`)
+						console.log(`clientX: ${e.clientX}`)
+						console.log(`clientY: ${e.clientY}`)
 						if (e.clientX <= right && e.clientX >= left && e.clientY >= top && e.clientY <= bottom) {
 							addEventListener("mousemove", move)
 							addEventListener("mouseup", up)
 						}
-					} else {
+					}
+					else {
 						if(binding.modifiers.cursor) el.style.cursor = "move"
 						addEventListener("mousemove", move)
 						addEventListener("mouseup", up)
@@ -74,6 +82,7 @@ function detectmob() {
 				function up() {
 					var leftResult = el.style.left
 					var topResult = el.style.top
+					this.setStyles(topResult,leftResult)
 					/*binding.value.top = topResult
 					binding.value.left = leftResult*/
 					removeEventListener("mousemove", move)
