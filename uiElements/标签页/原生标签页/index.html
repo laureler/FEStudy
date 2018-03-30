@@ -12,37 +12,60 @@
 <body>
 <link rel="stylesheet" href="../../../node_modules/element-ui/lib/theme-chalk/index.css">
 
-<button onclick="console.log('a')">标签页的初始化</button> &nbsp;
-<button>左侧菜单</button> &nbsp;
-<button>右侧菜单</button> &nbsp;
-<button>上方菜单</button> &nbsp;
-<button>底部菜单</button> &nbsp;
-<button>滚动切换</button> &nbsp;
-<button>滑动鼠标切换</button> &nbsp;
+<button onclick="tabsUI.init()">标签页的初始化</button> &nbsp;
+
+<button data-position = 'left' onclick="tabsUI.TooglePosition('left')">统一左侧菜单</button> &nbsp;
+<button data-position = 'right' onclick="tabsUI.TooglePosition('right')">统一右侧菜单</button> &nbsp;
+<button  data-position = 'top' onclick="tabsUI.TooglePosition('top')">统一上方菜单</button> &nbsp;
+<button disabled data-position = 'bottom' onclick="tabsUI.TooglePosition('bottom')">统一底部菜单</button> &nbsp;
+
+<select name="" id="select">
+	<option value="tab-1">tab-1</option>
+	<option value="tab-2">tab-2</option>
+	<option value="tab-3">tab-3</option>
+	<option value="tab-20">tab-20</option>
+	<option value="tab-21">tab-21</option>
+	<option value="tab-22">tab-22</option>
+	<option value="tab-23">tab-23</option>
+</select> <button onclick="tabsUI.toogleTabs(document.getElementById('select').value)">根据ID设置焦点</button>
+<button data-position = ''>统一滚动切换</button>
+<button>统一滑动鼠标切换</button> &nbsp;
 <!--
 -->
-<div id="Tabs" rel="tabs" style="position: absolute; width: 600px; height: 400px; top: 90px; left: 100px;">
+<div id="Tabs" rel="tabs" style="position: absolute; width: 600px; height: 400px; top: 120px; left: 100px;">
 
 	<div class="el-tabs el-tabs--top el-tabs--border-card">
 
 		<div class="el-tabs__header is-top">
 			<div class="el-tabs__nav-wrap is-top">
 				<div role="tablist" class="el-tabs__nav" style="transform: translateX(0px);">
-					<div id="tab-0" aria-controls="pane-0" role="tab" tabindex="0" class="el-tabs__item is-top " aria-selected="true">用户管理</div>
-					<div id="tab-1" aria-controls="pane-1" role="tab" tabindex="-1" class="el-tabs__item is-top is-active">配置管理</div>
-					<div id="tab-2" aria-controls="pane-2" role="tab" tabindex="-1" class="el-tabs__item is-top">角色管理</div>
-					<div id="tab-3" aria-controls="pane-3" role="tab" tabindex="-1" class="el-tabs__item is-top">定时任务补偿</div>
+					<div id="tab-0" aria-controls="pane-0" role="tab" tabindex="0" class="el-tabs__item is-top is-active"
+					     aria-selected="true">用户管理用户管理用户管理用户管理用户管理用户管理
+					</div>
+					<div id="tab-1" aria-controls="pane-1" role="tab" tabindex="-1"
+					     class="el-tabs__item is-top">配置管理
+					</div>
+					<div id="tab-2" aria-controls="pane-2" role="tab" tabindex="-1" class="el-tabs__item is-top">角色管理
+					</div>
+					<div id="tab-3" aria-controls="pane-3" role="tab" tabindex="-1" class="el-tabs__item is-top">
+						定时任务补偿
+					</div>
 				</div>
 			</div>
 		</div>
 		<!-- 标签页面板 start-->
 		<div class="el-tabs__content">
-			<div role="tabpanel" id="pane-0" aria-labelledby="tab-0" class="el-tab-pane">
+			<div role="tabpanel" id="pane-0" aria-labelledby="tab-0" class="el-tab-pane is-active">
 				用户管理
 			</div>
-			<div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane" style="display: none;" aria-hidden="true">配置管理</div>
-			<div role="tabpanel" id="pane-2" aria-labelledby="tab-2" class="el-tab-pane" style="display: none;" aria-hidden="true">角色管理</div>
-			<div role="tabpanel" id="pane-3" aria-labelledby="tab-3" class="el-tab-pane" style="display: none;" aria-hidden="true">
+			<div role="tabpanel" id="pane-1" aria-labelledby="tab-1" class="el-tab-pane" style="display: none;"
+			     aria-hidden="true">配置管理
+			</div>
+			<div role="tabpanel" id="pane-2" aria-labelledby="tab-2" class="el-tab-pane" style="display: none;"
+			     aria-hidden="true">角色管理
+			</div>
+			<div role="tabpanel" id="pane-3" aria-labelledby="tab-3" class="el-tab-pane" style="display: none;"
+			     aria-hidden="true">
 				定时任务补偿<br>
 				<h1>定时任务补偿</h1><br>
 				<h1>定时任务补偿</h1><br>
@@ -63,21 +86,33 @@
 		<div class="el-tabs__header is-top">
 			<div class="el-tabs__nav-wrap is-top">
 				<div role="tablist" class="el-tabs__nav" style="transform: translateX(0px);">
-					<div id="tab-20" aria-controls="pane-0" role="tab" tabindex="0" class="el-tabs__item is-top " aria-selected="true">用户管理</div>
-					<div id="tab-21" aria-controls="pane-1" role="tab" tabindex="-1" class="el-tabs__item is-top is-active">配置管理</div>
-					<div id="tab-22" aria-controls="pane-2" role="tab" tabindex="-1" class="el-tabs__item is-top">角色管理</div>
-					<div id="tab-23" aria-controls="pane-3" role="tab" tabindex="-1" class="el-tabs__item is-top">定时任务补偿</div>
+					<div id="tab-20" aria-controls="pane-0" role="tab" tabindex="0" class="el-tabs__item is-top is-active"
+					     aria-selected="true">用户管理
+					</div>
+					<div id="tab-21" aria-controls="pane-1" role="tab" tabindex="-1"
+					     class="el-tabs__item is-top">配置管理
+					</div>
+					<div id="tab-22" aria-controls="pane-2" role="tab" tabindex="-1" class="el-tabs__item is-top">角色管理
+					</div>
+					<div id="tab-23" aria-controls="pane-3" role="tab" tabindex="-1" class="el-tabs__item is-top">
+						定时任务补偿
+					</div>
 				</div>
 			</div>
 		</div>
 		<!-- 标签页面板 start-->
 		<div class="el-tabs__content">
-			<div role="tabpanel" id="pane-20" aria-labelledby="tab-0" class="el-tab-pane">
+			<div role="tabpanel" id="pane-20" aria-labelledby="tab-0" class="el-tab-pane is-active">
 				用户管理
 			</div>
-			<div role="tabpanel" id="pane-21" aria-labelledby="tab-1" class="el-tab-pane" style="display: none;" aria-hidden="true">配置管理</div>
-			<div role="tabpanel" id="pane-22" aria-labelledby="tab-2" class="el-tab-pane" style="display: none;" aria-hidden="true">角色管理</div>
-			<div role="tabpanel" id="pane-23" aria-labelledby="tab-3" class="el-tab-pane" style="display: none;" aria-hidden="true">
+			<div role="tabpanel" id="pane-21" aria-labelledby="tab-1" class="el-tab-pane" style="display: none;"
+			     aria-hidden="true">配置管理
+			</div>
+			<div role="tabpanel" id="pane-22" aria-labelledby="tab-2" class="el-tab-pane" style="display: none;"
+			     aria-hidden="true">角色管理
+			</div>
+			<div role="tabpanel" id="pane-23" aria-labelledby="tab-3" class="el-tab-pane" style="display: none;"
+			     aria-hidden="true">
 				定时任务补偿<br>
 				<h1>定时任务补偿</h1><br>
 				<h1>定时任务补偿</h1><br>
@@ -98,21 +133,34 @@
 		<div class="el-tabs__header is-top is-right">
 			<div class="el-tabs__nav-wrap is-top is-right">
 				<div role="tablist" class="el-tabs__nav" style="transform: translateY(0px);">
-					<div id="tab-30" aria-controls="pane-0" role="tab" tabindex="0" class="el-tabs__item is-right " aria-selected="true">用户管理</div>
-					<div id="tab-31" aria-controls="pane-1" role="tab" tabindex="-1" class="el-tabs__item is-right is-active">配置管理</div>
-					<div id="tab-32" aria-controls="pane-2" role="tab" tabindex="-1" class="el-tabs__item is-right">角色管理</div>
-					<div id="tab-33" aria-controls="pane-3" role="tab" tabindex="-1" class="el-tabs__item is-right">定时任务补偿</div>
+					<div id="tab-30" aria-controls="pane-0" role="tab" tabindex="0" class="el-tabs__item is-right is-active"
+					     aria-selected="true">用户管理
+					</div>
+					<div id="tab-31" aria-controls="pane-1" role="tab" tabindex="-1"
+					     class="el-tabs__item is-right">配置管理
+					</div>
+					<div id="tab-32" aria-controls="pane-2" role="tab" tabindex="-1" class="el-tabs__item is-right">
+						角色管理
+					</div>
+					<div id="tab-33" aria-controls="pane-3" role="tab" tabindex="-1" class="el-tabs__item is-right">
+						定时任务补偿
+					</div>
 				</div>
 			</div>
 		</div>
 		<!-- 标签页面板 start-->
 		<div class="el-tabs__content">
-			<div role="tabpanel" id="pane-30" aria-labelledby="tab-0" class="el-tab-pane">
+			<div role="tabpanel" id="pane-30" aria-labelledby="tab-0" class="el-tab-pane is-active">
 				用户管理
 			</div>
-			<div role="tabpanel" id="pane-31" aria-labelledby="tab-1" class="el-tab-pane" style="display: none;" aria-hidden="true">配置管理</div>
-			<div role="tabpanel" id="pane-32" aria-labelledby="tab-2" class="el-tab-pane" style="display: none;" aria-hidden="true">角色管理</div>
-			<div role="tabpanel" id="pane-33" aria-labelledby="tab-3" class="el-tab-pane" style="display: none;" aria-hidden="true">
+			<div role="tabpanel" id="pane-31" aria-labelledby="tab-1" class="el-tab-pane" style="display: none;"
+			     aria-hidden="true">配置管理
+			</div>
+			<div role="tabpanel" id="pane-32" aria-labelledby="tab-2" class="el-tab-pane" style="display: none;"
+			     aria-hidden="true">角色管理
+			</div>
+			<div role="tabpanel" id="pane-33" aria-labelledby="tab-3" class="el-tab-pane" style="display: none;"
+			     aria-hidden="true">
 				定时任务补偿<br>
 				<h1>定时任务补偿</h1><br>
 				<h1>定时任务补偿</h1><br>
