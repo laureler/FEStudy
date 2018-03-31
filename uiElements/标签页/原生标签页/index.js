@@ -207,3 +207,18 @@ window.test = function (elementId, newPosition) {
 		$transFormNavDiv.attr('style', 'transform: translate' + translateXYStr + '(0px);')
 	}
 }
+
+/**
+ * 为所有的标签页增加scroll滚动事件
+ * @param id 标签页的id属性值
+ */
+window.addScroll = function (id) {
+	var tabElement = document.getElementById(id);
+	var tab_navWrap = tabElement.getElementsByClassName('el-tabs__nav-wrap')[0];
+	tab_navWrap.classList.add('is-scrollable');
+	
+	// todo 增加 span*2 （两个左右标记）
+	// todo ['role="tablist"'] 外部增加一层 div.el-tabs__nav-scroll
+	// todo el-tabs__item 加 isclosable
+	
+}
