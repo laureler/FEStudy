@@ -1,7 +1,21 @@
 <!-- 面向 渲染引擎的tab标签页 -->
-//依赖 jquery >1.9
+/**
+ * 1. 运行环境ie11以上 浏览器
+ * 2. 以来jQuery1.9版本年以上
+ * 3. 使用方法：
+ *      tabsUI.init() 初始化所有标签页
+ * 4. 标签页依赖规则 查看md文档
+ *
+ *
+ */
+// 功能点：
+/**
+ * 1. init: 初始化 所有的标签页
+ *  1.1 （具有多个标签页的，可以点击切换）
+ * 2.
+ */
 // 依赖 tab-${uuid} panel-${uuid}
-(function (document, window, $) {
+(function (document, window, $,environment) {
 	
 	var TabsUI = function () {
 		function tabsUI(element, config) {
@@ -25,7 +39,7 @@
 		 *
 		 */
 		_prototype.init = function (config) {
-			this.toogleTabs(config)
+			this.getTargetById(config)
 			/*this.checkTitles(config)*/
 			this.initEvents(config)
 		}
@@ -72,10 +86,10 @@
 				tabNewStr = 'el-tabs--' + newPosition
 				isOldStr = 'is-' + oldPosition
 				isNewStr = 'is-' + newPosition
-				console.log(tabOldStr)
-				console.log(tabNewStr)
-				console.log(isOldStr)
-				console.log(isNewStr)
+				this.showLog(tabOldStr)
+				this.showLog(tabNewStr)
+				this.showLog(isOldStr)
+				this.showLog(isNewStr)
 				translateXYStr = (newPosition == 'top' || newPosition == 'bottom') ? 'Y' : 'X'
 				
 				var $tabDiv = $Tab.find('.' + tabOldStr)
@@ -95,11 +109,12 @@
 			}
 		}
 		/**
-		 * 切换
-		 * 根据标签页 选中项的ID属性切换到对应的选项卡
-		 * @param idValues {[]}
+		 * 根据标签页 选中项的ID属性来 取得对应的目标
+		 * @param idValues {[]} 数组结构/字符串 若为数组结构 第二个参数失效
+		 * @param vision 是否自动切换到可视区域 若为true则当前 id对应的标签页应当切换到可视区域 默认值为false
 		 */
-		_prototype.toogleTabs = function (idValues) {
+		_prototype.getTargetById = function (idValues, vision) {
+			//参数安全类型检查
 			if (idValues == undefined) return
 			if (idValues.constructor.name === 'Array' && idValues.length != undefined) {
 				for (var i = 0; i < idValues.length; i++) {
@@ -109,12 +124,52 @@
 					this.switchTabs(idValue)
 				}
 			}
+			//id类型为非数组结构 启动第二个参数检查
 			else if (idValues.constructor.name === 'String' && idValues != '') {
-				this.switchTabs(idValues)
+				//参数安全类型检查
+				let idValue = idValues
+				vision = vision || false
+				//idElement 根据idValue获取对应的DOM元素
+				let idElement = document.getElementById(idValue);
+				if(idElement === null){
+					this.showLog('没有查询到对应的 DOM元素')
+					return;
+				}
+				// 设置选择模式
+				let type = ''
+				if(idValue.split('-')[0] ==='tab'){
+					type = 'selectTab'
+				}
+				if(idElement.getAttribute('rel') === 'tabs'){
+					type = 'selectTabs'
+				}
+				if(idElement.getAttribute('isControl' === 'true')){
+					type = 'selectControl'
+				}
+				switch (type){
+					// 以tab开头的 选项卡div元素 单纯的做切换
+					case 'selectTab':
+						this.switchTabs(idValue)
+						if(vision === true){
+							//todo 获取当前选项卡所处的标签页id
+							//todo 不断地向外递归查找
+						}
+						break;
+					//若当前的id是标签页控件
+					case 'selectTabs':
+						// todo 标签页不切换焦点
+						//todo 标签页应该向外查找对应的id
+						break;
+					//若当前的id选中时标签页
+					case 'selectControl':
+						// todo 不断向外查找标签页并且切换
+						// todo 若没有就算了
+						break;
+				}
 			}
 		}
 		/**
-		 * 根据id切换标题与面板
+		 * 根据id切换标签页的选项卡
 		 * @param tab_id
 		 */
 		_prototype.switchTabs = function (tab_id) {
@@ -134,18 +189,23 @@
 			var clickFunction = function (e) {
 				let selectedId = $(e.target).attr('id')
 				if (selectedId !== undefined && $(e.target).parent().attr('role') === 'tablist') {
-					_this.toogleTabs(selectedId)
+					_this.getTargetById(selectedId)
 				}
 			}
 			$('[rel="tabs"]').on('click', clickFunction)
 			//
 			console.log('绑定滚动事件')
 		}
+		_prototype.showLog = function (msg) {
+			if(environment =='dev'){
+				console.log(msg)
+			}
+		}
 	}
 	// exports
 	window.tabsUI = new TabsUI()
 	
-})(document, window, $)
+})(document, window, $,'dev')
 
 /**
  *    动态切换标签页的 id属性
