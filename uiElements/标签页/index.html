@@ -43,11 +43,11 @@
 		if(options.titles != undefined){
 			var tabTemplate = document.createElement('div')
 			tabTemplate.id = options.id;
-			tabTemplate.innerHTML = `<el-tabs v-drag type="border-card" :tab-position="position" editable @edit="handleTabsEdit" :value="defaultSelected" :style="styles" style="position:absolute;">
+			/*tabTemplate.innerHTML = `<el-tabs v-drag type="border-card" :tab-position="position" editable @edit="handleTabsEdit" :value="defaultSelected" :style="styles" style="position:absolute;">
 											<el-tab-pane v-for="(item, index) in editableTabs" :key="item.name" :label="item.title" :name="item.name">
 				                                <div v-html="item.content"></div>
 					                        </el-tab-pane>
-										</el-tabs>`
+										</el-tabs>`*/
 			return tabTemplate;
 		}
 	}
@@ -60,9 +60,14 @@
 
 		var pageElement = generatorTemplate(options)
 		document.getElementById('app').appendChild(pageElement);
-
+		debugger
 		window.vuePanel = new Vue({
 			el: `#${pageElement.id}`,
+			template:`<el-tabs v-drag type="border-card" :tab-position="position" editable @edit="handleTabsEdit" :value="defaultSelected" :style="styles" style="position:absolute;">
+											<el-tab-pane v-for="(item, index) in editableTabs" :key="item.name" :label="item.title" :name="item.name">
+				                                <div v-html="item.content"></div>
+					                        </el-tab-pane>
+										</el-tabs>`,
 			data() {
 				return {
 					styles:options.styles,
