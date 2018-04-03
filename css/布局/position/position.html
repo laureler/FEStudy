@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>position定位</title>
+    <style>
+        .static {
+            position: static;
+        }
+        .relative {
+            position: relative;
+        }
+        .relative2 {
+            position: relative;
+            top: -30px;
+            left: 40px;
+            width: 400px;
+            background-color:powderblue;
+        }
+        .fixed {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 200px;
+            background-color: skyblue;
+        }
+        .absoulte{
+            width: 300px;
+            height: 200px;
+            top: 40px;
+            left: 40px;
+            border: 1px skyblue solid;
+            position: absolute;
+        }
+    </style>
+
+</head>
+
+<div class="static">
+    static 是默认值 position:static 元素不会被特殊的定位 <br>
+    一个static元素标识他不会被 positioned
+    一个position属性被设置为其他值的元素则标识他会被 positioned
+</div>
+
+<div class="relative">
+    relative 表现的和 static 一样，除非你添加了一些额外的属性。
+</div>
+
+<div class="relative2">
+    在一个相对定位（position属性的值为relative）的元素上设置 top 、 right 、 bottom 和 left 属性会使其偏离其正常位置。
+    其他的元素的位置则不会 因为该元素发生位置改变的影响来弥补它偏离后剩下的空隙。
+</div>
+
+<div class="relative">
+    relative 表现的和 static 一样，除非你添加了一些额外的属性。
+</div>
+
+<div class="fixed">
+    一个定位会根据 视窗来定位
+    这意味着即使页面滚动，他还是会停留在相同的位置，
+    和relative一样：top/left/bottom/right都可以用
+</div>
+
+<div style="margin: 20px"></div>
+
+
+<div style="position: relative;width: 400px;height: 400px; border: 1px salmon solid">
+    这里的元素是相对定位元素 （positioned），只要不是没有写或者position不是static 都是positioned的元素
+    <div class="absoulte">
+        我是相对定位元素
+    </div>
+</div>
+<body>
+
+</body>
+</html>

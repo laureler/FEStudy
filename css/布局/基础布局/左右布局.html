@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左右布局</title>
+    <style>
+        .border {
+            border: 1px #1a6aab solid;
+            box-sizing: border-box;
+        }
+        .container {
+            position: relative;
+        }
+
+        /* position:fixed 为何不用？ */
+        nav {
+            position: absolute;
+            left: 0;
+            width: 200px;
+        }
+
+        section {
+            margin-left: 200px;
+            height: 200px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 70px;
+            background-color: #00bbee;
+            width: 100%;
+        }
+
+        body {
+            margin-bottom: 120px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="border"></nav>
+    <section class="border"></section>
+    <section class="border"></section>
+    <section class="border"></section>
+</div>
+
+
+</body>
+</html>

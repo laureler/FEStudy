@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .float {
+            float: left;
+            margin: 0 0 1em 1em;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 400px; height: 400px">
+
+<img src="./summer.jpg" width="300px" class="float">
+<p style="border:1px solid black"> 在这个例子中， p 元素实际上是在 div 之后的（译注：DOM结构上）。
+    然而 div 元素是浮动到左边的，于是 section 中的文字就围绕了 div ，并且 p 元素包围了整个元素。
+    如果我们想让 section 显示在浮动元素之后呢？   </p>
+</div>
+
+
+<div style="width: 400px; height: 400px">
+
+    <img src="./summer.jpg" width="300px" class="float">
+
+    <div style="border:1px solid black;clear: left"> 在这个例子中， p 元素实际上是在 div 之后的（译注：DOM结构上）。
+        然而 div 元素是浮动到左边的，于是 section 中的文字就围绕了 div ，并且 p 元素包围了整个元素。
+        如果我们想让 section 显示在浮动元素之后呢？通过在p元素上设置 clear：left清除左浮动 或者clear:both清除双侧浮动   </div>
+</div>
+
+
+<div style="position:relative;left:20px">
+
+    <img src="./summer.jpg" height="300px" style="float: right" >
+    <p style="border:1px solid black">当浮动的图片超过了下面的p元素之后，图片就会变得很奇怪。文字的环绕也变得很复杂   </p>
+</div>
+<div style="width: 300px;height: 200px;background-color: #00bbee">
+    下面的元素很可能就会覆盖掉超出 边界的图片，为了防止这种情况出现，需要设置 overflow:auto 来自动扩大外层的div控件
+</div>
+
+
+
+
+<div style="position:relative;left:20px;overflow: auto">
+
+    <img src="./summer.jpg" height="300px" style="float: right" >
+    <p style="border:1px solid black">当浮动的图片超过了下面的p元素之后，图片就会变得很奇怪。文字的环绕也变得很复杂   </p>
+</div>
+<div style="width: 300px;height: 200px;background-color: #00bbee">
+    下面的元素很可能就会覆盖掉超出 边界的图片，增加了overflow之后 情况变得不错
+</div>
+
+</body>
+</html>

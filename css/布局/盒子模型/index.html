@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盒子模型</title>
+    <style>
+        .bord {
+            border: 1px solid #00bbee;
+        }
+        .simple{
+            width: 500px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        .fancy {
+            width: 500px;
+            height: 300px;
+            margin: 20px auto;
+            padding: 50px;
+            border-width: 10px;
+        }
+        /* 更好的兼容浏览器 */
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    在我们讨论宽度的时候，我们应该讲下与它相关的另外一个重点知识：盒模型。
+    当你设置了元素的宽度，实际展现的元素却超出你的设置：这是因为元素的边框和内边距会撑开元素。
+    看下面的例子，两个相同宽度的元素显示的实际宽度却不一样
+</div>
+
+<div class="simple bord"></div>
+
+<div class="fancy bord">
+    padding border 会影响控件的高度和宽度
+</div>
+
+<div class="fancy bord" style="box-sizing: border-box">
+    若希望 不会因为border padding 来影响对应的大小的话，就设置一个属性 box-sizing: border-box
+</div>
+
+</body>
+</html>
