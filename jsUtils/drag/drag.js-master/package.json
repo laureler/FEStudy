@@ -1,0 +1,32 @@
+{
+  "name": "drag",
+  "description": "a very small drag library for javascript",
+  "keywords": [
+    "ender",
+    "drag",
+    "drop",
+    "microjs"
+  ],
+  "version": "0.0.4",
+  "homepage": "https://logicalparadox.github.com/drag.js",
+  "authors": [
+    "Jake Luer <@jakeluer>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/logicalparadox/drag.js"
+  },
+  "dependencies": {
+    "bean": ">= 0.2.7",
+    "qwery": ">= 2.1.2",
+    "bonzo": ">= 0.6.4"
+  },
+  "devDependencies": {
+    "smoosh": "0.3.x"
+  },
+  "main": "./drag.js",
+  "ender": "./src/ender.js",
+  "scripts": {
+    "builder": "node make/build.js"
+  }
+}

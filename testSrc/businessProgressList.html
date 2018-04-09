@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="public/css/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="public/css/color.css">
+	<link rel="stylesheet" href="public/css/stylesheets/module.css">
+	<link rel="stylesheet" type="text/css" href="public/css/tmpcss.css">
+	<link rel="stylesheet" type="text/css" href="public/css/icon.css">
+	<style type="text/css">
+		html, body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			overflow: hidden;
+		}
+	</style>
+	<script type="text/javascript" src='public/js/jquery-1.11.3.min.js'></script>
+	<script type="text/javascript" src="public/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="public/js/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="public/js/jquery.edatagrid.min.js"></script>
+	<script type="text/javascript" src='public/js/datagrid-cellediting.js'></script>
+	<script type="text/javascript" src="public/easyui/datagrid-detailview.js"></script>
+
+	<script type="text/javascript" src='public/js/ibasesys.min.js'></script>
+
+	<script type="text/javascript" src='public/js/treedesigner.min.js'></script>
+	<!-- 添加 fix-datagrid start -->
+	<script type="text/javascript" src='public/js/fix-datagrid.min.js'></script>
+	<!-- 添加 fix-datagrid end -->
+	<script type="text/javascript">
+      function getParent (self) {
+        if (self)
+          return self.window.parent
+        else
+          return window.parent
+      }
+
+      var parentWin = getParent(this)
+
+      function searchProcess (moduleId, title, procInstId, whoIsDad) {
+        var module = {
+          moduleId: moduleId + '_' + procInstId,
+          name: (title != 'null' && title != null ? title : '查看流程') + '窗口',
+          pageUrl: parentWin.workflowUrl + '/showWorkFlowTraceDrawing?processInstanceId=' + procInstId,
+          isParent: false,
+          dadName: whoIsDad
+        }
+        getParent(this).addTap(null, module)
+      }
+
+      function searchForm (moduleId, title, taskId, whoIsDad) {
+        var module = {
+          moduleId: moduleId + '_' + taskId,
+          name: (title != 'null' && title != null ? title : '查看表单'),
+          pageUrl: parentWin.workflowUrl + '/renderFormByTaskId?taskId=' + taskId,
+          isParent: false,
+          dadName: whoIsDad,
+          parentId: window.frameElement && window.frameElement.id.substring(4) || ''
+        }
+        parentWin.addTap(null, module)
+      }
+
+	</script>
+	<title>进度查询</title>
+</head>
+<body>
+<div style="height:800px;width:1000px; position:relative;top: 200px;left: 100px;border: 1px solid #b9ca4a">
+
+
+	<div id="topTool" class="pd10" style="display:none;">
+		<table>
+			<tr>
+				<td>申请时间:</td>
+				<td>
+					<input id="startdate" class="easyui-datebox" name="startdate" data-options="prompt:'请选择开始日期'">
+				</td>
+				<td>至</td>
+				<td>
+					<input id="enddate" class="easyui-datebox" name="enddate" data-options="prompt:'请选择结束日期'">
+					<a id="clrDateSearch" class="easyui-linkbutton" style="display:none" title="清除日期范围，并刷新"
+					   data-options="iconCls:'icon-clear',plain:true" onclick="cutDateSearchText()"></a>
+				</td>
+				<td>
+					<input id="ss" class="easyui-searchbox" searcher="doSearch" prompt="请输入查询的业务受理号"
+					       style="width:350px"/>
+					<a id="clrSearch" class="easyui-linkbutton" style="display:none" title="清除搜索，并刷新"
+					   data-options="iconCls:'icon-clear',plain:true" onclick="cutSearchText()"></a>
+				</td>
+				<td>
+					<input id="stateSelect" class="tool_select" class="easyui-combobox" style="width:90px"/>
+				</td>
+				<td>
+					<a class="easyui-linkbutton" data-options="iconCls:'icon-reload'" plain="true"
+					   onclick="reLoad()">刷新</a>
+				</td>
+				<td>
+					<a class="easyui-linkbutton" data-options="iconCls:'icon-takeBackIcon'" plain="true"
+					   onclick="withdraw()">收回</a>
+				</td>
+				<td>
+					<a class="easyui-linkbutton" data-options="iconCls:'icon-print'" plain="true"
+					   onclick="">打印</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="easyui-panel overh" data-options="fit:true,noheader:true,border:false">
+		<table id="docItem" style="width:100%;height:100%"
+		       data-options="fitColumns:true,singleSelect:true,toolbar:'#topTool',
+		 		checkOnSelect:false,selectOnCheck:false,scrollbarSize:0,pageSize:20,
+	    	pageList:[20,40,60,80,100],pagination:true,rownumbers:true,nowrap:true">
+			<thead>
+			<tr>
+				<th data-options="field:'ck',align:'center',checkbox: true"></th>
+				<th data-options="field:'jid',align:'center'" width="120">预受理号</th>
+				<!-- <th data-options="field:'accpetJid',align:'center'" width="120">受理号</th> -->
+				<th data-options="field:'progressState',align:'center'" width="80">受理进度</th>
+				<th data-options="field:'accdate',align:'center',formatter:formatDate" width="150">受理时间</th>
+				<th data-options="field:'operationdescribe',align:'center'" width="110">说明</th>
+				<th data-options="field:'maxTimelimit',align:'center'" width="100">办理时限(/天)</th>
+				<th data-options="field:'befTitle',align:'center'" width="150">申请事项名称</th>
+				<th data-options="field:'operation',align:'center',formatter:formatOper" width="120">操作</th>
+			</tr>
+			</thead>
+		</table>
+	</div>
+
+	<div id="winList" class="easyui-window" title="提交结果" closed="true"
+	     style="width: 400px; height: 200px; display: none;"
+	     data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,inline:false,footer:'#List'">
+		<table id="dgList" striped="true" class="easyui-datagrid"
+		       style="width: 100%; height: 100%; display: none;"
+		       data-options="fitColumns:false,">
+			<thead>
+			<tr>
+				<th field="jid" align="center">业务受理号</th>
+				<th field="message" align="center">错误原因</th>
+			</tr>
+			</thead>
+		</table>
+		<div id="List" align="center" style="padding: 5px;">
+			<a class="easyui-linkbutton ml10" onclick="closeList()">确定</a>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript">
+  //初始化列表
+  $(selectFormData(0))
+
+  //条件查询
+  var doSearch = function (value, name) {
+    if (value) {
+      $('#clrSearch').css('display', '')
+    } else {
+      $('#clrSearch').css('display', 'none')
+    }
+    selectFormData(1)
+  }
+
+  //选择开始日期触发
+  $('#startdate').datebox({
+    onSelect: function (date) {
+      doDateSearch(date)
+    }
+  })
+
+  //选择结束日期触发
+  $('#enddate').datebox({
+    onSelect: function (date) {
+      doDateSearch(date)
+    }
+  })
+
+  //日期条件查询
+  var doDateSearch = function (date) {
+    $('#clrDateSearch').css('display', '')
+    selectFormData(1)
+  }
+
+  //查询列表数据
+  function selectFormData (state) {
+    var startDate = ''
+    var endDate = ''
+    var keyword = ''
+    var stateSelect = ''
+    if (state != 0) {
+      startDate = $('#startdate').textbox('getText')
+      endDate = $('#enddate').textbox('getText')
+      keyword = $('#ss').textbox('getText')
+      stateSelect = $('#stateSelect').combobox('getValue')
+    }
+    if (state == 1) {
+      if (endDate && startDate && startDate > endDate) {
+        showError('开始日期不能大于结束日期')
+        return
+      }
+    }
+    $('#docItem').datagrid({
+      striped: true,
+      url: parentWin.workflowUrl + '/myjob/getBusinessProgressList',
+      queryParams: {'startDate': startDate, 'endDate': endDate, 'keyword': keyword, 'stateSelect': stateSelect}
+    })
+  }
+
+  //清除日期查询条件并刷新
+  function cutDateSearchText () {
+    $('#startdate').searchbox('clear')
+    $('#enddate').searchbox('clear')
+    selectFormData(1)
+    $('#clrDateSearch').css('display', 'none')
+  }
+
+  //清除关键字查询条件并刷新
+  function cutSearchText () {
+    $('#ss').searchbox('clear')
+    selectFormData(1)
+    $('#clrSearch').css('display', 'none')
+  }
+
+  //日期时间格式化
+  function formatDate (value) {
+    if (!value) {
+      return '--:--'
+    }
+    var date = new Date(value)
+    var y = date.getFullYear()
+    var m = date.getMonth() + 1
+    var d = date.getDate()
+    var h = date.getHours()
+    var min = date.getMinutes()
+    var s = date.getSeconds()
+    return y + '年' + m + '月' + d + '日 ' + h + '点' + min + '分' + s + '秒'
+  }
+
+  //格式化操作列显示内容
+  function formatOper (val, row, index) {
+    return '<a href="javascript:void(0)" onclick="findForm(' + '\'' + row['processInstanceId'] + '\',\'' + row['befTitle'] + '\'' + ')">查看</a>'
+  }
+
+  //刷新
+  function reLoad () {
+    location.reload()
+  }
+
+  //收回
+  function withdraw () {
+    var nodes = $('#docItem').datagrid('getChecked')
+    if (nodes == null || nodes == '') {
+      var node = $('#docItem').datagrid('getSelected')
+      if (node == null || node == '') {
+        showError('请选择一项要操作的数据')
+        return
+      } else {
+        nodes[0] = node
+      }
+    }
+    var errInfo = []
+    var errInfoProessEnd = []
+    if (nodes.length > 0) {
+      for (var i = 0; i < nodes.length; i++) {
+        if (!nodes[i]['taskId']) {
+          var msg = {jid: nodes[i]['jid'], title: '', message: '审批已结束，不可撤回'}
+          errInfoProessEnd.push(msg)
+        }
+      }
+      if (errInfoProessEnd.length > 0) {
+        openResultDgList(errInfoProessEnd)
+        return
+      }
+      $.messager.confirm('提示', '只能收回未受理业务，确认要收回?', function (r) {
+        if (r) {
+          for (var i = 0; i < nodes.length; i++) {
+            var processInstanceId = nodes[i]['processInstanceId']
+            invokeJson(parentWin.workflowUrl + '/withdrawToFirstLink', {processInstanceId: nodes[i]['processInstanceId']},
+              {
+                async: false, sFn: function (data) {
+                },
+                fFn: function (xhr, err, exmsg) {
+                  var alertMsg = analyseError(xhr.responseText)
+                  if (!alertMsg) {
+                    var sOther = ''
+                    if (stat) sOther += '[' + stat + ']'
+                    if (exMsg) sOther += exmsg
+                    if (sOther) sOther = '：' + sOther
+                    alertMsg = '未知的原因' + sOther
+                  }
+                  var msg = {jid: nodes[i]['jid'], title: '', message: alertMsg}
+                  errInfo.push(msg)
+                }
+              })
+            if (errInfo.length == 0) {
+              $('#docItem').datagrid('reload')
+            }
+          }
+          if (errInfo.length > 0) {
+            openResultDgList(errInfo)
+          } else {
+            showSuccess('收回成功')
+            $('#docItem').datagrid('reload')
+          }
+        }
+      })
+    } else {
+      showError('请选中一项需要收回的工作')
+    }
+  }
+
+  //打开提交结果窗口
+  function openResultDgList (errInfo) {
+    var data = {total: errInfo.length, rows: errInfo}
+    $('#winList').window('setTitle', '收回结果:')
+    $('#winList').window('open')
+    $('#dgList').datagrid({
+      data: data.rows
+    })
+  }
+
+  //关闭
+  function closeList () {
+    $('#docItem').datagrid('reload')
+    $('#winList').window('close')
+  }
+
+  //查看
+  function findForm (processInstanceId, title) {
+    var module = {
+      moduleId: 'BusinessProgressForm1' + processInstanceId,
+      name: (title != null && title != 'null' ? title : '查看表单') + '窗口',
+      pageUrl: parentWin.workflowUrl + '/renderFinishForm?historyProcessInstanceId=' + processInstanceId,
+      isParent: false,
+      dadName: 'BusinessProgress'
+    }
+    getParent(this).addTap(null, module)
+  }
+
+  //审批状态下拉框
+  $(document).ready(function () {
+    //审批状态值
+    var combodata = [
+      {'isInssuing': '全部', 'value': '0', 'selected': 'true'},
+      {'isInssuing': '未受理', 'value': '1'},
+      {'isInssuing': '已受理', 'value': '2'},
+      {'isInssuing': '审批中', 'value': '3'},
+      {'isInssuing': '已结案', 'value': '4'},
+      {'isInssuing': '未通过', 'value': '5'},
+    ]
+    //加载下拉框
+    $('#stateSelect').combobox({
+      data: combodata,
+      textField: 'isInssuing',
+      valueField: 'value',
+      panelHeight: 'auto',
+      onChange: function (n, o) {
+        if (o) {
+          selectFormData(1)
+        }
+      }
+    })
+  })
+
+</script>
+</body>
+</html>

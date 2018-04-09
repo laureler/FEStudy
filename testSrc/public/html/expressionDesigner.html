@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" type="text/css" href="/public/css/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="/public/css/icon.css">
+<link rel="stylesheet" type="text/css" href="/public/css/color.css">
+
+<link rel="stylesheet" href="/mainWeb/stylesheets/main.css">
+<link rel="stylesheet" href="/public/css/tmpcss.css">
+
+<script type="text/javascript" src="/public/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/public/js/jquery.easyui.min.js"></script>
+<!-- <script type="text/javascript" src="/public/UEditor/ueditor.config.js"></script>  
+<script type="text/javascript" src="/public/UEditor/ueditor.all.js"></script> -->  
+<script type="text/javascript" src="/public/js/ibasesys.min.js"></script>
+
+</head>
+<body id="expressionDesignerInnerCont">
+
+
+
+<script type="text/javascript" src="/public/js/expressdesign.js"></script>
+<script type="text/javascript">
+//通过url地址传入参数
+//?oldExpFla=url编码的表达式串
+//或从父对象传入
+//parent.oldExpFla=表达式串
+//parent.expDebugType=验证表达式类型，前端值为0，后端值为1
+
+//需要调用者调用【GetExpressDes】获取定义的表达式字符串。
+//返回结果是字符串
+
+	$(function(){
+		var param=getSearchParams(window.location.search);
+		var _oldExp=param["oldExpFla"];
+		var _expDebugType = param["expDebugType"];
+		//没有通过url传入时，尝试使用父对象获取
+		if(typeof(_oldExp)=="undefined"){
+			_oldExp=parent.oldExpFla;
+		}else{
+			_oldExp=decodeURIComponent(_oldExp);
+		}
+		if(typeof(_expDebugType)=="undefined"){
+		    _expDebugType=parent.expDebugType;
+        }else{
+		    _expDebugType=decodeURIComponent(_expDebugType);
+        }
+
+		openExpress(_oldExp,null,'expressionDesignerInnerCont',_expDebugType);
+	});
+	
+	//获得当前表达式
+	var getExpressDes = function(){
+		return saveEditorContentTxt();
+	}
+	//验证表达式是否正确
+	var getCheckExpress = function(){
+		return validExpress();
+	}
+</script>
+
+</body>
+</html>

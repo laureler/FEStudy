@@ -1,0 +1,5 @@
+/*
+ *   自定义控件样式（使用控件必须加载样式）
+ *
+ */
+/* 按钮样式  */.widget-btn{border:1px solid transparent;background-color:transparent;cursor:pointer;outline:0}.widget-btn:hover{border:1px solid #d9d3ef;background-color:rgba(232,236,255,0.9)}.widget-btn-icon{width:16px;height:16px;display:inline-block}.widget-btn i{margin:4px 0 4px 4px}.widget-btn span{margin:4px 4px 4px 4px}.widget-btn i,.widget-btn span{vertical-align:middle}

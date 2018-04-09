@@ -1,0 +1,55 @@
+在主页window中定义了用于操作窗口的方法
+
+一、打开(添加)/关闭页
+
+//打开一个页
+function addTap(tagCtrl,module)
+1、参数tagCtrl 目前未使用，可以传null
+2、module 打开页的模块信息，至少包含三个属性：
+   moduleId,模块唯一标识
+   name,模块标题名
+   pageUrl,模块界面地址
+
+
+//获得当前显示页的操作对象，如果为null，则表示没有当前显示页
+function getCurPage()
+//container，标签页的jquery对象，以li为根节点。
+//getModId,获得当前模块ID
+//getTitle,获得当前模块标题
+//setTitle,设置当前模块标题
+
+
+//关闭指定标签页
+function closePage(modId)
+//modId:要关闭的模块ID
+
+
+//切换显示指定标签页
+function showPage(modId)
+//modId:要显示的模块ID
+
+
+==========================================================
+二、显示/隐藏右边分栏窗口
+function splitscreen(pageId,isSplit)
+1、参数pageId是要被分栏div里的iframe的name，是"page"+modId
+2、参数isSplit是布尔值，true是打开分栏，false关闭分栏
+
+
+==========================================================
+以上方法定义在外层框架的mainWeb/javascripts/index.js文件中，
+如果是从iframe子页面调用，就要先获得当前iframe的window.name作为pageId参数，同时方法获取要写成parent.splitscreen(pageId,isSplit);
+如果点击事件是主页触发的，就要获得需要分栏div里的iframe的name作为pageId参数
+
+标签页的层次结构（可找到当前选中页的pageId）
+<div id="exBox" class="exBox" style="width: 304px;">
+ <div class="exBoxItem" name="panCreateJobForm2_34fdbda0b96111e78dd4c85b76e856b8">
+  <div class="exBoxTit" onclick="showPageOnExBox(this,&quot;CreateJobForm2_34fdbda0b96111e78dd4c85b76e856b8&quot;)">201710250002</div>
+  <i class="sprite_icon sprite-close" onclick="closeExBox(this,&quot;CreateJobForm2_34fdbda0b96111e78dd4c85b76e856b8&quot;);"></i>
+ </div>
+
+ <div class="exBoxItem sel" name="pan3">  <!--.sel样式表示当前选中页-->
+  <div class="exBoxTit" onclick="showPageOnExBox(this,&quot;3&quot;)">创建工作</div>
+  <i class="sprite_icon sprite-close" onclick="closeExBox(this,&quot;3&quot;);"></i>
+ </div>
+</div>
