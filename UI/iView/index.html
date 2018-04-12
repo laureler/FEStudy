@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>基本引入</title>
+	<meta charset="UTF-8">
+	<title>基本引入</title>
 </head>
 <body>
 <div id="app">
-    <i-button @click="show">Click me!</i-button>
-    <i-button @click="add">add</i-button>
-    <Modal v-model="visible" title="Welcome">Welcome to iView</Modal>
-    <div id="test"></div>
+
+	<i-button @click="show">Click me!</i-button>
+	<Modal v-model="visible" title="Welcome">Welcome to iView</Modal>
+	<i-switch v-model="defaultValue" @on-change="change"></i-switch>
 </div>
 
 <!-- import Vue.js -->
-<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../../node_modules/vue/dist/vue.js"></script>
 <!-- import stylesheet -->
-<link rel="stylesheet" href="../node_modules/iview/dist/styles/iview.css">
+<link rel="stylesheet" href="../../node_modules/iview/dist/styles/iview.css">
 <!-- import iView -->
-<script src="../node_modules/iview/dist/iview.js"></script>
+<script src="../../node_modules/iview/dist/iview.js"></script>
 
 <script>
-	new Vue({
-		el: '#app',
-		data: {
-			visible: false
-		},
-		methods: {
-			show: function () {
-				this.visible = true
-			},
-            add:function () {
-                var elementById = document.getElementById('test')
-                var vm = new Vue({
-                    el:"#test",
-                    template:`<i-button>new button</i-button>`
-                })
-			}
-		}
-	})
+  new Vue({
+    el: '#app',
+    data: {
+      visible: false,
+      defaultValue: false
+    },
+    methods: {
+      show: function () {
+        this.visible = true
+      },
+      change:function (value) {
+        console.log(value)
+      },
+      add: function () {
+        var elementById = document.getElementById('test')
+        var vm = new Vue({
+          el: '#test',
+          template: `<i-button>new button</i-button>`
+        })
+      }
+    }
+  })
 </script>
 </body>
 </html>
