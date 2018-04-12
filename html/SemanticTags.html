@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<!-- title 剪短 描述性 唯一 提升SEO -->
 	<title>Semantic 语义化标签</title>
+
 </head>
 <body>
 <!--
@@ -12,21 +14,76 @@
 	3. 结构清晰，利于维护
 -->
 	<div id="app">
-		<article> Defines an article </article>
-		<aside> Defines content aside from the page content 定义页面内容之外的东西</aside>
-		<details> Defines additional details that the user can view or hide 用户可以查看或</details>
-		<figcaption> Defines a caption for a</figcaption>
-		<figure> element</figure>
-		<figure> Specifies self-contained content, like illustrations, diagrams, photos, code listings, etc.</figure>
-		<footer> Defines a footer for a document or section</footer>
-		<header> Specifies a header for a document or section</header>
-		<main> Specifies the main content of a document</main>
-		<mark> Defines marked/highlighted text</mark>
-		<nav> Defines navigation links</nav>
-		<section> Defines a section in a document</section>
-		<summary> Defines a visible heading for a</summary>
-		<details> element</details>
-		<time> Defines a date/time</time>
+		<div>块级通用容器</div>
+		<span>短语内容无语义标签</span>
+		<!-- hn -->
+		<!-- h1-h6 分级别标题 用于创建页面信息的层级关系 -->
+
+		<header>
+			<!-- 页眉通常包括网站标志，主导航，全站链接 以及搜索框-->
+			The header element specifies a header for a document or section.
+			header 标记定义了document文档或者section模块的一个头部，
+			你可以有好几个header在一个document里
+		</header>
+
+		<main> <!-- 页面主要内容 一个页面只用一次 如果是web应用 则应该包括主要功能-->
+			<nav>
+				<!-- 标记导航 仅对文档中重要的链接群使用 -->
+				nav定义了许多导航，但是注意，并非所有的链接都应该放在nav里面，
+				而是只放主要的一些链接。
+			</nav>
+			<article>
+				article  element specifies independent, self-contained content.
+					<!--报纸一样的内容 表示文档 页面 应用 或者一个独立的容器 -->
+				An article should make sense on its own,
+				and it should be possible to read it independently from the rest of the web site.
+				一个article 应该是自成一体的，而且应该独立于页面的其他元素
+					<article>
+						<!-- article可以嵌套article 只要里面的article 与外面的是部分与整体的关系  -->
+					</article>
+			</article>
+			<section>
+				<h3>定义一个文档中的模块 一个模块通常都带有一个标题（主题）</h3>
+				<p>
+					According to W3C's HTML5 documentation:
+					"A section is a thematic grouping of content, typically with a heading.
+					依据w3c标准文档说明， 一个section是一个由内容和标题组成的专题，一般都有标题
+				</p>
+			</section>
+			<!-- article 与 section到底有什么区别？ -->
+			<!--
+			article 是自成一体，且独立于document之外
+			section 是document中的一个模块
+			-->
+			<aside>
+				Defines content aside from the page content 定义页面内容之外的东西
+				类似于sidebar.
+			</aside>
+			<details>
+				Defines additional details that the user can view or hide 用户可以查看或
+
+			</details>
+
+			<figure>
+				The purpose of a figure caption is to add a visual explanation to an image.
+				figure的目的是为图片添加 解释文字 figure负责容器 figcaption负责标题
+				<img src="./resource/watch.jpg" alt="">
+				<figcaption>解释当前图片的标题</figcaption>
+
+			</figure>
+
+
+			<mark> Defines marked/highlighted text</mark>
+			<summary> Defines a visible heading for a</summary>
+			<details> element</details>
+			<time datetime="1523501933472">Thu Apr 12 2018 10:58:10 GMT+0800 (中国标准时间)</time>
+			<footer role="group">
+				a footer element specifies a footer for a document or section.
+				一个footer定义了document的一些信息 包含了author作者/copyright版权信息/用户链接/联系信息等等
+				也可以有很多footer
+			</footer>
+		</main>
+
 	</div>
 </body>
 </html>
