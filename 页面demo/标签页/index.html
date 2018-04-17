@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>标签页组件</title>
+</head>
+<body>
+<link rel="stylesheet" href="../../node_modules/element-ui/lib/theme-chalk/index.css">
+
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script src="./drag.js"></script>
+<script src="../../node_modules/element-ui/lib/index.js"></script>
+
+
+<div id="app" style="position: absolute;height:1000px;width:800px;top: 300px;left: 300px;border: black solid 1px">
+
+</div>
+<button style="float: right" onclick="initTabs(options)" data-options="default"><h1>默认标签页</h1></button>
+<script>
+	let options = {
+		//标签页所在位置的id属性
+		id:'test',
+		//标签页定位信息
+		tabPositons:'top',
+		defaultSelected:'标签1',
+		styles:{
+			width:'600px',
+			height:'400px',
+			top:'30px',
+			left:'100px'
+		},
+		titles:[
+			{
+				name:'标签1',
+				content:`<p>内部元素内容</p>`
+			},{
+				name:'标签1',
+				content:`<p>内部元素内容</p>`
+			}
+		]
+	}
+	function generatorTemplate (options) {
+		if(options.titles != undefined){
+			var tabTemplate = document.createElement('div')
+			tabTemplate.id = options.id;
+			/*tabTemplate.innerHTML = `<el-tabs v-drag type="border-card" :tab-position="position" editable @edit="handleTabsEdit" :value="defaultSelected" :style="styles" style="position:absolute;">
+											<el-tab-pane v-for="(item, index) in editableTabs" :key="item.name" :label="item.title" :name="item.name">
+				                                <div v-html="item.content"></div>
+					                        </el-tab-pane>
+										</el-tabs>`*/
+			return tabTemplate;
+		}
+	}
+	window.initTabs = function (options){
+		//this.options = options || {};
+		/**
+		 *
+		 * @param options   根据参数构造 template
+		 */
+
+		var pageElement = generatorTemplate(options)
+		document.getElementById('app').appendChild(pageElement);
+		debugger
+		window.vuePanel = new Vue({
+			el: `#${pageElement.id}`,
+			template:`<el-tabs v-drag type="border-card" :tab-position="position" editable @edit="handleTabsEdit" :value="defaultSelected" :style="styles" style="position:absolute;">
+											<el-tab-pane v-for="(item, index) in editableTabs" :key="item.name" :label="item.title" :name="item.name">
+				                                <div v-html="item.content"></div>
+					                        </el-tab-pane>
+										</el-tabs>`,
+			data() {
+				return {
+					styles:options.styles,
+					//默认选中项
+					defaultSelected:'1',
+					editableTabsValue: '1',
+					position:options.tabPositons,
+					editableTabs: [{
+						title: 'Tab 1',
+						name: '1',
+						content: `<h1>Tab 1 content</h1>`
+					}, {
+						title: 'Tab 2',
+						name: '2',
+						content: `<h2>Tab 2 content</h2>`
+					}],
+					tabIndex: 2
+				}
+			},
+			methods: {
+				handleTabsEdit(targetName, action,value) {
+					if (action === 'add') {
+						let newTabName = ++this.tabIndex + '';
+						this.editableTabs.push({
+							title: `标签${this.tabIndex}`,
+							name: newTabName,
+							content: `标签${this.tabIndex}`
+						});
+						this.editableTabsValue = newTabName;
+					}
+					// todo remove事件似乎有一点问题，会删除掉所有的标签页
+					if (action === 'remove') {
+						let tabs = this.editableTabs;
+						let activeName = this.editableTabsValue;
+						if (activeName === targetName) {
+							tabs.forEach((tab, index) => {
+								if (tab.name === targetName) {
+									let nextTab = tabs[index + 1] || tabs[index - 1];
+									if (nextTab) {
+										activeName = nextTab.name;
+									}
+								}
+							});
+						}
+
+						this.editableTabsValue = activeName;
+						this.editableTabs = tabs.filter(tab =>
+						{
+						  tab.name !== targetName
+						}
+						);
+					}
+				}
+			}
+		})
+	}
+
+</script>
+</body>
+</html>

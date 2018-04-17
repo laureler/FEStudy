@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>引入nodeModules文件中内容</title>
+</head>
+<body>
+<div id="app">
+
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	<select-options></select-options>
+	
+	
+
+</div>
+<script src="./vue/dist/vue.js"></script>
+<link rel="stylesheet" href="./element-ui/lib/theme-chalk/index.css">
+<script src="./element-ui/lib/index.js"></script>
+<script>
+	// 注册
+	Vue.component('my-component', {
+		template: '<div>A custom component!</div>'
+	})
+	/*Vue.component('selectOptions', {
+		template: `<Select v-model="model1" style="width:200px">
+        <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+        </Select>`,
+		data () {
+			return {
+				cityList: [
+					{
+						value: 'New York',
+						label: 'New York'
+					},
+					{
+						value: 'London',
+						label: 'London'
+					},
+					{
+						value: 'Sydney',
+						label: 'Sydney'
+					},
+					{
+						value: 'Ottawa',
+						label: 'Ottawa'
+					},
+					{
+						value: 'Paris',
+						label: 'Paris'
+					},
+					{
+						value: 'Canberra',
+						label: 'Canberra'
+					}
+				],
+				model1: ''
+			}
+		}
+	})*/
+	Vue.component('selectOptions', {
+		template: `<el-select v-model="value" placeholder="请选择">
+						<el-option
+						  v-for="item in options"
+						  :key="item.value"
+						  :label="item.label"
+						  :value="item.value">
+						</el-option>
+					  </el-select>`,
+		data () {
+			return {
+				options: [{
+					value: '选项1',
+					label: '黄金糕'
+				}, {
+					value: '选项2',
+					label: '双皮奶'
+				}, {
+					value: '选项3',
+					label: '蚵仔煎'
+				}, {
+					value: '选项4',
+					label: '龙须面'
+				}, {
+					value: '选项5',
+					label: '北京烤鸭'
+				}],
+				value: ''
+			}
+		}
+	})
+
+	console.log(new Date().getTime())
+	new Vue({
+		el: '#app',
+		data: {
+			visible: false
+		},
+		methods: {
+			show: function () {
+				this.visible = true
+			}
+		},
+	})
+	console.log(new Date().getTime())
+	console.log(document.getElementsByClassName('ivu-select-selection').length)
+</script>
+
+</body>
+</html>
