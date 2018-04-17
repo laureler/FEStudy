@@ -7,16 +7,54 @@
 		* {
 			margin: 0;
 			padding:0;
+			box-sizing: border-box;
 		}
 
 		html,body {
 			width: 100%;
 			height: 100%;
 		}
+		body {
+			color: #333;
+			font-size: 14px;
+			line-height: 1.28571;
+		}
+		.section {
+			background-color: aquamarine;
+			margin: 20px 0;
+			padding: 0 25px;
+		}
+		.icd-layout {
+			display: flex;
+			flex-direction: column;
+			flex: auto;
+		}
 	</style>
 </head>
 
 <body>
-<div></div>
+	<!-- 整个页面的入口 -->
+	<div id="container">
+		<!-- todo 100vh 作用-->
+		<div class="icd-layout" style="min-height: 100vh;">
+			<header>
+				<!-- 头部菜单 -->
+				<section>
+					<div style="align-items:center">
+						<nav>
+							<div style="height: 124px;" class="section"></div>
+						</nav>
+					</div>
+				</section>
+
+				<section>
+
+					<div class="ice-layout-section">
+
+					</div>
+				</section>
+			</header>
+		</div>
+	</div>
 </body>
 </html>

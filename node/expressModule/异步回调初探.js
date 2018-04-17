@@ -9,8 +9,10 @@ var cheerio = require('cheerio');
 var url = require('url');
 
 var cnodeUrl = 'https://cnodejs.org/';
+var ibaseUrl = 'http://172.16.50.230:8080/cas/login'
+var mainWeb = 'http://172.16.50.230:8080/mainWeb/index/1'
 
-superagent.get(cnodeUrl)
+/*superagent.get(cnodeUrl)
   .end(function (err, res) {
     if (err) {
       return console.error(err);
@@ -61,4 +63,8 @@ superagent.get(cnodeUrl)
 
 
 
-  });
+  });*/
+
+superagent.get(mainWeb).redirects(2).end(function (err, res) {
+  debugger
+})
