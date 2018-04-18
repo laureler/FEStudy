@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>before after</title>
+	<style>
+		div {
+			width: 30px;
+		}
+		div:after {
+			content: "im after";
+		}
+		div:after :link :hover{
+			color:red;
+		}
+		div:before {
+			content:'im before';
+		}
+	</style>
+</head>
+<body>
+	<div>测试</div>
+	<div>测试</div>
+</body>
+</html>
