@@ -1,7 +1,11 @@
 // 这句的意思就是引入 `express` 模块，并将它赋予 `express` 这个变量等待使用。
 var express = require('express');
+var bodyParser = require('body-parser')
 // 调用 express 实例，它是一个函数，不带参数调用时，会返回一个 express 实例，将这个变量赋予 app 变量。
 var app = express();
+app.use(bodyParser.urlencoded({
+  extended:false
+}));
 
 // app 本身有很多方法，其中包括最常用的 get、post、put/patch、delete，在这里我们调用其中的 get 方法，为我们的 `/` 路径指定一个 handler 函数。
 // 这个 handler 函数会接收 req 和 res 两个对象，他们分别是请求的 request 和 response。
@@ -9,9 +13,12 @@ var app = express();
 // res 对象，我们一般不从里面取信息，而是通过它来定制我们向浏览器输出的信息，比如 header 信息，比如想要向浏览器输出的内容。这里我们调用了它的 #send 方法，向浏览器输出一个字符串。
 
 app.all('/index', function (req, res) {
+
   if(req.method == 'GET'){
     res.send('get');
+    req.set('set-cookie','imcookie')
   }else{
+    console.log(req.body)
     res.send('Hello World 123');
   }
 });

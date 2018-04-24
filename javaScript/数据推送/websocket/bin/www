@@ -20,6 +20,28 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+var io = require('socket.io').listen(server)
+/**
+ * 监听connect
+ */
+io.on('connect',function (socket) {
+  socket.emit('open')//通知客户端已经连接
+  //打印握手信息
+  console.log(socket.handshake)
+  //构造客户端对象
+  var client = {
+    socket:socket,
+    name:false
+  };
+
+  socket.on('message',function (msg) {
+    console.log('接收到的msg',msg)
+    var obj = {
+      time:gettime
+    }
+  })
+})
+
 
 /**
  * Listen on provided port, on all network interfaces.
