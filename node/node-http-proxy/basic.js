@@ -1,3 +1,4 @@
+// 使用node原生模块的一个 代理服务器
 var http = require('http')
 var url = require('url')
 // 创建http服务
@@ -6,8 +7,7 @@ var app = http.createServer(function (req, res) {
   //http://192.168.10.29:8080/
 var cookieArray =[];
   var sreq = http.request({
-    // host: '192.168.10.29', // 目标主机
-    host: 'localhost', // 目标主机
+    host: '192.168.10.29', // 目标主机
     path: req.url, // 目标路径
     port: '8080',
     method: req.method,
@@ -34,4 +34,4 @@ var cookieArray =[];
 })
 // 访问127.0.0.1:3001查看效果
 app.listen(3000)
-console.log('server started on 127.0.0.1:3000')
+console.log('server started on http://127.0.0.1:3000')
