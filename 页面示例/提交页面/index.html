@@ -6,6 +6,9 @@
 	<!-- todo  引入对应的css -->
 	<link rel="stylesheet" href="themes/icon.css">
 	<link rel="stylesheet" href="easyuiEdited.css">
+	<link rel="stylesheet" href="page_css/guide.css">
+	<link rel="stylesheet" href="page_css/globalstyle.css">
+	<link rel="stylesheet" href="page_css/windows.css">
 	<title>国有建设用地抵押权首次登记</title>
 	<style>
 		html, body {
@@ -15,26 +18,30 @@
 	</style>
 </head>
 <body>
-<!-- 整个布局 -->
+<!-- 页面布局 start-->
 <div class="easyui-layout" style="width: 100%; height:100%;">
-	<!-- 模块结构树 -->
+	<!-- 左侧菜单 start -->
 	<div data-options="region:'west',iconCls:'icon-ok',split:true" style="width: 300px; height: 100%; display: none">
-
+		<!-- 搜索栏 start -->
 		<div id="searchft" data-options="region:'north'">
 			<!--<input id="searchBusinessP" class="easyui-searchbox"
 			       style="width:100%; height:30px;" data-options="searcher:searchBusinessDefTreeNode"/>-->
 		</div>
-		<div class="processTreeDiv" data-options="region:'south'" style="width:100%;">
+		<!-- 搜索栏 end -->
+		<!-- 模块结构树 start -->
+		<div class="processTreeDiv" data-options="region:'south'" style="width:calc(100% - 300);">
 			<ul id="businessDefTree" class="easyui-tree"
 			    data-options="fit:false,border:false,closed:false,data:treedata" style="width: 125%;"></ul>
 		</div>
+		<!-- 模块结构树 end -->
 	</div>
-	<!-- 模块结构树 End -->
+	<!-- 左侧菜单 end -->
 
-	<!-- 点击按钮或树的操作面板 -->
+
+	<!-- 右侧菜单 start -->
 	<div data-options="region:'center',iconCls:'icon-ok'"
 	     style="width: 70%; height:100%; display: none;overflow:hidden;position:relative;">
-
+		<!-- 按钮菜单栏 start  -->
 		<div id="topTool" style="width: 100%;padding:3px 10px;border-bottom:1px solid #d3d3d3;">
 			<a class="easyui-linkbutton" data-options="iconCls:'icon-reload'" plain="true"
 			   onclick="refresh(this)">刷新</a>
@@ -47,16 +54,874 @@
 			<a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" plain="true"
 			   onclick="delectBusinessDef()">删除</a>
 		</div>
-
+		<!-- 按钮菜单栏 end  -->
+		<!-- 业务表单页面 start  -->
 		<div id="formEditor">
-			<div class="easyui-layout" style="width:100%;height:100%;" data-options="border:false">
-					<!-- 业务数据页面 -->
-					 业务数据页面
+			<div class="easyui-layout" style="width:98%;height:100%; overflow: auto; margin:10px"
+			     data-options="border:false">
+				<!-- 业务数据页面  start-->
+				<div id="titleEditor">
+					<div title="国有建设用地抵押权首次登记" class="guide-title">国有建设用地抵押权首次登记</div>
+					<div class="layer-action">
+						<span>
+							主管部门：
+							<a class="link-depart"
+							   href="#">惠州市国土资源局</a>
+						</span>
+					</div>
+				</div>
+				<div id="bodyEditor">
+					<div class="part-model">
+						<!-- 内容标题 start -->
+						<div class="layer-info m-t">
+							<div class="btn-guide-panel" style="position: relative;">
+
+								<a href="#"
+								   data-href="/workflowWebService/getBusinessStartForm?businessDefinitionId=75aee0d0-03da-4437-ab47-8faddb423694"
+								   data-title="国有建设用地抵押权首次登记" class="btn-guide onlineRequest">
+									<img src="page_image/btn-zxsb.png"> <span>在线申办</span></a>
+
+
+								<a href="#clxx" class="btn-guide a-guide">
+									<img src="page_image/btn-bgxz.png"> <span>表格下载</span>
+								</a>
+
+								<!--  -->
+
+
+								<script>
+                                  function loadIframe () {
+                                    $('#evaluate_win').css('display', 'block')
+                                  }
+
+                                  function commitEvaluate (level, standardCode, masterVersion, name, orgCode) {
+                                    $.ajax({
+                                      type: 'post',
+                                      url: '/portal/evaluate/commit',
+                                      data: {
+                                        'level': level,
+                                        'standardCode': standardCode,
+                                        'masterVersion': masterVersion,
+                                        'subjectName': name,
+                                        'orgCode': orgCode
+                                      },
+                                      success: function (data) {
+                                        if (data = 'success') {
+                                          alert('评议成功!')
+                                        }
+                                      }
+                                    })
+                                  }
+								</script>
+
+								<!--  -->
+
+
+							</div>
+
+							<div class="part-tag">
+								<a target="_blank" class="tag tag-wssb"> <label class="my-label">网上申办到现场不超过</label>
+									<div class="tag-data">
+				<span>
+
+						1
+
+
+
+
+				</span>次
+									</div>
+								</a> <a title="承诺期限（工作日）10" class="tag tag-cnqx"> <label class="my-label">承诺期限<br>（工作日）
+							</label>
+								<div class="tag-data">
+									<span>10</span>
+								</div>
+							</a>
+							</div>
+						</div>
+						<!-- 内容标题 end -->
+
+						<!-- 基本信息 start -->
+						<div class="layer-info">
+							<div class="layer-tit single-tit slider-site" id="jbxx">
+								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>基本信息
+							</div>
+							<!-- slider-site -->
+							<div class="layer-txt">
+								<table class="table-guide th-w-85" style="width:100%">
+									<tbody>
+									<tr>
+										<th>事项类型</th>
+										<td colspan="2" class="td_2">
+											<input type="text" class="autoinput" autocomplete="off">
+										</td>
+										<th>实施机构</th>
+										<td colspan="5">
+											<input type="text" class="autoinput" autocomplete="off">
+										</td>
+									</tr>
+									<tr>
+										<th>承诺办结期限</th>
+										<td colspan="2" class="td_2">
+											<input type="text" class="autoinput" autocomplete="off">
+										</td>
+										<th>承诺办结期限说明</th>
+										<td colspan="5">
+											<input type="text" class="autoinput" autocomplete="off">
+										</td>
+									</tr>
+									<tr>
+										<th>服务对象</th>
+										<td colspan="2">抵押人和抵押权人</td>
+										<th>服务事项编码</th>
+										<td colspan="5">4413220000000071981791000392955003</td>
+									</tr>
+									<tr>
+										<th>办件类型</th>
+										<td colspan="2">
+
+
+											承诺件
+										</td>
+										<th>结果名称</th>
+										<td colspan="2">无</td>
+										<th>结果样本</th>
+										<td colspan="2">
+
+
+											无
+
+										</td>
+									</tr>
+									<tr>
+										<th>物流快递</th>
+										<td colspan="8">
+
+
+											无需快递
+
+
+										</td>
+									</tr>
+									<tr>
+										<th>数量限制</th>
+										<td colspan="8">无</td>
+									</tr>
+									<tr>
+										<th>咨询电话</th>
+										<td colspan="3">0752-2896332、2898533<br>
+										</td>
+										<th>监督电话</th>
+										<td colspan="4">无<br>
+										</td>
+									</tr>
+
+									<tr>
+										<th id="rowspan" rowspan="2">
+											窗口办理信息
+										</th>
+										<input type="hidden" id="rowNum" value="2">
+									</tr>
+
+									<tr class="">
+										<td class="td_2" colspan="2">无</td>
+										<td colspan="6">
+											<p class="dot" style="line-height: 21px; word-wrap: break-word;">
+												无
+											</p>
+										</td>
+									</tr>
+
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- 基本信息 end -->
+						<!--样表结果模态框  -->
+						<div class="modal" id="resultModal">
+							<a class="pull-right point  p10" onclick="$('#resultModal').hide();">[关闭]</a>
+
+						</div>
+
+
+						<!--所有窗口模态框  -->
+						<style>
+							.js-sub {
+								min-height: 50px;
+							}
+
+							.par .par-d {
+								width: 110px;
+								height: 40px;
+								/* padding-left: 8px; */
+								font-size: 17px;
+								margin-top: 5px;
+								text-align: center;
+								line-height: 40px;
+								float: left;
+								background-color: #F3F3F3;
+								border-radius: 8px;
+								margin-right: 40px;
+								margin-bottom: 8px;
+								color: #000;
+								display: inline-block;
+							}
+
+							.par-content {
+								padding: 20px 0 0px 40px
+							}
+
+							.h-title {
+								margin: 15px 0;
+								display: block;
+							}
+
+							.par .par-d:hover {
+								color: #FFF;
+								background-color: #4DB7E1;
+							}
+
+							.sub-a::before {
+								content: "";
+								width: 10px;
+								height: 10px;
+								border-radius: 50%;
+								background-color: #4DB7E1;
+								display: inline-block;
+								margin-right: 10px;
+							}
+
+							.sub-a {
+								padding: 5px 0 10px 28px;
+								display: inline-block;
+								color: #000;
+								font-size: 16px;
+								width: 150px;
+							}
+
+							.none {
+								display: none;
+							}
+
+							.bg-blue {
+								background: #4DB7E1 !important;
+								color: #fff !important;
+							}
+
+							.window-span {
+								font-size: 15px;
+								line-height: 23px;
+							}
+						</style>
+						<div class="modal" id="windowModal"
+						     style="width:850px;height:520px;top:8%;margin-left:-424px;padding-left:10px">
+							<a class="pull-right point  p10" onclick="$('#windowModal').hide();">[关闭]</a>
+							<div class="par" id="parentCode">
+								<h3 class="h-title">市级</h3>
+								<a class="par-d level-1 bg-blue" data-code="" href="javascript:void(0)"></a>
+								<div style="clear:both"></div>
+								<h3 class="h-title none" id="level2_id">区县级</h3>
+
+								<div style="clear:both"></div>
+								<h3 id="last_level" class="none h-title">镇街级</h3>
+
+							</div>
+							<div style="clear:both"></div>
+							<h3 class="h-title">窗口信息</h3>
+
+						</div>
+
+
+						<!-- 受理条件 -->
+
+
+						<div class="layer-info">
+							<div class="layer-tit single-tit" id="sltj">
+								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>受理条件
+							</div>
+							<div class="layer-txt">
+								<p class="dot" style="word-wrap: break-word;">
+									自然人、法人或其他组织为保障其债权实现，依法设立不动产抵押权的，可以由抵押人和抵押权人共同申请办理不动产抵押登记。</p>
+							</div>
+						</div>
+
+						<!-- 设定依据 -->
+
+
+						<div class="layer-info">
+							<div class="layer-tit single-tit" id="sdyj">
+								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>设定依据
+							</div>
+							<div class="layer-txt">
+								<p class="dot is-truncated" style="height: 95px; word-wrap: break-word;">
+
+									《不动产登记暂行条例》(第五条) <br style="display: inline;">
+									　下列不动产权利，依照本条例的规定办理登记：（一）集体土地所有权；
+									　　（二）房屋等建筑物、构筑物所有权；
+									　　（三）森林、林木所有权；
+									　　（四）耕地、林地、草地等土地承包经营权；
+									　　（五）建设用地使用权；
+									　　（六）宅基地使用权；
+									　　（七）海... <a class="toggle" href="#" style="display: inline;"><span class="open"
+									                                                                    style="font-weight: bold;">【点击查看更多】</span><span
+										class="close" style="font-weight: bold;">【收起】</span></a></p>
+							</div>
+						</div>
+
+						<!-- 申请材料 -->
+
+
+						<div class="layer-info">
+							<div class="layer-tit single-tit" id="sqcl">
+								<span class="tit-icon"><img src="page_image/title-prominent.png" alt=""></span>申请材料
+							</div>
+							<div class="layer-txt">
+
+
+							</div>
+							<div class="child-title single-tit" id="clxx">
+								<span class="tit-tag">材料信息</span>
+							</div>
+
+							<div class="layer-txt">
+								<table class="table-guide" width="100%">
+									<tbody>
+									<tr>
+										<th rowspan="2" width="20px">序号</th>
+										<th rowspan="2" style="width:284px;">材料名称</th>
+										<th width="60px" rowspan="2">要求</th>
+										<th colspan="2" class="nowrap">份数（份/套）</th>
+										<th rowspan="2" width="48px" class="nowrap">纸质版/<br>电子版
+										</th>
+										<th rowspan="2" style="min-width: 100px;">来源渠道</th>
+										<th rowspan="2" width="60px">范本表格</th>
+										<th rowspan="2" width="60px">空白表格</th>
+									</tr>
+									<tr>
+										<th width="28px" class="nowrap">原件</th>
+										<th width="42px" class="nowrap">复印件</th>
+									</tr>
+
+
+									</tbody>
+									<tbody class="js-mater mater441322982b96737cc34e6f8341caec55c85a2a ">
+
+
+									<tr>
+										<td>1</td>
+										<td>不动产登记申请书（双方当事人）</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>0</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td>
+											<a href="http://wsbs.huizhou.gov.cn/file-app/file/v2/standard/4413222d9688f4127246ee9468da050770b826.DOC"
+											   target="_blank" class="button btn-table download-btn">表格下载</a>
+										</td>
+									</tr>
+
+
+									<tr>
+										<td>2</td>
+										<td>申请人身份证明（双方当事人）</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>0</td>
+										<td>1</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>3</td>
+										<td>不动产权属证书</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>1</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>4</td>
+										<td>主债权合同、抵押合同（主债权合同中包含抵押条款的，可以不提交单独的抵押合同书。最高额抵押的，应当提交最高额抵押合同）</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>0</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>5</td>
+										<td>抵押人为国有企业的，需提交国有资产管理机构的审批意见</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>0</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>6</td>
+										<td>抵押人为集体所有制企业的，需提交集体资产管理机构（或主管部门）的审批意见</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>0</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>7</td>
+										<td>单位集资房须提供单位同意抵押的书面证明</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>0</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>8</td>
+										<td>全民所有制机构的房产做抵押须提供国资委或上级主管部门同意抵押的证明</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>0</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>9</td>
+										<td>证明抵押物价值的材料或当事人关于抵押物价值的确认书</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>0</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>10</td>
+										<td>工商部门备案的章程（原件）（抵押人为企业的需提供此项资料）</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>0</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>11</td>
+										<td>股东决议或董事会决议（原件）（抵押人为企业的需提供此项资料）</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>0</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>12</td>
+										<td>第三方担保抵押借款需提供营业执照（或身份证明）、法定代表人身份证明书</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>2</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+
+									<tr>
+										<td>13</td>
+										<td>1.空地承诺书（抵押物为空地时提供）</td>
+										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+											<div class="info-arrow"></div>
+											<div class="win-info">
+												<p>无</p></div>
+										</td>
+										<td>1</td>
+										<td>1</td>
+										<td>
+
+											纸质
+
+
+										</td>
+										<td>
+
+											申请人 <br></td>
+										<td></td>
+
+										<td></td>
+									</tr>
+
+									</tbody>
+
+								</table>
+							</div>
+							<div class="child-title single-tit" id="tbxz">
+								<span class="tit-tag">填报须知</span>
+							</div>
+							<div class="layer-txt">
+								<p class="dot" style="word-wrap: break-word;">
+									真实、清晰、准确，核对原件
+								</p>
+							</div>
+							<div class="child-title" id="slbz">
+								<span class="tit-tag">受理标准</span>
+							</div>
+							<div class="layer-txt">
+
+
+								<a target="_blank"
+								   href="http://wsbs.huizhou.gov.cn/file-app/file/v2/standard/441322c2c60baffa18465ea1e3bfee554a3fb1.docx">
+									<p class="dot" style="word-wrap: break-word;">抵押权首次登记.docx</p>
+								</a>
+
+
+							</div>
+						</div>
+						<!-- 办理流程 -->
+
+
+						<div class="layer-info">
+							<div class="layer-tit" id="bllc">
+								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>办理流程
+							</div>
+							<div class="child-title" id="wsbllct">
+								<span class="tit-tag">网上办理流程</span>
+								<div class="layer-righttit">
+
+									<!-- 判断文件类型是否有"."开头 -->
+
+
+									<a alt="网上办理流程" target="_blank"
+									   href="http://wsbs.huizhou.gov.cn/file-app/file/v2/standard/4413224dd6ee3923474d3e9f3eb5f4dbf703d3.png"
+									   class="btn-cklct gradient-light-blue"><i></i>查看流程图</a>
+
+
+								</div>
+							</div>
+							<div class="layer-txt">
+								<p class="dot" style="word-wrap: break-word;">无</p>
+							</div>
+							<div class="child-title" id="ckbllct">
+								<span class="tit-tag">窗口办理流程</span>
+								<div class="layer-righttit">
+
+									<!-- 判断文件类型是否有"."开头 -->
+
+
+									<a target="_blank"
+									   href="http://wsbs.huizhou.gov.cn/file-app/file/v2/standard/44132213f902475d7647b68ae893506fb9782a.png"
+									   class="btn-cklct gradient-light-blue"><i></i>查看流程图</a>
+
+
+								</div>
+							</div>
+							<div class="layer-txt">
+								<p class="dot is-truncated" style="height: 95px; word-wrap: break-word;">
+									1.申请。申请人向县不动产登记中心服务窗口（或受理点）提出申请，提交申请材料。
+									2.受理。接件受理人员核验申请材料，在10个工作日内作出受理决定。申请人符合申请资格，并材料齐全、格式规范，予以受理，出具《受理回执》；申请人不具备申请资格或材料不齐全，不予受理；申请人提供的材料需要补正的，一次性告知申请人需要补正的全部内容，补正后重新受理。
+									3.审查。受理后，审查人员对材料进行审查，... <a class="toggle" href="#" style="display: inline;"><span
+										class="open" style="font-weight: bold;">【点击查看更多】</span><span class="close"
+									                                                                 style="font-weight: bold;">【收起】</span></a>
+								</p>
+							</div>
+
+						</div>
+						<!-- 许可收费 -->
+
+
+						<div class="layer-info">
+							<div class="layer-tit" id="xksf">
+								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>服务收费
+							</div>
+							<!-- slider-site -->
+							<div class="layer-txt">
+
+
+								<div class="layer-txt">不收费</div>
+
+
+							</div>
+						</div>
+
+
+						<div class="layer-info" style="padding-bottom: 20px;">
+							<div class="layer-tit" id="cjwt">
+								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>
+								常见问题
+							</div>
+							<div class="layer-txt dot" style="word-wrap: break-word;">
+								<p>
+									无
+								</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- 侧边栏菜单 start-->
+				<!--<div class="slider-box" alt="快速导读">
+					<span class="slider-top"><img src="page_image/yuan.png" alt=""></span> <span class="slider-down"><img src="page_image/yuan.png" alt=""></span>
+					<ul class="slider-nav">
+
+						<li class="li-title">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('jbxx')" id="jbxx_id"> 1、基本信息 </a>
+
+						</li>
+						<li class="li-title">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('sltj')" id="sltj_id"> 2、受理条件 </a>
+
+						</li>
+						<li class="li-title">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('sdyj')" id="sdyj_id"> 3、设定依据 </a>
+
+						</li>
+						<li class="li-title">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('sqcl')" id="sqcl_id"> 4、申请材料
+
+						</a>
+						</li>
+						<li class="li-title lv2">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('clxx')" id="clxx_id"> 材料信息 </a>
+						</li>
+						<li class="li-title lv2 list-type li-act">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('tbxz')" id="tbxz_id"> 填报须知 </a>
+						</li>
+						<li class="li-title lv2">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('slbz')" id="slbz_id"> 受理标准 </a>
+						</li>
+						<li class="li-title">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('bllc')" id="bllc_id"> 5、办理流程
+
+						</a>
+						</li>
+						<li class="li-title lv2">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('wsbllct')" id="wsbllct_id"> 网上办理流程 </a>
+						</li>
+						<li class="li-title lv2">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('ckbllct')" id="ckbllct_id"> 窗口办理流程 </a>
+						</li>
+						<li class="li-title">
+							<div class="slider-act">
+								<img src="page_image/jiantou.png" alt="滚屏箭头">
+							</div> <a onclick="locateAt('xksf')" id="xksf_id">6、服务收费
+
+						</a>
+						</li>
+					</ul>
+				</div>-->
+				<!-- 侧边栏菜单 end-->
+				<!-- 业务数据页面  end-->
 			</div>
 		</div>
+		<!-- 业务表单页面 end  -->
 	</div>
-	<!-- 整个布局 End-->
+	<!-- 右侧菜单 end -->
 </div>
+<!-- 页面布局 End-->
 
 <!-- modal  start -->
 <!--<div id="win" class="easyui-window" title="业务资料项" closed="true" style="width:550px; height:520px;"
@@ -195,7 +1060,183 @@
 
 <script>
   var treedata =
-    [{"id":"#","text":"所有业务 ","children":[{"id":"200002","text":"testZQQ","children":null,"attributes":{"rid":"77c5ba50-65fc-48d2-a246-e47d49d04154","code":"200002","pcode":"#","createDate":1524473861000,"userId":null,"wfRID":"f99c99e1-421b-11e8-be81-005056b0626d","initForm":"","title":"testZQQ","bwebQuery":0,"sortValue":0,"register":null,"wfRIDTxt":"test","initFormTxt":null,"procUserId":null,"creatorFullName":null},"parentId":"#","sort":0,"iconCls":"icon-busitem"},{"id":"1314520","text":"外网预申请系统","children":[{"id":"9000101-01","text":"国有建设用地抵押权首次登记","children":null,"attributes":{"rid":"75aee0d0-03da-4437-ab47-8faddb423694","code":"9000101-01","pcode":"1314520","createDate":1524218594000,"userId":null,"wfRID":"5d89050e-3d87-11e8-96c4-005056c00001","initForm":"","title":"国有建设用地抵押权首次登记","bwebQuery":1,"sortValue":1,"register":null,"wfRIDTxt":"抵押权首次登记","initFormTxt":null,"procUserId":null,"creatorFullName":null},"parentId":"1314520","sort":1,"iconCls":"icon-busitem"},{"id":"9000101-02","text":"国有建设用地使用权及房屋所有权抵押权首次登记","children":null,"attributes":{"rid":"d18c6715-15e0-4eed-b9a7-0d0e6d89aa8e","code":"9000101-02","pcode":"1314520","createDate":1524006424000,"userId":null,"wfRID":"5d89050e-3d87-11e8-96c4-005056c00001","initForm":"","title":"国有建设用地使用权及房屋所有权抵押权首次登记","bwebQuery":1,"sortValue":2,"register":null,"wfRIDTxt":"抵押权首次登记","initFormTxt":null,"procUserId":null,"creatorFullName":null},"parentId":"1314520","sort":2,"iconCls":"icon-busitem"},{"id":"9000101-03","text":"抵押权变更登记","children":null,"attributes":{"rid":"8fe23005-a8a2-44b8-9c38-d9524197bc1f","code":"9000101-03","pcode":"1314520","createDate":1524006430000,"userId":"#","wfRID":"f5be0bf0-3cb5-11e8-a19c-005056b0626d","initForm":"","title":"抵押权变更登记","bwebQuery":1,"sortValue":3,"register":null,"wfRIDTxt":"抵押权变更登记","initFormTxt":null,"procUserId":null,"creatorFullName":null},"parentId":"1314520","sort":3,"iconCls":"icon-busitem"}],"attributes":{"rid":"0f8e33ce-143f-4f05-8389-7433dccf8e5c","code":"1314520","pcode":"#","createDate":1523309565000,"userId":"#","wfRID":"#","initForm":"","title":"外网预申请系统","bwebQuery":0,"sortValue":0,"register":null,"wfRIDTxt":null,"initFormTxt":null,"procUserId":null,"creatorFullName":null},"parentId":"#","sort":0,"iconCls":"tree-folder"},{"id":"123213","text":"谭满光测试业务","children":null,"attributes":{"rid":"34782a7e-e568-40fe-93a0-18581f8bffbf","code":"123213","pcode":"#","createDate":1524945033000,"userId":null,"wfRID":"b9c98625-4ab8-11e8-8d9f-507b9daf3316","initForm":"","title":"谭满光测试业务","bwebQuery":0,"sortValue":0,"register":null,"wfRIDTxt":"tmg","initFormTxt":null,"procUserId":null,"creatorFullName":null},"parentId":"#","sort":0,"iconCls":"icon-busitem"},{"id":"2018041123","text":"tmg","children":null,"attributes":{"rid":"6f9952c0-d9e6-4966-9d47-8c478de0d33b","code":"2018041123","pcode":"#","createDate":1523662460000,"userId":null,"wfRID":"57d63c36-3d86-11e8-9fb5-005056b0626d","initForm":"","title":"tmg","bwebQuery":0,"sortValue":4,"register":null,"wfRIDTxt":null,"initFormTxt":null,"procUserId":null,"creatorFullName":null},"parentId":"#","sort":4,"iconCls":"icon-busitem"}],"attributes":null,"parentId":"0","sort":1,"iconCls":"icon-blank"}]
+    [{
+      'id': '#',
+      'text': '所有业务 ',
+      'children': [{
+        'id': '200002',
+        'text': 'testZQQ',
+        'children': null,
+        'attributes': {
+          'rid': '77c5ba50-65fc-48d2-a246-e47d49d04154',
+          'code': '200002',
+          'pcode': '#',
+          'createDate': 1524473861000,
+          'userId': null,
+          'wfRID': 'f99c99e1-421b-11e8-be81-005056b0626d',
+          'initForm': '',
+          'title': 'testZQQ',
+          'bwebQuery': 0,
+          'sortValue': 0,
+          'register': null,
+          'wfRIDTxt': 'test',
+          'initFormTxt': null,
+          'procUserId': null,
+          'creatorFullName': null
+        },
+        'parentId': '#',
+        'sort': 0,
+        'iconCls': 'icon-busitem'
+      }, {
+        'id': '1314520',
+        'text': '外网预申请系统',
+        'children': [{
+          'id': '9000101-01',
+          'text': '国有建设用地抵押权首次登记',
+          'children': null,
+          'attributes': {
+            'rid': '75aee0d0-03da-4437-ab47-8faddb423694',
+            'code': '9000101-01',
+            'pcode': '1314520',
+            'createDate': 1524218594000,
+            'userId': null,
+            'wfRID': '5d89050e-3d87-11e8-96c4-005056c00001',
+            'initForm': '',
+            'title': '国有建设用地抵押权首次登记',
+            'bwebQuery': 1,
+            'sortValue': 1,
+            'register': null,
+            'wfRIDTxt': '抵押权首次登记',
+            'initFormTxt': null,
+            'procUserId': null,
+            'creatorFullName': null
+          },
+          'parentId': '1314520',
+          'sort': 1,
+          'iconCls': 'icon-busitem'
+        }, {
+          'id': '9000101-02',
+          'text': '国有建设用地使用权及房屋所有权抵押权首次登记',
+          'children': null,
+          'attributes': {
+            'rid': 'd18c6715-15e0-4eed-b9a7-0d0e6d89aa8e',
+            'code': '9000101-02',
+            'pcode': '1314520',
+            'createDate': 1524006424000,
+            'userId': null,
+            'wfRID': '5d89050e-3d87-11e8-96c4-005056c00001',
+            'initForm': '',
+            'title': '国有建设用地使用权及房屋所有权抵押权首次登记',
+            'bwebQuery': 1,
+            'sortValue': 2,
+            'register': null,
+            'wfRIDTxt': '抵押权首次登记',
+            'initFormTxt': null,
+            'procUserId': null,
+            'creatorFullName': null
+          },
+          'parentId': '1314520',
+          'sort': 2,
+          'iconCls': 'icon-busitem'
+        }, {
+          'id': '9000101-03',
+          'text': '抵押权变更登记',
+          'children': null,
+          'attributes': {
+            'rid': '8fe23005-a8a2-44b8-9c38-d9524197bc1f',
+            'code': '9000101-03',
+            'pcode': '1314520',
+            'createDate': 1524006430000,
+            'userId': '#',
+            'wfRID': 'f5be0bf0-3cb5-11e8-a19c-005056b0626d',
+            'initForm': '',
+            'title': '抵押权变更登记',
+            'bwebQuery': 1,
+            'sortValue': 3,
+            'register': null,
+            'wfRIDTxt': '抵押权变更登记',
+            'initFormTxt': null,
+            'procUserId': null,
+            'creatorFullName': null
+          },
+          'parentId': '1314520',
+          'sort': 3,
+          'iconCls': 'icon-busitem'
+        }],
+        'attributes': {
+          'rid': '0f8e33ce-143f-4f05-8389-7433dccf8e5c',
+          'code': '1314520',
+          'pcode': '#',
+          'createDate': 1523309565000,
+          'userId': '#',
+          'wfRID': '#',
+          'initForm': '',
+          'title': '外网预申请系统',
+          'bwebQuery': 0,
+          'sortValue': 0,
+          'register': null,
+          'wfRIDTxt': null,
+          'initFormTxt': null,
+          'procUserId': null,
+          'creatorFullName': null
+        },
+        'parentId': '#',
+        'sort': 0,
+        'iconCls': 'tree-folder'
+      }, {
+        'id': '123213',
+        'text': '谭满光测试业务',
+        'children': null,
+        'attributes': {
+          'rid': '34782a7e-e568-40fe-93a0-18581f8bffbf',
+          'code': '123213',
+          'pcode': '#',
+          'createDate': 1524945033000,
+          'userId': null,
+          'wfRID': 'b9c98625-4ab8-11e8-8d9f-507b9daf3316',
+          'initForm': '',
+          'title': '谭满光测试业务',
+          'bwebQuery': 0,
+          'sortValue': 0,
+          'register': null,
+          'wfRIDTxt': 'tmg',
+          'initFormTxt': null,
+          'procUserId': null,
+          'creatorFullName': null
+        },
+        'parentId': '#',
+        'sort': 0,
+        'iconCls': 'icon-busitem'
+      }, {
+        'id': '2018041123',
+        'text': 'tmg',
+        'children': null,
+        'attributes': {
+          'rid': '6f9952c0-d9e6-4966-9d47-8c478de0d33b',
+          'code': '2018041123',
+          'pcode': '#',
+          'createDate': 1523662460000,
+          'userId': null,
+          'wfRID': '57d63c36-3d86-11e8-9fb5-005056b0626d',
+          'initForm': '',
+          'title': 'tmg',
+          'bwebQuery': 0,
+          'sortValue': 4,
+          'register': null,
+          'wfRIDTxt': null,
+          'initFormTxt': null,
+          'procUserId': null,
+          'creatorFullName': null
+        },
+        'parentId': '#',
+        'sort': 4,
+        'iconCls': 'icon-busitem'
+      }],
+      'attributes': null,
+      'parentId': '0',
+      'sort': 1,
+      'iconCls': 'icon-blank'
+    }]
 
 </script>
 </body>
