@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="index.css">
+	<!-- todo  引入对应的css -->
+	<link rel="stylesheet" href="themes/icon.css">
+	<link rel="stylesheet" href="easyuiEdited.css">
+	<title>国有建设用地抵押权首次登记</title>
+</head>
+<body>
+<!-- 整个布局 -->
+<div class="easyui-layout" style="width: 100%; height:100%;">
+	<!-- 模块结构树 -->
+	<div data-options="region:'west',iconCls:'icon-ok',split:true" style="width: 300px; height: 100%; display: none">
+
+		<div id="searchft" data-options="region:'north'">
+			<input id="searchBusinessP" class="easyui-searchbox"
+			       style="width:100%; height:30px;" data-options="searcher:searchBusinessDefTreeNode" />
+		</div>
+
+		<div class="processTreeDiv" data-options="region:'south'" style="width:100%;">
+			<ul id="businessDefTree" class="easyui-tree"
+			    data-options="onClick:showSettings ,fit:false,border:false,closed:false" style="width: 125%;"></ul>
+		</div>
+
+
+	</div>
+	<!-- 模块结构树 End -->
+
+	<!-- 点击按钮或树的操作面板 -->
+	<div data-options="region:'center',iconCls:'icon-ok'" style="width: 70%; height:100%; display: none;overflow:hidden;position:relative;">
+
+		<div id="topTool" style="width: 100%;padding:3px 10px;border-bottom:1px solid #d3d3d3;">
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-reload'" plain="true" onclick="refresh(this)">刷新</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-add'"	plain="true" onclick="modifyBusinessDef(0)">新建分类</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-add'" plain="true" onclick="modifyBusinessDef(1)">新建业务定义</a>
+			<a id="businessSave" class="easyui-linkbutton" data-options="iconCls:'icon-save'"	plain="true" onclick="saveBusinessDef()">保存</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" plain="true" onclick="delectBusinessDef()">删除</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-copyBus'" plain="true" onclick="copyBusiness()">复制业务定义</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-import1'" plain="true"
+			   onclick="importBusiCsv()">导入</a>
+			<a class="easyui-linkbutton" data-options="iconCls:'icon-export1'" plain="true"
+			   onclick="exportBusiCsv()">导出</a>
+		</div>
+
+		<input id="codeVaild" type="hidden">
+		<div id="businessList" style="width:100%;position:absolute;top:35px;bottom:0px;display:block;">
+			<div class="easyui-layout" style="width:100%;height:100%;" data-options="border:false">
+				<div data-options="region:'north',border:false" style="height:125px;">
+					<form id="busForm" style="margin:0;padding:0;">
+						<table id="buslist_Table" class="col4 col41" style="width:880px;margin-bottom:10px">
+							<tr>
+								<td><span style="color:red;">*</span>业务代码：</td>
+								<td>
+									<input id="code" class="easyui-textbox" style="width: 100%" required="true"
+									       data-options="validType:'valibusinessCode',required:true" />
+								</td>
+								<td>业务标题：</td>
+								<td><input id="title" class="easyui-textbox" style="width: 100%" /></td>
+							</tr>
+
+							<tr formatter="getRegisterType">
+								<td>所属分类：</td>
+								<td>
+									<input type="hidden" id="rid" />
+									<input id="pcode"	class="easyui-combotree" colspan="1" style="width: 100%"
+									       data-options="editable:false " />
+								</td>
+								<td>登记类型：</td>
+								<td >
+									<select id="register"	class="easyui-combobox" colspan="1" style="width: 100%"
+									        data-options="	data:registerTypes, valueField:'wtype',textField:'wtypeText',editable:false " />
+									</select>
+									<!-- 	<select id="register"	class="easyui-combobox" colspan="1" style="width: 100%" ,data-options="	editable:false">
+										<option value=""></option>
+										<option value="土地所有权">土地所有权 </option>
+										<option value="土地使用权">土地使用权</option>
+										<option value="商品房确权">商品房确权</option>
+										<option value="房屋所有权">房屋所有权</option>
+										<option value="建筑物区分所有权">建筑物区分所有权</option>
+										<option value="农用地使用权">农用地使用权</option>
+										<option value="林权">林权</option>
+										<option value="海域使用权">海域使用权</option>
+										<option value="构（建）筑物所有权">构（建）筑物所有权</option>
+										<option value="地役权">地役权</option>
+										<option value="抵押权">抵押权</option>
+										<option value="预告登记">预告登记</option>
+										<option value="异议登记">异议登记</option>
+										<option value="预查封登记">预查封登记</option>
+										<option value="查封登记">查封登记</option>
+										<option value="解封登记">解封登记</option>
+										<option value="组合登记（预告+抵押权预告）">组合登记（预告+抵押权预告）</option>
+										<option value="组合登记（商品房办证+一般抵押）">组合登记（商品房办证+一般抵押）</option>
+										<option value="组合登记（存量房办证+一般抵押）">组合登记（存量房办证+一般抵押）</option>
+										<option value="组合登记（在建抵押房办证+一般抵押）">组合登记（在建抵押房办证+一般抵押）</option>
+										<option value="组合登记（土地使用权办证+一般抵押）">组合登记（土地使用权办证+一般抵押）</option>
+										<option value="权利证书注销">权利证书注销</option>
+										<option value="登记证明注销">登记证明注销</option>
+										</select> -->
+								</td>
+							</tr>
+
+							<tr>
+								<td><span style="color:red;">*</span>所用流程：</td>
+								<td colspan="1">
+									<div style="float:left;">
+										<input id="wfRIDTxt" class="easyui-textbox" readonly="true" style="width:272px" />
+										<input type="hidden" id="wfRID" />
+									</div>
+									<a style="float:left;" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="selectFormProcess()">选择</a>
+								</td>
+								<td>排序值：</td>
+								<td><input id="sortValue" class="easyui-numberspinner"
+								           style="width: 50%"   data-options="min:0" /> &nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									是否在线申请：
+									<input id="bwebQuery" type="checkbox" style=" position: relative;top: 3px;" /></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+
+				<div data-options="region:'center',border:false">
+					<div id="yewutabs" class="easyui-tabs" data-options="fit:true">
+						<div title="业务资料项" style="padding:0px;">
+							<div id="tbRule" style="padding:6px;">
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="formOpen(0)" >添加</a>
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="formOpen(1)" >修改</a>
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="deleteDocItem(1)" >删除</a>
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-up'" onclick="removeRow('up','docItem')" >上移</a>
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-down'" onclick="removeRow('dw','docItem')" >下移</a>
+							</div>
+							<table class="easyui-datagrid" id="docItem"	style="width: 100%;height:100%;"
+							       data-options="loader:jobFileloader,singleSelect:true,checkOnSelect:false,selectOnCheck:false,toolbar:'#tbRule',onDblClickRow: dataGridDbClick,sortName:'sortValue',sortOrder:'asc',">
+								<thead>
+								<tr>
+									<th field="ck" checkbox="true"></th>
+									<th data-options="field:'rid',hidden:true">rid</th>
+									<th data-options="field:'dname',width:260">资料名称</th>
+									<th data-options="field:'dtype',width:120" formatter="getDataType">资料类型</th>
+									<th data-options="field:'dmedia',width:150" formatter="getMediaType">介质类型</th>
+									<th data-options="field:'dfilter',width:150">筛选条件</th>
+									<th data-options="field:'isneed',width:90"	formatter="isNeedFormatter">是否必须</th>
+									<th data-options="field:'sortValue',width:90">排序值</th>
+									<th data-options="field:'orginalmate',width:90">原件份数</th>
+									<th data-options="field:'copymate',width:90">复印件份数</th>
+									<th data-options="field:'attatchmate',width:90">附件份数</th>
+									<th data-options="field:'pages',width:90">总页数</th>
+									<th data-options="field:'pagenumber',width:90">页码</th>
+									<th data-options="field:'bz',width:260">备注</th>
+								</tr>
+								</thead>
+							</table>
+						</div>
+
+						<div title="业务收费项" style="padding:0px">
+							<div id="ywsfTB" style="padding:6px;">
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="modifybuinessCharge(0)">添加</a>
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="modifybuinessCharge(1)">修改</a>
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="delectbuinessCharge(1)">删除</a>
+							</div>
+							<table class="easyui-datagrid" id="buinessCharge" style="width: 100%;height:100%;"
+							       data-options="singleSelect:true,checkOnSelect:false,selectOnCheck:false,toolbar:'#ywsfTB',onDblClickRow: BusChargeGridDbClick,sortName:'chargeName',sortOrder:'asc',">
+								<thead>
+								<tr>
+									<th field="ck" checkbox="true"></th>
+									<th data-options="field:'cname',width:260">收费名称</th>
+									<th data-options="field:'csflx',width:90" formatter="getChargeType">收费类型</th>
+									<th data-options="field:'cjff',width:150" formatter="getPayingParty">收费方</th>
+									<th data-options="field:'cbs',width:100">费用倍率</th>
+									<th data-options="field:'cfilter',width:180">筛选条件</th>
+									<th data-options="field:'cbase',width:180">收费值表达式</th>
+									<th data-options="field:'cdesc',width:260">收费描述</th>
+								</tr>
+								</thead>
+							</table>
+						</div>
+
+						<div title="业务受理人" style="padding:0px">
+							<div id="tb" style="padding:6px;">
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="selectHandlePerson()">添加</a>
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="selectHandleAllPerson()">添加所有用户</a>
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="DeleteHandlePerson()">删除</a>
+							</div>
+							<table class="easyui-datalist" id="HandlePersonList" style="width: 100%;height:100%;"
+							       data-options="loader:loaderPerson,fitColumns:false,singleSelect:true,checkOnSelect:false,selectOnCheck:false,toolbar:'#tb'">
+							</table>
+						</div>
+
+
+						<div title="业务受限规则" id='busrulestitle' style="padding:0px">
+							<div id="ywRule" style="padding:6px;">
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="modifybuinessRule(0)">添加</a>
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="modifybuinessRule(1)">修改</a>
+								<a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="delectbuinessRule()">删除</a>
+							</div>
+							<table class="easyui-datagrid" id="buinessRule" style="width: 100%;height:100%;"
+							       data-options="loader:loaderrule,fitColumns:true,singleSelect:true,checkOnSelect:false,selectOnCheck:false,toolbar:'#ywRule',onDblClickRow: BusRuleGridDbClick">
+								<thead>
+								<tr>
+									<th field="rck" checkbox="true"></th>
+									<th data-options="field:'busrules',width:200">限制方式</th>
+									<th data-options="field:'buscondition',width:300">限制条件</th>
+									<th data-options="field:'busnotice',width:420">提示信息</th>
+									<th data-options="field:'rid',hidden:'true'">rid</th>
+								</tr>
+								</thead>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 点击按钮或数的操作面板 End-->
+		<div class="easyui-panel" border="false" id="classificationList" style="display: none;"
+		     data-options="fit:true,border:false,closed:true">
+			<form id="cataForm" style="margin:0;padding:0;">
+				<table class="col4" style="width:630px;margin-bottom:10px;">
+
+					<tr>
+						<td>分类名：</td>
+						<td><input id="classificationName" class="easyui-textbox"
+						           style="width: 100%" /></td>
+
+						<td><span style="color:red;">*</span>分类代码：</td>
+						<td>
+							<input type="hidden" id="cfwfRID" />
+							<input type="hidden" id="oldcode" />
+							<input id="cfcode" class="easyui-textbox" style="width: 100%"
+							       data-options="validType:'valibusinessCode',required:true" /></td>
+					</tr>
+
+					<tr>
+						<td>上级分类：</td>
+						<td><input type="hidden" id="cfrid" /> <input id="cfpcode"
+						                                              class="easyui-combotree" colspan="1" style="width: 100%"
+						                                              data-options="editable:false  " />
+						</td>
+						<td>排序值：</td>
+						<td><input id="cfsortValue" class="easyui-numberspinner"
+						           style="width: 100%" data-options="min:0"/></td>
+					</tr>
+				</table>
+				<table style="min-width:630px;margin-bottom:10px;">
+					<tr>
+						<td style="vertical-align:top;width:15%;text-align:right;">
+							包含业务：
+							<div style="margin-top:10px;margin-left:45px;width:20px;">
+								<div class="ibase_iconBtn ibase_iconUp" onclick="removeRow('up','Contain')"></div>
+								<div class="ibase_iconBtn ibase_iconDown" onclick="removeRow('dw','Contain')"></div>
+							</div>
+						</td>
+						<td colspan="3" style="border:1px solid #d3d3d3;">
+							<input id="Contain" class="easyui-datalist text-left" style="width: 100%; height: 350px"
+							       data-options="readonly:true,sortName:'sortValue',sortOrder:'asc'">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<!-- 整个布局 End-->
+</div>
+
+
+<div id="win" class="easyui-window" title="业务资料项" closed="true" style="width:550px; height:520px;"
+     data-options="iconCls:'icon-save',modal:true,resizable:false,collapsible:false,minimizable:false,maximizable:false,inline:false,footer:'#docItemFooter'">
+	<form id="docItemForm" style="padding:10px;" style="width:500px;height:180px;">
+		<table style="width:100%">
+			<tr style="display:none;">
+				<td>
+					<input type="hidden" class="easyui-textbox" id="rid" name="rid" >
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;width:80px;"><span style="color:red;">*</span>资料名称：</td>
+				<td>
+					<input type="hidden" name="bid">
+					<input type="hidden" name="bcode">
+					<input type="hidden" name="brid" />
+					<input type="hidden" name="rows" />
+					<input class="easyui-textbox" style="width:430px;" id="dname" name="dname" required="true">
+				</td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;">
+					筛选条件：<br/>
+					<a style="text-decoration:underline;color:#70a8ff;cursor:pointer;margin-right:5px;" onClick="FormulaVerifications('win','dfilter')">条件生成器</a>
+				</td>
+				<td>
+					<input class="easyui-textbox" style="width:430px;height:100px;" multiline="true" id="dfilter" name="dfilter" >
+				</td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;"><span style="color:red; " >*</span>资料类型：</td>
+				<td>
+					<select class="easyui-combobox" style="width:430px;" id="dataType"
+					        data-options="	data:dataTypes, valueField:'wtype',textField:'wtypeText',editable:false ">
+					</select>
+				</td>
+				<td>	<span style='color: red;display:none ' id="dataTypeError" > 未定义资料类型，请到代码字典定义</span></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;"><span style="color:red; " >*</span>介质类型：</td>
+				<td>
+					<select class="easyui-combobox" style="width:430px;" id="mediaType"
+					        data-options="data:mediaTypes, valueField:'wtype',textField:'wtypeText',editable:false">
+					</select>
+				</td>
+				<td>	<span style='color: red;display:none' id="mediaTypeError" > 未定义介质类型，请到代码字典定义</span></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;">附属资料：</td>
+				<td>
+					原件 <input class="easyui-numberbox" style="width:40px;" id="originalmate" name="" validType="integer" > 份
+					&nbsp;
+					复印件 <input class="easyui-numberbox" style="width:40px;" id="copymate" name="" validType="integer" > 份
+					&nbsp;
+					附件 <input class="easyui-numberbox" style="width:40px;" id="enclosuremate" name="" validType="integer" > 份
+					&nbsp;
+
+				</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td>
+					&nbsp;&nbsp;&nbsp;共 <input class="easyui-numberbox" style="width:40px;" id="enclosurepagemate" name="copymate" validType="integer" > 页
+					&nbsp;
+					排序值 <input class="easyui-numberbox" style="width:40px;" name="sortValues" id="sortValues" validType="integer" >
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					页码 <input class="easyui-numberbox" style="width:40px;" id="pagemate" name="" validType="integer" > 页
+				</td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right">提供标志:</td>
+				<td>
+					<input type="radio" name="isneed" id="isneed1" value="1"><label for="isneed1">是</label>
+					<input type="radio" name="isneed" id="isneed0" value="0"><label for="isneed0">否</label>
+				</td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;">备注：</td>
+				<td>
+					<input class="easyui-textbox" style="width:430px;height:100px;" multiline="true" id="remarks" >
+				</td>
+			</tr>
+
+		</table>
+	</form>
+	<div id="docItemFooter" style="padding: 5px;padding-right:10px; text-align: right;">
+		<a class="easyui-linkbutton" icon="icon-ok" onClick="formClose(1)">保存</a> &nbsp;
+		<a class="easyui-linkbutton" icon="icon-cancel" onClick="formClose(0)">取消</a>
+	</div>
+</div>
+
+<div id="buinessChargeWin" class="easyui-window" title="管理业务收费" closed="true" style="width:550px; height:480px;"
+     data-options="iconCls:'icon-save',modal:true,resizable:false,collapsible:false,minimizable:false,maximizable:false,inline:false,footer:'#ywsfItemFooter'">
+	<form id="ywsfItemForm" style="padding:10px;" style="width:420px;height:180px;">
+		<table style="width:100%">
+			<tr>
+				<td style="text-align:right;width:80px;">收费名称：</td>
+				<td>
+					<input type="hidden" name="cid" />
+					<input type="hidden" name="crid" />
+					<input type="hidden" name="crows" />
+					<input class="easyui-textbox" style="width:430px;" id="chargeName" name="chargeName" required="true">
+				</td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;">收费类型：</td>
+				<td>
+					<select class="easyui-combobox" style="width:430px;" id="chargeType" name="chargeType" data-options="	data:chargeType, valueField:'wtype',
+							textField:'wtypeText',editable:false">
+					</select>
+				</td>
+				<td>	<span style='color: red;display:none' id="chargeTypeError" > 未定义收费类型，请到代码字典定义</span></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;">缴费方：</td>
+				<td>
+					<select class="easyui-combobox" style="width:430px;" id="payingParty" name="payingParty" data-options="data:payingParty, valueField:'wtype',
+							textField:'wtypeText',editable:false">
+					</select>
+				</td>
+				<td>	<span style='color: red;display:none' id="payingPartyError" > 未定义缴费方，请到代码字典定义</span></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;">
+					费用倍率：<br/>
+					<a style="text-decoration:underline;color:#70a8ff;cursor:pointer;margin-right:5px;" onClick="FormulaVerifications('buinessChargeWin','costRate')">条件构建器</a>
+				</td>
+				<td>
+					<input class="easyui-textbox" style="width:430px;height:60px;" multiline="true" id="costRate" name="costRate" >
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">
+					筛选条件：<br/>
+					<a style="text-decoration:underline;color:#70a8ff;cursor:pointer;margin-right:5px;" onClick="FormulaVerifications('buinessChargeWin','screeningConditions')">条件构建器</a>
+				</td>
+				<td>
+					<input class="easyui-textbox" style="width:430px;height:60px;" multiline="true" id="screeningConditions" name="screeningConditions" >
+				</td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;">
+					收费值表达式：<br/>
+					<a style="text-decoration:underline;color:#70a8ff;cursor:pointer;margin-right:5px;" onClick="FormulaVerifications('buinessChargeWin','chargeValueEcpression')">条件构建器</a>
+				</td>
+				<td>
+					<input class="easyui-textbox" style="width:430px;height:60px;" multiline="true" id="chargeValueEcpression" name="chargeValueEcpression" required="true" >
+				</td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;">收费描述：</td>
+				<td>
+					<input class="easyui-textbox" style="width:430px;height:80px;" multiline="true" id="chargeDescribe" name="chargeDescribe" >
+				</td>
+			</tr>
+
+		</table>
+	</form>
+
+	<div id="ywsfItemFooter" style="padding: 5px;padding-right:10px; text-align: right;">
+		<a class="easyui-linkbutton" icon="icon-ok" onClick="saveBusCharge(1)">保存</a> &nbsp;
+		<a class="easyui-linkbutton" icon="icon-cancel" onClick="saveBusCharge(0)">取消</a>
+	</div>
+</div>
+
+<div id="formProcessWin" class="easyui-window" title="选择工作流" closed="true" style="width: 380px; height: 500px;"
+     data-options="iconCls:'icon-save',modal:true,collapsible:false,minimizable:false,maximizable:false,inline:false,footer:'#formProcessFooter'">
+	<div style="position:relative;overflow:hidden;height:100%;">
+		<div id="search-workflow-div" style="margin:0 -1px;" data-options="region:'north',border:false,height:'30px';">
+			<input id="findprocess" class="easyui-searchbox" prompt="输入内容查找" style="width:100%;height:30px;" data-options="searcher:searchCTreeBusinessP"/>
+		</div>
+		<div id="workflowtree" style="position:absolute;bottom:0;top:30px;width:100%;overflow-x:hidden;overflow-y:auto;" data-options="region:'center',border:false">
+			<div class="easyui-tree" id="formProcessList" data-oprions="fit:true"></div>
+		</div>
+	</div>
+	<div id="formProcessFooter" style="padding: 5px; text-align: center;">
+		<a class="easyui-linkbutton" icon="icon-ok" onClick="formProcessClick(1)">保存</a>
+		<a class="easyui-linkbutton" icon="icon-cancel" onClick="formProcessClick(0)">取消</a>
+	</div>
+</div>
+
+
+<div id="setRule" class="easyui-window" title="设置受限规则" closed="true" style="width:550px; height:520px;"
+     data-options="iconCls:'icon-save',modal:true,resizable:false,collapsible:false,minimizable:false,maximizable:false,inline:false,footer:'#ruleFooter'">
+	<form id="ruleForm" style="padding:10px;padding-right:0px;" >
+		<table style="width:100%;table-layout:fixed">
+			<tr type="hidden">
+				<td style="width:80px;">
+					<input type="hidden"  id="rurid" name="rurid" >
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;width:80px;">限制方式：</td>
+				<td>
+					<select class="easyui-combobox" style="width:420px;" id="busRules" data-options="editable:false">
+						<option value='0' >不能办理</option>
+						<option value='1' >询问是否办理</option>
+						<option value='2' >询问办理并显示限制信息</option>
+
+					</select>
+				</td>
+				<td>	<span style='color: red;display:none' id="mediaTypeError" > 未定义介质类型，请到代码字典定义</span></td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;width:80px;">
+					限制条件：<br/>
+					<a style="text-decoration:underline;color:#70a8ff;cursor:pointer;margin-right:5px;" onClick="FormulaVerifications('setRule','rudfilter')">条件构造器</a>
+				</td>
+				<td>
+					<input class="easyui-textbox" style="width:420px;height:200px;" multiline="true" id="rudfilter" name="rudfilter" >
+				</td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;width:80px">限制范围：</td>
+				<td class="taskdg">
+					<table id="taskdg" class="easyui-datagrid" title=""
+					       data-options="border:true,rownumbers:true ,width:'420px',height:'200px'" >
+						<thead>
+						<tr>
+							<th data-options="field:'ck',checkbox:true"></th>
+							<th data-options="field:'taskId',hidden:'true',width:'100'">任务id</th>
+							<th data-options="field:'taskName'">环节名</th>
+						</tr>
+						</thead>
+					</table>
+				</td>
+			</tr>
+
+			<tr>
+				<td style="text-align:right;width:80px;">提示信息：</td>
+				<td>
+					<input class="easyui-textbox" style="width:420px;height:100px;" multiline="true" id="busnotice" >
+				</td>
+			</tr>
+
+		</table>
+	</form>
+	<div id="ruleFooter" style="padding: 5px;padding-right:10px; text-align: right;">
+		<a class="easyui-linkbutton" icon="icon-ok" onClick="ruleformClose(1)">保存</a> &nbsp;
+		<a class="easyui-linkbutton" icon="icon-cancel" onClick="ruleformClose(0)">取消</a>
+	</div>
+</div>
+
+
+<div id="winimportBusiCsv" class="easyui-dialog" title="导入文件" closed="true"
+     style="width: 400px; height:auto;display:none;" align="center"
+     data-options="modal:true,collapsible:false,minimizable:false,
+		maximizable:false,footer:'#bbs'
+		">
+	<form id="importForm" action="" style="padding:10px;"
+	      enctype="multipart/form-data" method="post">
+		<table>
+			<tr>
+				<td>上传文件：</td>
+				<td><input name="file" id="file" type="file"
+				           style="width: 100%" accept=".csv,.txt,.exf"></td>
+			</tr>
+		</table>
+	</form>
+	<div id="bbs" align="center" style="padding:5px;">
+		<a class="easyui-linkbutton ml10" onClick="submitBusiForm()">确定</a>
+		<a class="easyui-linkbutton ml10" onClick="closeBusiWin()">取消</a>
+	</div>
+</div>
+<div id="winLoad" class="easyui-dialog" title="请等待" closed="true"
+     style="width: 400px; height:100px;display:none;" align="center"
+     data-options="modal:true,collapsible:false,minimizable:false,
+		maximizable:false">
+	正在导入,请耐心等待
+</div>
+<!-- todo 引入对应的 js -->
+<script src="index.js"></script>
+<script src="jquery.min.js"></script>
+<script src="jquery.easyui.min.js"></script>
+
+<script>
+
+</script>
+</body>
+</html>
