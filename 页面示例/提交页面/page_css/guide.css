@@ -608,7 +608,7 @@ a.btn-cklct i {
 	color: #fff;
 	margin-left: 6px;
 	
-	width: 131px;
+	width: 171px;
 	height: 46px;
 	text-align: center;
 }
@@ -623,9 +623,9 @@ a.btn-cklct i {
 
 .tag-data {
 	position: absolute;
-	right: 0;
+	margin-left: 52px;
 	top: 0;
-	width: 52px;
+	width: 92px;
 	height: 46px;
 	line-height: 46px;
 	text-indent: 5px;
@@ -1014,10 +1014,6 @@ a.button.btn-table,a.button_disabled.btn-table {
 	z-index: 100;
 	margin-left: 20px;
 	bottom: 42px;
-}
-
-.td-info:hover .win-info,.td-info:hover .info-arrow {
-	display: block;
 }
 
 .layer-link-panel {
