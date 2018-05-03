@@ -177,3 +177,71 @@ var treedata =
     'sort': 1,
     'iconCls': 'icon-blank'
   }]
+// 新增弹出模态框
+var trTemplate = '<tr>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t<!--<td>1</td>-->\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t<td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t\t<input type="text" class="autoSizeInput" autocomplete="off">\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t<td class="td-info" width="70px">\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t\t<label class="webuploader-pick uploader-small">编辑详细</label>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t<td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t\t<input type="text" class="autoSizeInput" autocomplete="off">\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t<td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t\t<input type="text" class="autoSizeInput" autocomplete="off">\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t<td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t\t<input type="text" class="autoSizeInput" autocomplete="off">\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t<td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t\t<input type="text" class="autoSizeInput" autocomplete="off">\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t<td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t\t<label class="uploader uploader-small webuploader-container"><div class="webuploader-pick">上传表格</div><div id="rt_rt_1ccik5cflnda6fs1ke51rfo1gqk1" style="position: absolute; top: -17px; left: 0px; width: 60px; height: 32px; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" class="webuploader-element-invisible" multiple="multiple"><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></label>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t<td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t\t<label class="uploader uploader-small webuploader-container"><div class="webuploader-pick">上传表格</div><div id="rt_rt_1ccik5cfobkprq8njqhug109n3" style="position: absolute; top: -17px; left: 0px; width: 60px; height: 32px; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" class="webuploader-element-invisible" multiple="multiple"><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></label>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t<td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t\t<label class="webuploader-pick uploader-small delete" style="background-color: red">×</label>\n' +
+  '\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+  '\t\t\t\t\t\t\t\t\t\t</tr>'
+
+//点击删除当前行
+$('.js-mater').on('click','.delete',function () {
+  var tr = $(this).parents('tr')[0]
+  tr.outerHTML = ''
+})
+// 点击追加一行数据
+$('.newRowButton').on('click',function () {
+
+  $('.js-mater').append(trTemplate)
+})
+
+var uploader = WebUploader.create({
+  server: 'http://webuploader.duapp.com/server/fileupload.php',
+  pick: '.uploader',
+})
+
+uploader.on('fileQueued',function (file) {
+
+  console.log(uploader)
+  console.log(file.name)
+  console.log(file.id)
+})
+// 模态框展示
+var btn = document.getElementById('newForm');
+var close = document.getElementsByClassName('close')[0];
+var cancel = document.getElementById('cancel');
+var modal = document.getElementById('modal');
+btn.addEventListener('click', function(){
+  modal.style.display = "block";
+});
+close.addEventListener('click', function(){
+  modal.style.display = "none";
+});
+cancel.addEventListener('click', function(){
+  modal.style.display = "none";
+});
