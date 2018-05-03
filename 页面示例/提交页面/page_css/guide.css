@@ -332,7 +332,6 @@ a.btn-cklct i {
 	margin: 0 4px;
 	width: 20px;
 	height: 20px;
-	cursor: pointer;
 }
 
 .star-gray {
@@ -869,7 +868,6 @@ a.btn-cklct i {
 
 .btn-guide.disabled,.btn-guide.disabled:hover {
 	background: url(../page_image/btn-guide-bg-disabled.png) repeat-x;
-	cursor: default;
 }
 
 .btn-guide img {
@@ -1188,9 +1186,7 @@ a.button.btn-table,a.button_disabled.btn-table {
 	display: none;
 }
 
-.point {
-	cursor: pointer;
-}
+
 
 #has_user {
 	position: relative;
@@ -1308,9 +1304,7 @@ text-align: right;
 float: right;
 
 }
-.point{
-cursor: pointer;
-}
+
 .p20{
 padding: 20px;
 }

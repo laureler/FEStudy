@@ -267,9 +267,7 @@ a.sel-on+span.arrow{
 }
 
 /* 新增搜索框清空按钮 start*/
-.search_x{
-	position:absolute; right:80px;top:8px; cursor:pointer;
-}
+
 .input_position{
 	position:relative;
 }
@@ -795,7 +793,6 @@ a.sel-on+span.arrow{
 	text-decoration:none;
 }
 .footer a:link {
-	cursor: pointer;
 	text-decoration: none;
 }
 .footer	a:hover {
@@ -1122,7 +1119,6 @@ a.sel-on+span.arrow{
 /*省直属窗口样式  新增*/
 .no_link{
 	color:#666666 !important;
-	cursor: text !important;
 }
 .wod_css{
 	margin-top:4px;
@@ -1135,7 +1131,6 @@ a.sel-on+span.arrow{
 .tablelis2 tr:hover{background:#EFEFEF;}
 .tablelis2 .textleft { text-align:left;}
 .tablelis2 .textleft a{
-    cursor: pointer;
     text-decoration: none!important;
     color:#0088cc;
 }
@@ -1180,7 +1175,6 @@ a.OnlineBidding {
     position: relative;
 	box-sizing: content-box;
 	line-height: normal;
-	cursor: pointer;
 }
 a.OnlineBidding i {
 	background:url(../images/button_icon_pencil.png) no-repeat center; 
@@ -1190,7 +1184,6 @@ a.OnlineBidding i {
     left: 0;
     top: 0;
     display: block;
-	cursor: pointer;
 }
 a.OnlineBidding_disabled {
     display:inline-block;
@@ -1241,7 +1234,6 @@ a.OnlineBidding:hover i {
 
 a.OnlineBidding:hover { 
 	color:#FFF !important;
-	cursor: pointer;
 	border: 1px solid #cb4c00;
 	background:url(../images/button_bg_orange.png) no-repeat center;
     background: #fb8800;
@@ -1484,7 +1476,6 @@ a.button {
     /*position: relative;
 	box-sizing: content-box;*/
 	line-height: normal;
-	cursor: pointer;
 	font-weight: normal;
 	/*float: left;*/
     word-break: keep-all;
@@ -1537,7 +1528,6 @@ a.button:hover i {
 
 a.button:hover { 
 	color:#FFF !important;
-	cursor: pointer;
 	border: 1px solid #cb4c00;
 	background:url(../images/button_bg_orange.png) no-repeat center;
     background: #fb8800;
