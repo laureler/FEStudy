@@ -1016,6 +1016,10 @@ a.button.btn-table,a.button_disabled.btn-table {
 	bottom: 42px;
 }
 
+.td-info:hover .win-info,.td-info:hover .info-arrow {
+	display: block;
+}
+
 .layer-link-panel {
 	margin: 0 10px 8px;
 }
