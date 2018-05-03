@@ -42,12 +42,12 @@ table {
 	padding: 0 10px 0 24px;
 	height: 20px;
 	line-height: 20px;
-	background: url("../page_image/icon-collect.png") left center
+	background: url("page_image/icon-collect.png") left center
 		no-repeat;
 }
 
 .layer-action a.btn-collect.on,.layer-action a.btn-collect:hover {
-	background: url("../page_image/icon-collect-on.png") left center
+	background: url("page_image/icon-collect-on.png") left center
 		no-repeat;
 }
 
@@ -61,12 +61,12 @@ table {
 }
 
 .label-wssb {
-	background: #67ccf3 url("../page_image/label-wssb.png") 10px center
+	background: #67ccf3 url("page_image/label-wssb.png") 10px center
 		no-repeat;
 }
 
 .label-cnqx {
-	background: #76e565 url("../page_image/label-cnqx.png") 10px center
+	background: #76e565 url("page_image/label-cnqx.png") 10px center
 		no-repeat;
 }
 
@@ -90,7 +90,7 @@ table {
 }
 
 .nav a.nav-more {
-	background: url("../page_image/shrink.png") 90% center no-repeat;
+	background: url("page_image/shrink.png") 90% center no-repeat;
 	height: 20px;
 	border: 1px solid #eee;
 	padding: 1px 18px 1px 5px;
@@ -100,7 +100,7 @@ table {
 }
 
 .nav a.nav-close {
-	background: url("../page_image/spread.png") 90% center no-repeat;
+	background: url("page_image/spread.png") 90% center no-repeat;
 	height: 20px;
 	border: 1px solid #eee;
 	padding: 1px 18px 1px 5px;
@@ -111,7 +111,7 @@ table {
 
 .nav .nav-tit {
 	padding-left: 24px;
-	background: url("../page_image/label-nav.png") left center
+	background: url("page_image/label-nav.png") left center
 		no-repeat;
 }
 
@@ -171,7 +171,7 @@ table {
 	padding: 0 10px 0 32px;
 	height: 100%;
 	border-right: 1px solid #ccc;
-	background: url("../page_image/icon-tab-position.png") 10px center
+	background: url("page_image/icon-tab-position.png") 10px center
 		no-repeat;
 }
 /** 多列table **/
@@ -274,7 +274,7 @@ a.btn-cklct i {
 	margin-top: -4px;
 	width: 16px;
 	height: 14px;
-	background: url("../page_image/cklct.png") center no-repeat;
+	background: url("page_image/cklct.png") center no-repeat;
 }
 /** 申办按钮 **/
 .btn-box {
@@ -301,7 +301,7 @@ a.btn-cklct i {
 	margin-right: 8px;
 	width: 32px;
 	height: 32px;
-	background: url("../page_image/btn-zxsb.png") center no-repeat;
+	background: url("page_image/btn-zxsb.png") center no-repeat;
 	background-size: 100%;
 	margin-bottom: 3px;
 }
@@ -335,18 +335,18 @@ a.btn-cklct i {
 }
 
 .star-gray {
-	background: url("../page_image/star-gray.png") no-repeat;
+	background: url("page_image/star-gray.png") no-repeat;
 }
 
 .star {
-	background: url("../page_image/star-yellow.png") no-repeat;
+	background: url("page_image/star-yellow.png") no-repeat;
 }
 
 .info-eval {
 	display: block;
 	padding-left: 28px;
 	color: #0088cc;
-	background: url("../page_image/icon-title-eval.png") 5px center
+	background: url("page_image/icon-title-eval.png") 5px center
 		no-repeat;
 }
 
@@ -394,7 +394,7 @@ a.btn-cklct i {
 /** 表格下载列表 **/
 .table-list-type a {
 	padding-left: 28px;
-	background: url("../page_image/type-excel.png") 6px center
+	background: url("page_image/type-excel.png") 6px center
 		no-repeat;
 }
 
@@ -538,7 +538,7 @@ a.btn-cklct i {
 }
 
 .slider-nav li.li-title {
-	background: url("../page_image/type-yuan.png") right 1px top 12px
+	background: url("page_image/type-yuan.png") right 1px top 12px
 		no-repeat;
 }
 
@@ -614,11 +614,11 @@ a.btn-cklct i {
 }
 
 .tag-wssb {
-	background: url("../page_image/button-bg-wssb.png") no-repeat;
+	background: url("page_image/button-bg-wssb.png") no-repeat;
 }
 
 .tag-cnqx {
-	background: url("../page_image/button-bg-cnxq.png") no-repeat;
+	background: url("page_image/button-bg-cnxq.png") no-repeat;
 }
 
 .tag-data {
@@ -855,19 +855,19 @@ a.btn-cklct i {
 	padding: 9px 15px;
 	font-size: 18px;
 	color: #fff;
-	background: url(../page_image/btn-guide-bg.png) repeat-x;
+	background: url(page_image/btn-guide-bg.png) repeat-x;
 	border-radius: 5px;
 	display: inline-block;
 	margin-right: 5px;
 }
 
 .btn-guide:hover {
-	background: url(../page_image/btn-guide-bg-on.png) repeat-x;
+	background: url(page_image/btn-guide-bg-on.png) repeat-x;
 	color: #fff;
 }
 
 .btn-guide.disabled,.btn-guide.disabled:hover {
-	background: url(../page_image/btn-guide-bg-disabled.png) repeat-x;
+	background: url(page_image/btn-guide-bg-disabled.png) repeat-x;
 }
 
 .btn-guide img {
@@ -1010,7 +1010,7 @@ a.button.btn-table,a.button_disabled.btn-table {
 	position: absolute;
 	width: 23px;
 	height: 11px;
-	background: url(../page_image/info-arrow.png) no-repeat;
+	background: url(page_image/info-arrow.png) no-repeat;
 	z-index: 100;
 	margin-left: 20px;
 	bottom: 42px;
