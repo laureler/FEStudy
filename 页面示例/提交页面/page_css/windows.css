@@ -374,7 +374,6 @@ a.more, a.more:link, a.more:visited, a.more:hover {
     border-radius: 4px;
     border: 0;
     margin-left: 10px;
-    cursor: pointer;
 }
 /*
 .window .dialog_container .ask .bottom_line .ask_btn .send {
@@ -597,7 +596,6 @@ a.more, a.more:link, a.more:visited, a.more:hover {
     vertical-align: top;
 }
 .alert_evaluate .eval_table td .level{
-    cursor: pointer;
     display: inline-block;
     *display: inline;
     *zoom: 1;

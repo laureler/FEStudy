@@ -718,20 +718,9 @@ a.btn-cklct i {
 }
 
 .table-colspan
- 
-th
-.w3
-,
-{
-width
-:
- 
-90
-px
-;
 
 
-}
+
 .table-colspan th.w4 {
 	/*    width: 56px;*/
 	min-width: 45px;
@@ -1307,7 +1296,7 @@ a.button.btn-table,a.button_disabled.btn-table {
     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
     box-shadow: 0 3px 7px rgba(0,0,0,0.3);
     -webkit-background-clip: padding-box;
-    -moz-background-clip: padding-box;
+
     background-clip: padding-box;
     overflow: auto;
     display: none;

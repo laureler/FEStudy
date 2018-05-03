@@ -1203,7 +1203,7 @@ a.OnlineBidding_disabled {
 	text-align:left;
 	background:url(../images/button_bg_gray.png) center no-repeat;
     position: relative;
-	cursor:default;
+	
 	border-radius:4px;
 	padding-left: 24px;
 	box-sizing: content-box;
@@ -1498,7 +1498,7 @@ a.button_disabled {
     font-size: 13px;
     color:#999;
 	text-align: center;
-	cursor:default;
+	
 	/*box-sizing: content-box;
 	background: #fb8800;*/
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr= '#ffffff',

@@ -3,7 +3,6 @@
 }
 
 #formEditor {
-    overflow: auto;
     width: 100%;
     position: absolute;
     top: 35px;
@@ -39,9 +38,28 @@
     margin-top: 12px;
 }
 
-.autoinput {
+.autoSizeInput {
+    cursor: auto ;
+    padding: 0 5px;
     margin: 0px auto;
     min-height: 30px;
+    border: 1px solid #dcdfe6;
+    border-radius:4px;
     width: 100%;
     height: 80%
+}
+ /*定义最小的文本框高度*/
+.textareaInfo {
+    margin: 0 auto;
+    padding: 0 5px;
+    width: 100%;
+    min-height: 100px;
+    height: 130px;
+    border: 1px solid #dcdfe6;
+    border-radius:4px;
+}
+.part-model{
+    color: #333;
+    border: 1px solid #ccc;
+    margin-bottom: 0px;
 }

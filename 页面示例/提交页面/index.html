@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="page_css/globalstyle.css">
 	<link rel="stylesheet" href="index.css">
 	<!-- todo  引入对应的css -->
 	<link rel="stylesheet" href="themes/icon.css">
 	<link rel="stylesheet" href="easyuiEdited.css">
 	<link rel="stylesheet" href="page_css/guide.css">
-	<link rel="stylesheet" href="page_css/globalstyle.css">
 	<link rel="stylesheet" href="page_css/windows.css">
 	<title>国有建设用地抵押权首次登记</title>
 	<style>
@@ -57,7 +57,7 @@
 		<!-- 按钮菜单栏 end  -->
 		<!-- 业务表单页面 start  -->
 		<div id="formEditor">
-			<div class="easyui-layout" style="width:98%;height:100%; overflow: auto; margin:10px"
+			<div class="easyui-layout" style="width:98%;height:100%; overflow: auto; margin:0 auto;"
 			     data-options="border:false">
 				<!-- 业务数据页面  start-->
 				<div id="titleEditor">
@@ -153,66 +153,67 @@
 									<tr>
 										<th>事项类型</th>
 										<td colspan="2" class="td_2">
-											<input type="text" class="autoinput" autocomplete="off">
+											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 										<th>实施机构</th>
 										<td colspan="5">
-											<input type="text" class="autoinput" autocomplete="off">
+											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 									</tr>
 									<tr>
 										<th>承诺办结期限</th>
 										<td colspan="2" class="td_2">
-											<input type="text" class="autoinput" autocomplete="off">
+											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 										<th>承诺办结期限说明</th>
 										<td colspan="5">
-											<input type="text" class="autoinput" autocomplete="off">
+											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 									</tr>
 									<tr>
 										<th>服务对象</th>
-										<td colspan="2">抵押人和抵押权人</td>
+										<td colspan="2">
+											<input type="text" class="autoSizeInput" autocomplete="off">
+										</td>
 										<th>服务事项编码</th>
-										<td colspan="5">4413220000000071981791000392955003</td>
+										<td colspan="5">
+											<input type="text" class="autoSizeInput" autocomplete="off">
+										</td>
 									</tr>
 									<tr>
 										<th>办件类型</th>
 										<td colspan="2">
-
-
-											承诺件
+											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 										<th>结果名称</th>
-										<td colspan="2">无</td>
+										<td colspan="2">
+											<input type="text" class="autoSizeInput" autocomplete="off">
+										</td>
 										<th>结果样本</th>
 										<td colspan="2">
-
-
-											无
-
+											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 									</tr>
 									<tr>
 										<th>物流快递</th>
 										<td colspan="8">
-
-
-											无需快递
-
-
+											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 									</tr>
 									<tr>
 										<th>数量限制</th>
-										<td colspan="8">无</td>
+										<td colspan="8">
+											<input type="text" class="autoSizeInput" autocomplete="off">
+										</td>
 									</tr>
 									<tr>
 										<th>咨询电话</th>
-										<td colspan="3">0752-2896332、2898533<br>
+										<td colspan="3">
+											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 										<th>监督电话</th>
-										<td colspan="4">无<br>
+										<td colspan="4">
+											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 									</tr>
 
@@ -224,154 +225,44 @@
 									</tr>
 
 									<tr class="">
-										<td class="td_2" colspan="2">无</td>
+										<td class="td_2" colspan="2">
+											<input type="text" class="autoSizeInput" autocomplete="off">
+										</td>
 										<td colspan="6">
 											<p class="dot" style="line-height: 21px; word-wrap: break-word;">
+												<!-- todo 这个无 暂无意义-->
 												无
 											</p>
 										</td>
 									</tr>
-
-
 									</tbody>
 								</table>
 							</div>
 						</div>
 						<!-- 基本信息 end -->
-						<!--样表结果模态框  -->
-						<div class="modal" id="resultModal">
-							<a class="pull-right point  p10" onclick="$('#resultModal').hide();">[关闭]</a>
-
-						</div>
-
-
-						<!--所有窗口模态框  -->
-						<style>
-							.js-sub {
-								min-height: 50px;
-							}
-
-							.par .par-d {
-								width: 110px;
-								height: 40px;
-								/* padding-left: 8px; */
-								font-size: 17px;
-								margin-top: 5px;
-								text-align: center;
-								line-height: 40px;
-								float: left;
-								background-color: #F3F3F3;
-								border-radius: 8px;
-								margin-right: 40px;
-								margin-bottom: 8px;
-								color: #000;
-								display: inline-block;
-							}
-
-							.par-content {
-								padding: 20px 0 0px 40px
-							}
-
-							.h-title {
-								margin: 15px 0;
-								display: block;
-							}
-
-							.par .par-d:hover {
-								color: #FFF;
-								background-color: #4DB7E1;
-							}
-
-							.sub-a::before {
-								content: "";
-								width: 10px;
-								height: 10px;
-								border-radius: 50%;
-								background-color: #4DB7E1;
-								display: inline-block;
-								margin-right: 10px;
-							}
-
-							.sub-a {
-								padding: 5px 0 10px 28px;
-								display: inline-block;
-								color: #000;
-								font-size: 16px;
-								width: 150px;
-							}
-
-							.none {
-								display: none;
-							}
-
-							.bg-blue {
-								background: #4DB7E1 !important;
-								color: #fff !important;
-							}
-
-							.window-span {
-								font-size: 15px;
-								line-height: 23px;
-							}
-						</style>
-						<div class="modal" id="windowModal"
-						     style="width:850px;height:520px;top:8%;margin-left:-424px;padding-left:10px">
-							<a class="pull-right point  p10" onclick="$('#windowModal').hide();">[关闭]</a>
-							<div class="par" id="parentCode">
-								<h3 class="h-title">市级</h3>
-								<a class="par-d level-1 bg-blue" data-code="" href="javascript:void(0)"></a>
-								<div style="clear:both"></div>
-								<h3 class="h-title none" id="level2_id">区县级</h3>
-
-								<div style="clear:both"></div>
-								<h3 id="last_level" class="none h-title">镇街级</h3>
-
-							</div>
-							<div style="clear:both"></div>
-							<h3 class="h-title">窗口信息</h3>
-
-						</div>
-
-
-						<!-- 受理条件 -->
-
-
+						<!-- 受理条件  start-->
 						<div class="layer-info">
 							<div class="layer-tit single-tit" id="sltj">
-								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>受理条件
+								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>
+								受理条件
 							</div>
 							<div class="layer-txt">
-								<p class="dot" style="word-wrap: break-word;">
-									自然人、法人或其他组织为保障其债权实现，依法设立不动产抵押权的，可以由抵押人和抵押权人共同申请办理不动产抵押登记。</p>
+								<textarea name="shoulitiaojian " class="textareaInfo"  cols="30" rows="10"
+								          placeholder="请输入受理条件"></textarea>
 							</div>
 						</div>
-
-						<!-- 设定依据 -->
-
-
+						<!-- 设定依据 start -->
 						<div class="layer-info">
 							<div class="layer-tit single-tit" id="sdyj">
 								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>设定依据
 							</div>
 							<div class="layer-txt">
-								<p class="dot is-truncated" style="height: 95px; word-wrap: break-word;">
-
-									《不动产登记暂行条例》(第五条) <br style="display: inline;">
-									　下列不动产权利，依照本条例的规定办理登记：（一）集体土地所有权；
-									　　（二）房屋等建筑物、构筑物所有权；
-									　　（三）森林、林木所有权；
-									　　（四）耕地、林地、草地等土地承包经营权；
-									　　（五）建设用地使用权；
-									　　（六）宅基地使用权；
-									　　（七）海... <a class="toggle" href="#" style="display: inline;"><span class="open"
-									                                                                    style="font-weight: bold;">【点击查看更多】</span><span
-										class="close" style="font-weight: bold;">【收起】</span></a></p>
+								<textarea name="shoulitiaojian " class="textareaInfo"  cols="30" rows="10"
+								          placeholder="请输入设定依据"></textarea>
 							</div>
 						</div>
-
-						<!-- 申请材料 -->
-
-
+						<!-- 设定依据 end -->
+						<!-- 申请材料 start -->
 						<div class="layer-info">
 							<div class="layer-tit single-tit" id="sqcl">
 								<span class="tit-icon"><img src="page_image/title-prominent.png" alt=""></span>申请材料
@@ -388,13 +279,13 @@
 								<table class="table-guide" width="100%">
 									<tbody>
 									<tr>
-										<th rowspan="2" width="20px">序号</th>
+										<th rowspan="2" width="50px">序号</th>
 										<th rowspan="2" style="width:284px;">材料名称</th>
 										<th width="60px" rowspan="2">要求</th>
 										<th colspan="2" class="nowrap">份数（份/套）</th>
 										<th rowspan="2" width="48px" class="nowrap">纸质版/<br>电子版
 										</th>
-										<th rowspan="2" style="min-width: 100px;">来源渠道</th>
+										<th rowspan="2" style="min-width: 100px;width: 100px">来源渠道</th>
 										<th rowspan="2" width="60px">范本表格</th>
 										<th rowspan="2" width="60px">空白表格</th>
 									</tr>
@@ -402,441 +293,108 @@
 										<th width="28px" class="nowrap">原件</th>
 										<th width="42px" class="nowrap">复印件</th>
 									</tr>
-
-
 									</tbody>
 									<tbody class="js-mater mater441322982b96737cc34e6f8341caec55c85a2a ">
-
-
-									<tr>
-										<td>1</td>
-										<td>不动产登记申请书（双方当事人）</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>0</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td>
-											<a href="http://wsbs.huizhou.gov.cn/file-app/file/v2/standard/4413222d9688f4127246ee9468da050770b826.DOC"
-											   target="_blank" class="button btn-table download-btn">表格下载</a>
-										</td>
-									</tr>
-
-
-									<tr>
-										<td>2</td>
-										<td>申请人身份证明（双方当事人）</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>0</td>
-										<td>1</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>3</td>
-										<td>不动产权属证书</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>1</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>4</td>
-										<td>主债权合同、抵押合同（主债权合同中包含抵押条款的，可以不提交单独的抵押合同书。最高额抵押的，应当提交最高额抵押合同）</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>0</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>5</td>
-										<td>抵押人为国有企业的，需提交国有资产管理机构的审批意见</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>0</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>6</td>
-										<td>抵押人为集体所有制企业的，需提交集体资产管理机构（或主管部门）的审批意见</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>0</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>7</td>
-										<td>单位集资房须提供单位同意抵押的书面证明</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>0</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>8</td>
-										<td>全民所有制机构的房产做抵押须提供国资委或上级主管部门同意抵押的证明</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>0</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>9</td>
-										<td>证明抵押物价值的材料或当事人关于抵押物价值的确认书</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>0</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>10</td>
-										<td>工商部门备案的章程（原件）（抵押人为企业的需提供此项资料）</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>0</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>11</td>
-										<td>股东决议或董事会决议（原件）（抵押人为企业的需提供此项资料）</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>0</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>12</td>
-										<td>第三方担保抵押借款需提供营业执照（或身份证明）、法定代表人身份证明书</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>2</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
-
-									<tr>
-										<td>13</td>
-										<td>1.空地承诺书（抵押物为空地时提供）</td>
-										<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
-											<div class="info-arrow"></div>
-											<div class="win-info">
-												<p>无</p></div>
-										</td>
-										<td>1</td>
-										<td>1</td>
-										<td>
-
-											纸质
-
-
-										</td>
-										<td>
-
-											申请人 <br></td>
-										<td></td>
-
-										<td></td>
-									</tr>
-
+										<tr>
+											<td>1</td>
+											<td>不动产登记申请书（双方当事人）</td>
+											<td class="td-info"><a href="javascript:void(0);" class="click-more btn-table">查看详情</a>
+												<div class="info-arrow"></div>
+												<div class="win-info">
+													<p>无</p></div>
+											</td>
+											<td>1</td>
+											<td>0</td>
+											<td>
+												<input type="text" class="autoSizeInput" autocomplete="off">
+											</td>
+											<td>
+												<input type="text" class="autoSizeInput" autocomplete="off">
+											</td>
+											<td>
+												<input type="text" class="autoSizeInput" autocomplete="off">
+											</td>
+											<td>
+												配置表格下载
+											</td>
+										</tr>
 									</tbody>
-
 								</table>
 							</div>
 							<div class="child-title single-tit" id="tbxz">
 								<span class="tit-tag">填报须知</span>
 							</div>
 							<div class="layer-txt">
-								<p class="dot" style="word-wrap: break-word;">
-									真实、清晰、准确，核对原件
-								</p>
+								<textarea name="shoulitiaojian " class="textareaInfo" cols="30" rows="10"></textarea>
 							</div>
 							<div class="child-title" id="slbz">
 								<span class="tit-tag">受理标准</span>
 							</div>
 							<div class="layer-txt">
-
-
-								<a target="_blank"
-								   href="http://wsbs.huizhou.gov.cn/file-app/file/v2/standard/441322c2c60baffa18465ea1e3bfee554a3fb1.docx">
-									<p class="dot" style="word-wrap: break-word;">抵押权首次登记.docx</p>
-								</a>
-
-
+								<input type="file" value="上传文件">
+								上传文件
 							</div>
 						</div>
-						<!-- 办理流程 -->
+						<!-- 申请材料 end -->
 
-
+						<!-- 办理流程 start-->
 						<div class="layer-info">
 							<div class="layer-tit" id="bllc">
-								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>办理流程
+								<span class="tit-icon">
+									<img src="page_image/title-normal.png" alt="">
+								</span>
+								办理流程
 							</div>
 							<div class="child-title" id="wsbllct">
 								<span class="tit-tag">网上办理流程</span>
 								<div class="layer-righttit">
-
 									<!-- 判断文件类型是否有"."开头 -->
-
-
 									<a alt="网上办理流程" target="_blank"
-									   href="http://wsbs.huizhou.gov.cn/file-app/file/v2/standard/4413224dd6ee3923474d3e9f3eb5f4dbf703d3.png"
-									   class="btn-cklct gradient-light-blue"><i></i>查看流程图</a>
-
-
+									   class="btn-cklct gradient-light-blue">
+										<i></i>
+										查看流程图
+										<!-- todo 查看流程图是否需要配置 -->
+									</a>
 								</div>
 							</div>
 							<div class="layer-txt">
-								<p class="dot" style="word-wrap: break-word;">无</p>
+								<textarea name="shoulitiaojian " class="textareaInfo" cols="30" rows="10"></textarea>
 							</div>
 							<div class="child-title" id="ckbllct">
 								<span class="tit-tag">窗口办理流程</span>
 								<div class="layer-righttit">
-
 									<!-- 判断文件类型是否有"."开头 -->
-
-
 									<a target="_blank"
-									   href="http://wsbs.huizhou.gov.cn/file-app/file/v2/standard/44132213f902475d7647b68ae893506fb9782a.png"
+									   href="#"
 									   class="btn-cklct gradient-light-blue"><i></i>查看流程图</a>
-
-
 								</div>
 							</div>
 							<div class="layer-txt">
-								<p class="dot is-truncated" style="height: 95px; word-wrap: break-word;">
-									1.申请。申请人向县不动产登记中心服务窗口（或受理点）提出申请，提交申请材料。
-									2.受理。接件受理人员核验申请材料，在10个工作日内作出受理决定。申请人符合申请资格，并材料齐全、格式规范，予以受理，出具《受理回执》；申请人不具备申请资格或材料不齐全，不予受理；申请人提供的材料需要补正的，一次性告知申请人需要补正的全部内容，补正后重新受理。
-									3.审查。受理后，审查人员对材料进行审查，... <a class="toggle" href="#" style="display: inline;"><span
-										class="open" style="font-weight: bold;">【点击查看更多】</span><span class="close"
-									                                                                 style="font-weight: bold;">【收起】</span></a>
-								</p>
+								<textarea name="shoulitiaojian " class="textareaInfo" cols="30" rows="10"></textarea>
 							</div>
 
 						</div>
+						<!-- 办理流程 end-->
+
 						<!-- 许可收费 -->
-
-
 						<div class="layer-info">
 							<div class="layer-tit" id="xksf">
 								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>服务收费
 							</div>
 							<!-- slider-site -->
 							<div class="layer-txt">
-
-
-								<div class="layer-txt">不收费</div>
-
-
+								<textarea name="shoulitiaojian " class="textareaInfo"  cols="30"
+								          rows="10"></textarea>
 							</div>
 						</div>
-
-
 						<div class="layer-info" style="padding-bottom: 20px;">
 							<div class="layer-tit" id="cjwt">
 								<span class="tit-icon"><img src="page_image/title-normal.png" alt=""></span>
 								常见问题
 							</div>
 							<div class="layer-txt dot" style="word-wrap: break-word;">
-								<p>
-									无
-								</p>
+								<textarea name="shoulitiaojian " class="textareaInfo"  cols="30"
+								          rows="10"></textarea>
 							</div>
 						</div>
 
@@ -1054,7 +612,6 @@
 	正在导入,请耐心等待
 </div>
 <!-- todo 引入对应的 js -->
-<script src="index.js"></script>
 <script src="jquery.min.js"></script>
 <script src="jquery.easyui.min.js"></script>
 
