@@ -226,15 +226,16 @@ var uploader = WebUploader.create({
 })
 
 uploader.on('fileQueued',function (file) {
-
   console.log(uploader)
   console.log(file.name)
   console.log(file.id)
 })
+
 // 模态框展示
 var btn = document.getElementById('newForm');
 var close = document.getElementsByClassName('close')[0];
 var cancel = document.getElementById('cancel');
+var confirm = document.getElementById('sure');
 var modal = document.getElementById('modal');
 btn.addEventListener('click', function(){
   modal.style.display = "block";
@@ -245,3 +246,10 @@ close.addEventListener('click', function(){
 cancel.addEventListener('click', function(){
   modal.style.display = "none";
 });
+confirm.addEventListener('click',function () {
+  modal.style.display = "none";
+  sendData()
+})
+function sendData () {
+
+}
