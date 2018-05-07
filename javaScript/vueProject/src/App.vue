@@ -19,10 +19,14 @@
   export default {
     name: 'App',
     data () {
-     return {}
+     return {
+
+     }
     },
     methods: {
+       s : function (item,function(item)) {
 
+      }
     },
     components: {
 

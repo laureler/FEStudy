@@ -29,14 +29,16 @@
 		<div class="modal-body">
 
 			<div><label>材料名称:</label><input type="text" class="autoFormInput"></div>
-			<div><label>要求:</label><input type="text" class="autoFormInput"></div>
+
 			<div><label>原件:</label><input type="text" class="autoFormInput"></div>
 			<div><label>复印件:</label><input type="text" class="autoFormInput"></div>
 			<div><label>纸质版/电子版:</label><input type="text" class="autoFormInput"></div>
 			<div><label>来源渠道:</label><input type="text" class="autoFormInput"></div>
-			<div><label>范本表格:</label><label class="uploader" style="margin-top: 5px;">上传文件</label></div>
-			<div><label>空白表格:</label><label class="uploader">上传文件</label></div>
-
+			<div><label>范本表格:</label><label class="webuploader-pick" style="margin-top: 5px;">上传文件</label></div>
+			<div><label>空白表格:</label><label class="webuploader-pick">上传文件</label></div>
+			<div><label>要求:</label>
+				<textarea id="" cols="30" rows="10" class="textareaInfo"></textarea>
+			</div>
 		</div>
 		<footer class="modal-footer">
 			<button id="cancel">取消</button>
@@ -57,6 +59,7 @@
 		<!-- 搜索栏 end -->
 		<!-- 模块结构树 start -->
 		<div class="processTreeDiv" data-options="region:'south'" style="width:calc(100% - 300);">
+			<!-- todo 异步加载树形结构 需要配置 url地址-->
 			<ul id="businessDefTree" class="easyui-tree"
 			    data-options="fit:false,border:false,closed:false,data:treedata" style="width: 125%;"></ul>
 		</div>
@@ -289,7 +292,7 @@
 											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 										<td class="td-info" width="70px">
-											<label class="webuploader-pick uploader-small">编辑详细</label>
+											<label class="webuploader-pick webuploader-pick-small">详细信息</label>
 										</td>
 										<td>
 											<input type="text" class="autoSizeInput" autocomplete="off">
@@ -304,13 +307,13 @@
 											<input type="text" class="autoSizeInput" autocomplete="off">
 										</td>
 										<td>
-											<label class="uploader uploader-small">上传表格</label>
+											<label class="webuploader-pick webuploader-pick-small">上传表格</label>
 										</td>
 										<td>
-											<label class="uploader uploader-small">上传表格</label>
+											<label class="webuploader-pick webuploader-pick-small">上传表格</label>
 										</td>
 										<td>
-											<label class="webuploader-pick uploader-small delete"
+											<label class="webwebuploader-pick-pick webuploader-pick-small delete"
 											       style="background-color: red">×</label>
 										</td>
 									</tr>
@@ -327,7 +330,8 @@
 								<span class="tit-tag">受理标准</span>
 							</div>
 							<div class="layer-txt">
-								<label class="uploader">上传文件</label>
+								<label for="modalFile_kongbai" class="webuploader-pick">上传文件</label>
+								<input type="text" id="modalFile_kongbai" style="display: none">
 							</div>
 						</div>
 						<!-- 申请材料 end -->
@@ -407,7 +411,6 @@
 <!-- todo 引入对应的 js -->
 <script src="jquery.min.js"></script>
 <script src="jquery.easyui.min.js"></script>
-<script src="webuploader.js"></script>
 <script src="index.js"></script>
 </body>
 </html>
