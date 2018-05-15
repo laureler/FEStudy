@@ -24,7 +24,7 @@
      }
     },
     methods: {
-       s : function (item,function(item)) {
+       s : function (item) {
 
       }
     },
