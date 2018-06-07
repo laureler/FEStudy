@@ -1,18 +1,13 @@
 {
-  "name": "FEStudy",
+  "name": "festudy",
   "version": "1.0.0",
-  "description": "前段基础知识学习",
-  "main": "jquery-3.2.1.min.js",
+  "description": "前端学习",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
   "dependencies": {
-    "admin-lte": "^2.4.3",
-    "bootstrap": "^4.0.0",
-    "element-ui": "^2.2.2",
-    "express": "^4.16.3",
-    "iview": "^2.11.0",
-    "jquery": "^3.3.1",
-    "vue": "^2.5.16",
-    "vuestudy": "file:vue",
-    "webpack": "^4.1.1"
+    "express": "^4.16.3"
   },
   "devDependencies": {},
   "scripts": {
@@ -20,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/laureler/vueStudy.git"
+    "url": "git+https://github.com/laureler/FEStudy.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/laureler/vueStudy/issues"
+    "url": "https://github.com/laureler/FEStudy/issues"
   },
-  "homepage": "https://github.com/laureler/vueStudy#readme"
+  "homepage": "https://github.com/laureler/FEStudy#readme"
 }

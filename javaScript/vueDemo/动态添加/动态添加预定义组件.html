@@ -9,11 +9,7 @@
 
 <body>
 <div id="app">
-  <el-button type="primary" @click="addComponent({component: 'el-switch', props: {  'active-text':'按月付费','inactive-text':'按年付费'}  })">添加Switch 开关</el-button>
-  <el-button type="success" @click="addComponent({component: 'el-progress', props: {percentage : 50}  })">添加Progress 进度条</el-button>
-  <div>
-    <component :is="item.component" v-bind="item.props" v-for="item in componentArr"></component>
-  </div>
+
 </div>
 </body>
 <!-- 先引入 Vue -->

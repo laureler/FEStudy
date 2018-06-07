@@ -13,63 +13,65 @@
 	</style>
 </head>
 <body>
-<div id="app">
-	<form class="layui-form" action="">
-	<div class="layui-form-item">
-		<label class="layui-form-label">账号</label>
-		<div class="layui-input-inline">
-			<input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
-		</div>
-		<div class="layui-form-mid layui-word-aux">必填</div>
-	</div>
-	<div class="layui-form-item">
-		<label class="layui-form-label">密码</label>
-		<div class="layui-input-inline">
-			<input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
-		</div>
-		<div class="layui-form-mid layui-word-aux">必填</div>
-	</div>
-	<div class="layui-form-item">
-		<label class="layui-form-label">验证码</label>
-		<div class="layui-input-inline">
-			<input type="text" name="verifyCode" required lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
-		</div>
-		<img src="http://192.168.10.29:8080/cas/captchacode" onclick="this.src=this.src+'?date='+new Date().getTime();">
-	</div>
-	<div class="layui-form-item">
-		<label class="layui-form-label">登录系统</label>
-		<div class="layui-input-inline">
-			<select name="city" lay-verify="required">
-				<option value=""></option>
-				<option value="0" selected>ibase2.0平台</option>
-				<option value="1">其他1</option>
-				<option value="2">其他2</option>
-				<option value="3">其他3</option>
-				<option value="4">其他4</option>
-			</select>
-		</div>
-	</div>
-	<div class="layui-form-item">
-		<div class="layui-input-block">
-			<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-			<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-		</div>
-	</div>
-</form>
-</div>
+<button id="start">打开</button>
+
 <script src="resource/layui-v2.2.3/layui/layui.all.js"></script>
 <link rel="stylesheet" href="resource/layui-v2.2.3/layui/css/layui.css">
 <script>
+  var elementsById = document.getElementById('start')
+  elementsById.onclick = function () {
+    layer.open({
+      title: '登录',
+      type:1,
+      content: `
+		<form class="layui-form" action="" style="padding-top: 16px">
+		<div class="layui-form-item">
+			<label class="layui-form-label">账号</label>
+			<div class="layui-input-inline">
+				<input type="text" name="username" required lay-verify="required" placeholder="请输入用户名"
+				       autocomplete="off" class="layui-input">
+			</div>
+			<div class="layui-form-mid layui-word-aux">必填</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">密码</label>
+			<div class="layui-input-inline">
+				<input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
+				       autocomplete="off" class="layui-input">
+			</div>
+			<div class="layui-form-mid layui-word-aux">必填</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">验证码</label>
+			<div class="layui-input-inline">
+				<input type="text" name="verifyCode" required lay-verify="required" placeholder="请输入验证码"
+				       autocomplete="off" class="layui-input">
+			</div>
+			<img src="http://192.168.10.29:8080/cas/captchacode"
+			     onclick="this.src=this.src+'?date='+new Date().getTime();" style="height: 38px;cursor: pointer"
+			     title="看不清楚？点击图片再换一张">
+			<!--<div class="layui-form-mid layui-word-aux">看不清楚？点击图片再换一张</div>-->
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="loginCASForm">登录</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+	`
+    })
+  }
   //Demo
-  layui.use('form', function(){
-    var form = layui.form;
-
+  layui.use('form', function () {
+    var form = layui.form
     //监听提交
-    form.on('submit(formDemo)', function(data){
-      layer.msg(JSON.stringify(data.field));
-      return false;
-    });
-  });
+    form.on('submit(loginCASForm)', function (data) {
+      console.log(data.field)
+
+      return true
+    })
+  })
 </script>
 </body>
 </html>

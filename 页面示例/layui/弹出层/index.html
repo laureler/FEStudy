@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹出层</title>
+</head>
+<body>
+<script src="../resource/layui-v2.2.3/layui/layui.all.js"></script>
+<link rel="stylesheet" href="../resource/layui-v2.2.3/layui/css/layui.css">
+<script>
+
+  function confirmDialog () {
+    layer.confirm('纳尼？', {
+      btn: ['按钮一', '按钮二', '按钮三'],
+      btn3: function (index, layero) {
+        //按钮【按钮三】的回调
+      }
+    }, function (index, layero) {
+      //按钮【按钮一】的回调
+    }, function (index) {
+      //按钮【按钮二】的回调
+    })
+  }
+
+  function confirmDialog2 () {
+    let layerConfirmDialog = layer.open({
+      title:'警告',
+      content: '未检测到账号信息,是否登录系统？',
+      btn: ['确定', '取消'],
+      yes: function (index, layero) {
+        //按钮【按钮一】的回调
+        layer.close(index);
+      },
+      btn2: function (index, layero) {
+        //按钮【按钮二】的回调
+        //return false 开启该代码可禁止点击该按钮关闭
+      },
+      cancel: function () {
+        //右上角关闭回调
+        return true
+      }
+    })
+  }
+
+</script>
+</body>
+</html>
