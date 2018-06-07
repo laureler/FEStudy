@@ -12,14 +12,21 @@
 <body>
 <div id="app">
 	<ul class="nav">
-		<div v-for="item in list" v-bind:id="item.id">
-			<li class="level-one">{{ item.title }}</li>
-			<li v-for="child in item.child" v-bind:href="child.id" class="level-two">
-				{{child.title}}
+		<div v-for="(value,index) in list">
+			<li class="level-one">
+				<a :href="'#'+value.id">{{index +1 }} - {{ value.title }}</a>
+			</li>
+			<li v-for="(childValue,childIndex) in value.child" class="level-two">
+				{{index + 1}}.{{childIndex + 1}} - {{childValue.title}}
 			</li>
 		</div>
 	</ul>
 </div>
+<div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</div>
+<span id="1234" name="1234">asdasddasdasdasasd</span>
 <script src="../node_modules/vue/dist/vue.js"></script>
 <script>
   var nav = new Vue({
@@ -30,17 +37,17 @@
           id: '1234',
           title: 'name2',
           child: [{
-            id: '1234',
+            id: '2.1',
             title: 'child1',
             child: []
           }, {
-            id: '123',
+            id: '2.2',
             title: 'child2',
             child: []
           }]
         },
         {
-          id: '123',
+          id: '2',
           title: 'name1',
           child: []
         }]

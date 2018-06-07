@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.ivu-switch {
+			display: inline-block;
+			width: 70px;
+			height: 24px;
+			line-height: 22px;
+			border-radius: 24px;
+			vertical-align: middle;
+			border: 1px solid #ccc;
+			background-color: #ccc;
+			position: relative;
+			cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			-webkit-transition: all .2s ease-in-out;
+			transition: all .2s ease-in-out;
+		}
+
+		.ivu-switch-checked {
+			border-color: #2d8cf0;
+			background-color: #2d8cf0;
+		}
+
+		.ivu-switch-checked:after {
+			left: 25px;
+		}
+
+		.ivu-switch-inner {
+			color: #fff;
+			font-size: 12px;
+			position: absolute;
+			left: 25px;
+		}
+
+		.ivu-switch:after {
+			content: '';
+			width: 20px;
+			height: 20px;
+			border-radius: 20px;
+			background-color: #fff;
+			position: absolute;
+			left: 1px;
+			top: 1px;
+			cursor: pointer;
+			-webkit-transition: left .2s ease-in-out, width .2s ease-in-out;
+			transition: left .2s ease-in-out, width .2s ease-in-out;
+		}
+
+		.ivu-switch-checked:after {
+			left: 48px;
+		}
+
+		.ivu-switch-checked .ivu-switch-inner {
+			left: 9px;
+		}
+	</style>
+</head>
+<body>
+<div>
+<span class="ivu-switch ivu" id="app">
+	<input type="hidden" value="true">
+	<span class="ivu-switch-inner" id="1">
+		<span>未收藏</span>
+	</span>
+</span>
+</div>
+<script>
+  window.onload = function () {
+		document.getElementById('app').onclick = function (event) {
+          var e = event||window.event;
+          e.stopPropagation();
+		  var classList = this.classList
+		  var contains = classList.contains('ivu-switch-checked');
+		  if(contains){
+				classList.remove('ivu-switch-checked');
+		  }else{
+            classList.add('ivu-switch-checked');
+		  }
+
+
+		  return false;
+        }
+  }
+  //@ sourceURL=b.js
+</script>
+</body>
+</html>
