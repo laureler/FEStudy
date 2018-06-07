@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+<div id="demo">
+	<div v-for="c in category">
+		{{c.name}}
+		<input v-for="item in c.items" v-model="item.value" />
+	</div>
+	<div v-for="item in items">
+		<input v-model="item.value" />
+	</div>
+	<div v-for="item in category | get_items">
+		<input v-model="item.value" />
+	</div>
+	{{category | json}}
+</div>
+<script src="../../../node_modules/vue/dist/vue.js"></script>
+<script>
+  'use strict';
+  new Vue({
+    el: '#demo',
+    data: {
+      category: [
+        {
+          name: 'cate0',
+          items: [
+            {
+              value: 'cate0 item0'
+            }
+          ]
+        },
+        {
+          name: 'cate1',
+          items: [
+            {
+              value: 'cate1 item0'
+            }
+          ]
+        }
+      ]
+    },
+    computed: {
+      items() {
+        return this.$eval('category | get_items')
+        //var arr = []
+        //this.category.forEach(c => c.items.forEach(t => arr.push(t)))
+        //return arr
+      }
+    },
+    filters: {
+      get_items: function (category) {
+        var arr = []
+        category.forEach(c => c.items.forEach(t => arr.push(t)))
+        return arr
+      }
+    },
+  })
+</script>
+</body>
+</html>

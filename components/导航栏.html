@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>导航栏</title>
+	<style>
+		.nav {
+			list-style-type: none;
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<ul class="nav">
+		<div v-for="item in list" v-bind:id="item.id">
+			<li class="level-one">{{ item.title }}</li>
+			<li v-for="child in item.child" v-bind:href="child.id" class="level-two">
+				{{child.title}}
+			</li>
+		</div>
+	</ul>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+  var nav = new Vue({
+    el: '#app',
+    data: {
+      list: [
+        {
+          id: '1234',
+          title: 'name2',
+          child: [{
+            id: '1234',
+            title: 'child1',
+            child: []
+          }, {
+            id: '123',
+            title: 'child2',
+            child: []
+          }]
+        },
+        {
+          id: '123',
+          title: 'name1',
+          child: []
+        }]
+    }
+  })
+</script>
+</body>
+</html>
