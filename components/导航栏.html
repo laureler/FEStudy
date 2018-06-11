@@ -7,6 +7,12 @@
 		.nav {
 			list-style-type: none;
 		}
+
+		.nav a {
+			cursor: pointer;
+			color: #34495e;
+			text-decoration: none;
+		}
 	</style>
 </head>
 <body>
@@ -14,16 +20,19 @@
 	<ul class="nav">
 		<div v-for="(value,index) in list">
 			<li class="level-one">
-				<a :href="'#'+value.id">{{index +1 }} - {{ value.title }}</a>
+				<a :href="'#'+value.target">{{index +1 }} - {{ value.title }}</a>
 			</li>
 			<li v-for="(childValue,childIndex) in value.child" class="level-two">
-				{{index + 1}}.{{childIndex + 1}} - {{childValue.title}}
+				<a :href="'#'+childValue.target">{{index + 1}}>{{childIndex + 1}} - {{childValue.title}}</a>
 			</li>
 		</div>
 	</ul>
 </div>
 <div>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br>
 
 </div>
 <span id="1234" name="1234">asdasddasdasdasasd</span>
@@ -33,24 +42,10 @@
     el: '#app',
     data: {
       list: [
-        {
-          id: '1234',
-          title: 'name2',
-          child: [{
-            id: '2.1',
-            title: 'child1',
-            child: []
-          }, {
-            id: '2.2',
-            title: 'child2',
-            child: []
-          }]
-        },
-        {
-          id: '2',
-          title: 'name1',
-          child: []
-        }]
+        {title:"123",
+        target:"1221213321321",
+        child:[]}
+       ]
     }
   })
 </script>

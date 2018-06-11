@@ -3,7 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser')
 // 调用 express 实例，它是一个函数，不带参数调用时，会返回一个 express 实例，将这个变量赋予 app 变量。
 var app = express();
-app.use(bodyParser.urlencoded({
+let urlencodedParser = app.use(bodyParser.urlencoded({
   extended:false
 }));
 
@@ -12,8 +12,7 @@ app.use(bodyParser.urlencoded({
 // request 中包含了浏览器传来的各种信息，比如 query 啊，body 啊，headers 啊之类的，都可以通过 req 对象访问到。
 // res 对象，我们一般不从里面取信息，而是通过它来定制我们向浏览器输出的信息，比如 header 信息，比如想要向浏览器输出的内容。这里我们调用了它的 #send 方法，向浏览器输出一个字符串。
 
-app.all('/index', function (req, res) {
-
+app.get('/postTest', function (req, res) {
   if(req.method == 'GET'){
     res.send('get');
     req.set('set-cookie','imcookie')
@@ -22,14 +21,15 @@ app.all('/index', function (req, res) {
     res.send('Hello World 123');
   }
 });
-/*
-app.all('/index?url=123', function (req, res) {
-  if(req.method == 'GET'){
-    res.send('get');
-  }else{
-    res.send('Hello World2');
-  }
-});*/
+app.post('/postTest',function (req, res) {
+  // 输出 JSON 格式
+  var  response = {
+    first_name:req.query.first_name,
+    last_name:req.query.last_name
+  };
+  console.log(response);
+  res.json(response);
+})
 
 
 // 定义好我们 app 的行为之后，让它监听本地的 3000 端口。这里的第二个函数是个回调函数，会在 listen 动作成功后执行，我们这里执行了一个命令行输出操作，告诉我们监听动作已完成。

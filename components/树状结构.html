@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>树状结构</title>
+</head>
+<body>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<!--<script src="../node_modules/element-ui/lib/index.js"></script>
+<link href="../node_modules/element-ui/lib/theme-chalk/index.css"/>-->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<div id="app" style="min-width: 300px">
+	<div class="block">
+		<el-tree :data="data5" show-checkbox node-key="id" default-expand-all :expand-on-click-node="false">
+    <span class="custom-tree-node" slot-scope="{ node, data }">
+        <span>{{ node.label }}</span>
+        <span>
+              <el-button type="text" size="mini" @click="() => append(data)">
+                新增
+              </el-button>
+	          <el-button type="text" size="mini" @click="() => remove(node, data)">
+	            删除
+	          </el-button>
+        </span>
+    </span>
+		</el-tree>
+	</div>
+</div>
+
+<script>
+  var id = 1000
+  new Vue({
+    el: '#app',
+    data () {
+      const data = [{
+        id: 1,
+        label: '一级 1',
+        children: [{
+          id: 4,
+          label: '二级 1-123333333333333333331',
+          children: [{
+            id: 9,
+            label: '三级 1-1-1'
+          }, {
+            id: 10,
+            label: '三级 1-1-2'
+          }]
+        }]
+      }]
+      return {
+        data4: JSON.parse(JSON.stringify(data)),
+        data5: JSON.parse(JSON.stringify(data))
+      }
+    },
+    methods: {
+      append (data) {
+        const newChild = {
+          id: id++,
+          label: '测试',
+          children: []
+        }
+        if (!data.children) {
+          this.$set(data, 'children', [])
+        }
+        data.children.push(newChild)
+      },
+
+      remove (node, data) {
+        const parent = node.parent
+        const children = parent.data.children || parent.data
+        const index = children.findIndex(d => d.id === data.id)
+        children.splice(index, 1)
+      }
+    }
+  })
+</script>
+
+<style>
+	.custom-tree-node {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 14px;
+		padding-right: 8px;
+	}
+</style>
+</body>
+</html>
