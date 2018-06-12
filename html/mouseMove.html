@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div id="test" style="height: 300px;width: 200px;background-color: #00b7ee"></div>
+<script>
+  window.onload = function () {
+    /*document.getElementById('test').addEventListener('mousemove',function () {
+      console.log(new  Date().getTime())
+    })*/
+    document.getElementById('test').onmousemove = function () {
+      console.log('move')
+    }
+  }
+</script>
+</body>
+</html>
